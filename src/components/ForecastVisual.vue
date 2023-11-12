@@ -44,19 +44,23 @@ var forecastIconIcon = computed(() => {
 
 
 <template>
-  <div class="forecast-icon">
-    <v-icon  :icon="forecastIconIcon" />
+  <div >
+    <v-icon class="forecast-icon" :icon="forecastIconIcon" />
   </div>
 </template>
 
 
 <style>
 .forecast-icon {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
+  width: 1.5em;
+  align-items: right;
   font-size: 50pt;
-  text-align: center;
-  color: red
+  text-align: right;
+  background: conic-gradient(at 53% 50%, yellow 0deg 90deg, blue 90deg 205deg, yellow 205deg 360deg);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 </style>
