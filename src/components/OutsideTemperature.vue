@@ -40,8 +40,10 @@ var  dynThermometerIcon  = computed(() => {
     }
     //uses the temperature range to select the thermometer icon
     var thermometerIcon =  thermometerIconArr[temperatureIndex-1];
+    //works in vue
+    // return  ["fa-solid", thermometerIcon]  
 
-    return  ["fa-solid", thermometerIcon]
+    return "fa-solid " + thermometerIcon
 })
 
 const iconAnimation = computed(() => {
