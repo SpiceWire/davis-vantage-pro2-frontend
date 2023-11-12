@@ -38,7 +38,7 @@ function forecastIconSelect() {
 
 
 var forecastIconIcon = computed(() => {
-  return ["fa-solid", forecastIconSelect()]
+  return "fa-solid " + forecastIconSelect()
 })
 </script>
 
