@@ -40,15 +40,14 @@ function pollData() {
         <v-row align:center no-gutters style="height: 150px;">
           <v-col 
             cols="4"
-            class="flex-grow-0"
-            >
+            class="flex-grow-0 flex-shrink-0"
+            style="min-width: 400px">
             <TheTime id="the-time" />
             <WindRose id="wind-rose" />
           </v-col>
           <v-col  
               cols="6"
             class="flex-grow-1"
-
             >
             <v-row  class="d-flex-wrap flex-row justify-space-between">
               <div class="outside-conditions" style="text-align:center">
@@ -67,25 +66,23 @@ function pollData() {
               </div>
               <div class="rain-conditions" style="text-align:center">
                 <b>Rain</b>
+                <v-divider></v-divider>
                 <DailyRain id="daily-rain" />
                 <RainRate id="rain-rate" />
                 <LastHourRain id="last-hour-rain"/>
               </div>
               <div class="wind-conditions" style="text-align:center">
                 <b>Wind</b>
+                <v-divider></v-divider>
                 <WindTenMinAvg id="wind-ten-min-avg"/>
                 <WindGust id="wind-gust" />
                 <WindTwoMinAvg id="wind-tow-min-avg"/>
               </div>
               <TheBarometer id="the-barometer" />
               <ForecastVisual id="forecast-visual" /> 
-              
-              
               <WindChill id="wind-chill" />
               <HeatIndex id="heat-index" />
                
-              
-              
             </v-row>           
           </v-col>
         </v-row>
@@ -107,7 +104,6 @@ function pollData() {
 .inside-conditions {
   border: 3px solid black;
 }
-
 .rain-conditions{
   border: 3px solid blue;
 }
