@@ -3,10 +3,11 @@
 import { useClimaStore } from '../store/clima';
 import { computed } from 'vue'
 
+
 const store = useClimaStore();
 
 
-const outsideHumidity = computed(() => {
+const tenMinAvgWindSpeed = computed(() => {
     return store.clima.tenMinAvgWindSpeed
 })
 
@@ -15,11 +16,11 @@ const outsideHumidity = computed(() => {
 <template>
     <div class="tenMinAvgWindSpeedArea">
     <div class="tenMinAvgWindSpeedTile">
-        <v-icon icon="fmdi-weather-dust" class="tenMinAvgWindSpeedIcon"
+        <v-icon icon="mdi mdi-weather-dust" class="tenMinAvgWindSpeedIcon"
             id="tenMinAvgWindSpeedIcon"/>
-        {{ tenMinAvgWindSpeed }} %
+        {{ tenMinAvgWindSpeed }} mph
     </div>
-    <div>Humidity</div>
+    <div>10 min avg.</div>
     </div>
 </template>
 

@@ -14,9 +14,10 @@ import TheTime from '../components/TheTime.vue';
 import WindChill from '../components/WindChill.vue';
 import InsideTemperature from '../components/InsideTemperature.vue';
 import InsideHumidity from '../components/InsideHumidity.vue';
-import TheChyron from '../components/TheChyron.vue';
+import WindTwoMinAvg from '../components/WindTwoMinAvg.vue';
 import WindGust from '@/components/WindGust.vue';
 import LastHourRain from '../components/LastHourRain.vue';
+import WindTenMinAvg  from '../components/WindTenMinAvg.vue';
 const store = useClimaStore();
 
 var polling
@@ -45,29 +46,36 @@ function pollData() {
             <WindRose id="wind-rose" />
           </v-col>
           <v-col  
-              cols="7"
+              cols="6"
             class="flex-grow-1"
 
             >
             <v-row  class="d-flex-wrap flex-row justify-space-between">
               <div class="outside-conditions" style="text-align:center">
-                Outside
+                <b>Outside</b>
                 <v-divider></v-divider>
               <OutsideTemperature id="outside-temperature" />
               <v-divider></v-divider>
               <OutsideHumidity id="outside-humidity" />
               </div>
               <div class="inside-conditions" style="text-align:center">
-                Inside
+                <b>Inside</b>
                 <v-divider></v-divider>
                <InsideTemperature id="inside-temperature" />
               <v-divider></v-divider>
               <InsideHumidity id="inside-humidity" />
               </div>
-              <div class="rain-conditions">
+              <div class="rain-conditions" style="text-align:center">
+                <b>Rain</b>
                 <DailyRain id="daily-rain" />
                 <RainRate id="rain-rate" />
                 <LastHourRain id="last-hour-rain"/>
+              </div>
+              <div class="wind-conditions" style="text-align:center">
+                <b>Wind</b>
+                <WindTenMinAvg id="wind-ten-min-avg"/>
+                <WindGust id="wind-gust" />
+                <WindTwoMinAvg id="wind-tow-min-avg"/>
               </div>
               <TheBarometer id="the-barometer" />
               <ForecastVisual id="forecast-visual" /> 
@@ -76,7 +84,7 @@ function pollData() {
               <WindChill id="wind-chill" />
               <HeatIndex id="heat-index" />
                
-              <WindGust id="wind-gust" />
+              
               
             </v-row>           
           </v-col>
@@ -90,6 +98,9 @@ function pollData() {
 
 
 <style>
+.wind-conditions{
+  border: 3px solid black;
+}
 .outside-conditions {
   border: 3px solid black;
 }
