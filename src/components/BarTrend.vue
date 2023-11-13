@@ -47,13 +47,12 @@ var barTrendIcon = computed(() => {
 <template>
     <div class="barTrendClass">
         <v-icon  >{{ barTrendIcon }}</v-icon>
-        {{ barTrend }}
-        {{ barTrendIcon }}
     </div>
 </template>
 
 <style scoped>
 .barTrendClass {
-    color: black
+    color: black;
+    font-size: 20pt;
 }
 </style>

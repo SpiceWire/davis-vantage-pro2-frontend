@@ -16,15 +16,25 @@ var insideHumidity = computed(() => {
 
 
 <template >
+    <div class="insideHumidityArea">
     <div>
         <v-icon icon="fa-solid fa-droplet" class="insideHumidityIcon" id="insideHumidityIcon" />
         {{ insideHumidity }}%
 
     </div>
+    <div>Humidity </div>
+    </div>
 </template>
 
 <style>
+.insideHumidityArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
 .insideHumidityIcon {
-    color: blue
+    color: black
 }
 </style>

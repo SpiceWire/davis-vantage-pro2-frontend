@@ -44,18 +44,28 @@ var forecastIconIcon = computed(() => {
 
 
 <template>
+  <div class="forecastArea">
   <div >
     <v-icon class="forecast-icon" :icon="forecastIconIcon" />
+  </div>
+  <div>Forecast</div>
   </div>
 </template>
 
 
 <style>
+
+.forecastArea{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
 .forecast-icon {
   display: block;
   width: 1.5em;
   align-items: right;
-  font-size: 50pt;
+
   text-align: right;
   background: conic-gradient(at 53% 50%, yellow 0deg 90deg, blue 90deg 205deg, yellow 205deg 360deg);
   -webkit-background-clip: text;

@@ -50,6 +50,7 @@ onUpdated(() => {
 </script>
 
 <template>
+  <div class="windRoseArea">
   <div class="windRoseTile">
     <p>Wind</p>
     {{ speed }}
@@ -57,12 +58,19 @@ onUpdated(() => {
     <wind-arrow v-for="(windDirection, index) in windDirections" :speed="windDirection.speed"
       :direction="windDirection.direction" :key="windDirection.index"></wind-arrow>
     <BigWindArrow v-bind="windDetail" id="windNow" />
-
-
+  </div>
+  <div>Wind Rose</div>
   </div>
 </template>
 
 <style scoped>
+.windRoseArea{
+  display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
 .windRoseTile {
   display: grid;
   margin-left: 52px;

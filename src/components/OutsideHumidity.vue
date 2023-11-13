@@ -13,14 +13,24 @@ const outsideHumidity = computed(() => {
 </script>
 
 <template>
-    <div>
+    <div class="outsideHumidityArea">
+    <div class="outsideHumidityTile">
         <v-icon icon="fa-solid fa-droplet" class="outsideHumidityIcon"
             id="outsideHumidityIcon"/>
         {{ outsideHumidity }} %
     </div>
+    <div>Humidity</div>
+    </div>
 </template>
 
 <style scoped>
+
+.outsideHumidityArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
 .outsideHumidityIcon {
     color: blue
 }

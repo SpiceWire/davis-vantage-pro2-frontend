@@ -20,4 +20,4 @@ app.config.globalProperties.axios = axios
 app.mount('#app')
 
 //make icons with two colors
-
+//add beat to wind icon

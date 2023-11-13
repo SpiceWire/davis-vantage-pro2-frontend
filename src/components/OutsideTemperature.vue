@@ -82,14 +82,22 @@ function colorInRange(color1, color2, weight)  {
 
 
 <template >
+    <div class="outsideTemperatureArea">
     <div>
         <v-icon :icon="dynThermometerIcon" id="temperIcon" :bounce="iconAnimation" />
         {{ outTemp }}
-
+    </div>
+    <div>Temperature</div>
     </div>
 </template>
 
 <style>
+.outsideTemperatureArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
 #temperIcon{
     color: v-bind("colorThermometer")
 }

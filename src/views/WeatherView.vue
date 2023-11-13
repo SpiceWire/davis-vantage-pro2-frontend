@@ -15,7 +15,8 @@ import WindChill from '../components/WindChill.vue';
 import InsideTemperature from '../components/InsideTemperature.vue';
 import InsideHumidity from '../components/InsideHumidity.vue';
 import TheChyron from '../components/TheChyron.vue';
-
+import WindGust from '@/components/WindGust.vue';
+import LastHourRain from '../components/LastHourRain.vue';
 const store = useClimaStore();
 
 var polling
@@ -26,29 +27,62 @@ onUnmounted(() => clearInterval(polling));
 
 
 function pollData() {
-            polling = setInterval(() => {store.fetchClima()}, 15000)
-        }
+  polling = setInterval(() => { store.fetchClima() }, 15000)
+}
 
 </script>
 
 <template>
   <main>
     <div id="WeatherView">
-      <WindRose id="wind-rose" />
-      <InsideHumidity id="inside-humidity" />
-      <ForecastVisual id="forecast-visual" />
-      <TheTime id="the-time" />
-      <OutsideTemperature id="outside-temperature" />
-      <OutsideHumidity id="outside-humidity" />
-      <TheBarometer id="the-barometer" />
-      <BarTrend id="bar-trend" />
-      <InsideTemperature id="inside-temperature" />
+      <v-contaner class="live-weather">
+        <v-row align:center no-gutters style="height: 150px;">
+          <v-col 
+            cols="4"
+            class="flex-grow-0"
+            >
+            <TheTime id="the-time" />
+            <WindRose id="wind-rose" />
+          </v-col>
+          <v-col  
+              cols="7"
+            class="flex-grow-1"
+
+            >
+            <v-row  class="d-flex-wrap flex-row justify-space-between">
+              <div class="outside-conditions" style="text-align:center">
+                Outside
+                <v-divider></v-divider>
+              <OutsideTemperature id="outside-temperature" />
+              <v-divider></v-divider>
+              <OutsideHumidity id="outside-humidity" />
+              </div>
+              <div class="inside-conditions" style="text-align:center">
+                Inside
+                <v-divider></v-divider>
+               <InsideTemperature id="inside-temperature" />
+              <v-divider></v-divider>
+              <InsideHumidity id="inside-humidity" />
+              </div>
+              <div class="rain-conditions">
+                <DailyRain id="daily-rain" />
+                <RainRate id="rain-rate" />
+                <LastHourRain id="last-hour-rain"/>
+              </div>
+              <TheBarometer id="the-barometer" />
+              <ForecastVisual id="forecast-visual" /> 
+              
+              
+              <WindChill id="wind-chill" />
+              <HeatIndex id="heat-index" />
+               
+              <WindGust id="wind-gust" />
+              
+            </v-row>           
+          </v-col>
+        </v-row>
+      </v-contaner>
       
-      <WindChill id="wind-chill" />
-      <HeatIndex id="heat-index" />
-      <DailyRain id="daily-rain" />
-      <RainRate id="rain-rate" />
-      <TheChyron id="the-chyron" />
     </div>
 
   </main>
@@ -56,7 +90,16 @@ function pollData() {
 
 
 <style>
+.outside-conditions {
+  border: 3px solid black;
+}
+.inside-conditions {
+  border: 3px solid black;
+}
 
+.rain-conditions{
+  border: 3px solid blue;
+}
 #WeatherView {
   font-size: 2rem;
   /* display:grid;
@@ -108,5 +151,4 @@ function pollData() {
 #the-chyron{
   grid-area: the-chyron
 } */
-
 </style>
