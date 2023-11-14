@@ -36,7 +36,7 @@ function pollData() {
 <template>
   <main>
     <div id="WeatherView">
-      <v-contaner class="live-weather">
+      <v-container class="live-weather">
         <v-row align:center no-gutters style="height: 150px;">
           <v-col 
             cols="4"
@@ -86,7 +86,7 @@ function pollData() {
             </v-row>           
           </v-col>
         </v-row>
-      </v-contaner>
+      </v-container>
       
     </div>
 
@@ -97,15 +97,23 @@ function pollData() {
 <style>
 .wind-conditions{
   border: 3px solid black;
+  border-radius:20px;
+  background-color: rgb(197, 193, 193);
 }
 .outside-conditions {
   border: 3px solid black;
+  border-radius:20px;
+  background-color:lightgreen
 }
 .inside-conditions {
   border: 3px solid black;
+  border-radius:20px;
+  background-color: beige;
 }
 .rain-conditions{
   border: 3px solid blue;
+  border-radius:20px;
+  background-color: rgb(135, 185, 250);
 }
 #WeatherView {
   font-size: 2rem;

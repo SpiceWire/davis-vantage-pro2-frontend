@@ -30,6 +30,6 @@ const rainRate = computed(() => {
     margin: 10px;
 }
 .rainRateIcon {
-    color: cyan
+    color:rgb(189, 163, 98)
 }
 </style>

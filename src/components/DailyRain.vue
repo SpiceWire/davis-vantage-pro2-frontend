@@ -31,6 +31,6 @@ const dayRain = computed(() => {
 }
 
 .dailyRainIcon {
-    color: cyan
+    color:rgb(189, 163, 98)
 }
 </style>
