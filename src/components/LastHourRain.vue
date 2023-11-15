@@ -22,7 +22,7 @@ var lastHourRain = computed(() => {
         <v-icon icon="fas fa-clock-rotate-left" class="lastHourRainIcon" id="lastHourRainIcon" />
        {{ lastHourRain }}
     </div>
-     Last Hour Rain 
+     Last Hour 
     </div>
 </template>
 

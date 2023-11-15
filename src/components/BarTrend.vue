@@ -9,24 +9,33 @@ const barTrend = computed(() => {
     return store.clima.barTrend
 })
 
+const emit = defineEmits(['barTrendMsg'])
+const barTrendText = "Unavailable"
+
 function barTrendSelectIcon() {
     switch ((barTrend.value)) {
         case -60:
+            barTrendText = "Falling rapidly"
             return "fa-arrow-down";
             break;
         case -20:
+            barTrendText = "Falling slowly"
             return "fa-arrow-trend-down";
             break;
         case 0:
+            barTrendText = "Steady"
             return "fa-arrow-right";
             break;
         case 20:
+            barTrendText = "Rising slowly"
             return "fa-arrow-trend-up";
             break;
         case 60:
+            barTrendText = "Rising rapidly"
             return "fa-arrow-up";
             break;
         case 80:
+            barTrendText = "Unavailable"
             return "fa-xmarks-lines";
             break;
         default:
@@ -35,18 +44,15 @@ function barTrendSelectIcon() {
 }
 
 var barTrendIcon = computed(() => {
+    emit("barTrendText");
     return "fa-solid " + barTrendSelectIcon()
 })
-//could not find aliased icon $barTrendIcon with 
-//<v-icon  >{{ `$barTrendIcon` }}</v-icon> 
-//<v-icon  >{{ `$barTrendIcon` }}</v-icon>
-//and  return "fas" + barTrendSelectIcon()
-//or return ["fas",  barTrendSelectIcon()]
+
 </script>
 
 <template>
     <div class="barTrendClass">
-        <v-icon  >{{ barTrendIcon }}</v-icon>
+        <v-icon  > {{ barTrendIcon }}</v-icon>
     </div>
 </template>
 
@@ -54,5 +60,6 @@ var barTrendIcon = computed(() => {
 .barTrendClass {
     color: black;
     font-size: 20pt;
+    margin-left: 5px;
 }
 </style>

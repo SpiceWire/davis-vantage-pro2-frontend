@@ -10,11 +10,12 @@ var barometer = computed(() => {return store.clima.barometer})
 
 <template>
     <div class="barometerArea">
+        <b>Barometer</b>
     <div class="barometerTile">
         <v-icon  id="barometerIcon" icon="fa-solid fa-weight-hanging"></v-icon>
-        {{ barometer }}  <BarTrend /> <br>
+        {{ barometer }}  <BarTrend @barTrendMsg="barTrendDescr"/> <br>
     </div>
-    <span>Barometer</span>
+    <div>{{ barTrendDescr }}</div>
     </div>
 </template>
 

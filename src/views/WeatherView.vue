@@ -36,7 +36,7 @@ function pollData() {
 <template>
   <main>
     <div id="WeatherView">
-      <v-container class="live-weather">
+      <v-contaner class="live-weather">
         <v-row align:center no-gutters style="height: 150px;">
           <v-col 
             cols="4"
@@ -49,7 +49,7 @@ function pollData() {
               cols="6"
             class="flex-grow-1"
             >
-            <v-row  class="d-flex-wrap flex-row justify-space-between">
+            <v-row  class="d-flex-wrap flex-row justify-space-between ga-5">
               <div class="outside-conditions" style="text-align:center">
                 <b>Outside</b>
                 <v-divider></v-divider>
@@ -86,7 +86,7 @@ function pollData() {
             </v-row>           
           </v-col>
         </v-row>
-      </v-container>
+      </v-contaner>
       
     </div>
 

@@ -21,6 +21,8 @@ var thermometerIconArr = [
 var outTemp = computed(() => {
     return store.clima.outsideTemperature
 })
+
+
 var heatIndex = computed(() => {
     return store.clima.heatIndex
 })
