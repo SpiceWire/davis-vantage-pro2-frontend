@@ -68,14 +68,18 @@ function pollData() {
                 <b>Rain</b>
                 <v-divider></v-divider>
                 <DailyRain id="daily-rain" />
+                <v-divider></v-divider>
                 <RainRate id="rain-rate" />
+                <v-divider></v-divider>
                 <LastHourRain id="last-hour-rain"/>
               </div>
               <div class="wind-conditions" style="text-align:center">
                 <b>Wind</b>
                 <v-divider></v-divider>
                 <WindTenMinAvg id="wind-ten-min-avg"/>
+                <v-divider></v-divider>
                 <WindGust id="wind-gust" />
+                <v-divider></v-divider>
                 <WindTwoMinAvg id="wind-tow-min-avg"/>
               </div>
               <TheBarometer id="the-barometer" />

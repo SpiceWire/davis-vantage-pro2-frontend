@@ -21,7 +21,7 @@ var tenMinuteWindGust = computed(() => {
         <v-icon icon="fas fa-wind" class="tenMinuteWindGustIcon" id="tenMinuteWindGustIcon" />
        {{ tenMinuteWindGust }}
     </div>
-     10 min. gust 
+     10 Min. Gust 
     </div>
 </template>
 

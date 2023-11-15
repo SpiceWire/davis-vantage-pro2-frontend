@@ -20,7 +20,7 @@ const tenMinAvgWindSpeed = computed(() => {
             id="tenMinAvgWindSpeedIcon"/>
         {{ tenMinAvgWindSpeed }} mph
     </div>
-    <div>10 min avg.</div>
+    <div>10 Min Avg.</div>
     </div>
 </template>
 
