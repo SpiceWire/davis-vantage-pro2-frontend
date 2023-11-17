@@ -19,5 +19,7 @@ registerPlugins(app)
 app.config.globalProperties.axios = axios
 app.mount('#app')
 
-//make icons with two colors
+
 //add beat to wind icon
+//add "server is online" heartbeat
+//add unique request number to server requests

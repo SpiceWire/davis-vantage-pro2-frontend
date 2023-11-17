@@ -22,7 +22,10 @@ const store = useClimaStore();
 
 var polling
 
-onMounted(() => pollData())
+onMounted(() => 
+  store.fetchClima(),
+  pollData()
+  )
 
 onUnmounted(() => clearInterval(polling));
 
@@ -36,20 +39,21 @@ function pollData() {
 <template>
   <main>
     <div id="WeatherView">
-      <v-contaner class="live-weather">
-        <v-row align:center no-gutters style="height: 150px;">
+      <v-container fluid class="live-weather " >
+        <v-row  style="height: 150px;">
           <v-col 
             cols="4"
-            class="flex-grow-0 flex-shrink-0"
+            class="flex-grow-0 flex-shrink-0 ga-5 justify-center"
             style="min-width: 400px">
             <TheTime id="the-time" />
+            <br>
             <WindRose id="wind-rose" />
           </v-col>
           <v-col  
-              cols="6"
+              
             class="flex-grow-1"
             >
-            <v-row  class="d-flex-wrap flex-row justify-space-between ga-5">
+            <v-row  class="d-flex-wrap flex-row justify-center ga-5">
               <div class="outside-conditions" style="text-align:center">
                 <b>Outside</b>
                 <v-divider></v-divider>
@@ -57,14 +61,14 @@ function pollData() {
               <v-divider></v-divider>
               <OutsideHumidity id="outside-humidity" />
               </div>
-              <div class="inside-conditions" style="text-align:center">
+              <div class="inside-conditions text-center" >
                 <b>Inside</b>
                 <v-divider></v-divider>
                <InsideTemperature id="inside-temperature" />
               <v-divider></v-divider>
               <InsideHumidity id="inside-humidity" />
               </div>
-              <div class="rain-conditions" style="text-align:center">
+              <div class="rain-conditions min-width=500px text-center"  >
                 <b>Rain</b>
                 <v-divider></v-divider>
                 <DailyRain id="daily-rain" />
@@ -73,7 +77,7 @@ function pollData() {
                 <v-divider></v-divider>
                 <LastHourRain id="last-hour-rain"/>
               </div>
-              <div class="wind-conditions" style="text-align:center">
+              <div class="wind-conditions text-center" >
                 <b>Wind</b>
                 <v-divider></v-divider>
                 <WindTenMinAvg id="wind-ten-min-avg"/>
@@ -90,7 +94,7 @@ function pollData() {
             </v-row>           
           </v-col>
         </v-row>
-      </v-contaner>
+      </v-container>
       
     </div>
 

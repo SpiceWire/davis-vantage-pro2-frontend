@@ -15,7 +15,7 @@ onMounted(() => {
     arrow.style.background = colorWindArrow();
    
     if (props.key > 7) {
-        console.log("        main arrow triggered")
+        
         arrow.style.clipPath = ("polygon(30% 0, 70% 70%, 0 30%)")
     }
 })
@@ -27,15 +27,15 @@ function pointArrow() {
 function colorWindArrow() {
    
     if (props.speed <= 1) {
-        console.log("green")
+       
         return "green";
     }
     else if (props.speed <= 4) {
-        console.log("yellow")
+       
         return "yellow";
     }
     else {
-        console.log("problem")
+        
         return "red";
     }
 }

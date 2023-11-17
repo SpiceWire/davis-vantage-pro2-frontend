@@ -65,7 +65,7 @@ onUpdated(() => {
 
 <style scoped>
 .windRoseArea{
-  display: inline-flex;
+  display: flex;
     flex-direction: column;
     align-items: center;
     
@@ -73,7 +73,7 @@ onUpdated(() => {
 
 .windRoseTile {
   display: grid;
-  margin-left: 52px;
+  /* margin-left: 52px; */
   position: relative;
   /* justify-content:center; */
   align-content: center;

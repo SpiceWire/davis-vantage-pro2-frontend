@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-//import WebService from '../services/WebService'
+import WebService from '../services/WebService'
 import axios from 'axios'
 
 //elClima is the weather object plus a keyID 
@@ -19,8 +19,8 @@ export const useClimaStore = defineStore('clima',  {
           async fetchClima() {
             try {
                 // console.log("Store says: fetchClima called.")
-                //const datum = await WebService.getWeather()
-                const datum = await axios.get('http://localhost:8080/weather')
+                const datum = await WebService.getWeather()
+                // const datum = await axios.get('http://localhost:8080/weather')
                 // console.log("clima store says: data data is: ")
                 // console.log("datum1 =" + datum.data)
                 datum.data.keyID = Date.parse(new Date)/1000

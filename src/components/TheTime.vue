@@ -13,7 +13,7 @@ const theUpdatedTime = () => {
     weekday: 'short',
     day: 'numeric',
     month: 'short',
-    year: 'numeric'
+    
     
 });
 }
@@ -34,13 +34,15 @@ onUnmounted(() => clearInterval(refreshTime))
 </script>
 
 <template>
-    <div id="date-time">
-        {{ theDate }} {{ theTime }}
-    </div>
+    <v-row id="date-time" class="d-flex-column justify-space-around ">
+       <div> {{ theDate }} </div> <div>{{ theTime }}</div>
+    </v-row>
 </template>
 
 <style scoped>
 #date-time{
-    display:block
+    display:block;
+   
+    justify-content: center;
 }
 </style>
