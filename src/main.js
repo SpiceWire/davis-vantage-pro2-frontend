@@ -22,4 +22,5 @@ app.mount('#app')
 
 //add beat to wind icon
 //add "server is online" heartbeat
-//add unique request number to server requests
+//delete getOne from webservice
+

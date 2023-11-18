@@ -1,6 +1,7 @@
 // Composables
 import { createRouter, createWebHistory } from 'vue-router'
 import WeatherView from '../views/WeatherView.vue'
+import Connection from '../views/Connection.vue'
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
         path: '/weather',
         name: 'weatherView',
         component: WeatherView
+      },
+      {
+        path: '/connection',
+        name: 'connection',
+        component: Connection
       },
     ],
   },

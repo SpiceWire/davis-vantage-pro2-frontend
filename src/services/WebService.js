@@ -6,7 +6,6 @@ import {ref, computed} from 'vue'
 // })
 
 function uniqueNumber() {
-  console.log("unique number called")
   return Date.parse(new Date)/1000
 }
 
