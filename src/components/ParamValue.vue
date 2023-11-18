@@ -14,6 +14,16 @@ const props = defineProps(
 
 <template >
     <div>
-        {{ param }} &nbsp; &nbsp; {{ val }}
-    </div>
+        <v-row>
+            <v-col cols="2">
+                 {{ val }}
+            </v-col>
+            <v-col cols="auto">
+               {{ param }}
+            </v-col>
+        </v-row>
+     
+      </div>
+        
+    
 </template>

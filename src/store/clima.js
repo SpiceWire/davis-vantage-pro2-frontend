@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 import WebService from '../services/WebService'
-import axios from 'axios'
+
 
 //elClima is the weather object plus a keyID 
 export const useClimaStore = defineStore('clima',  {
