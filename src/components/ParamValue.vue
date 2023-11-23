@@ -15,7 +15,7 @@ const props = defineProps(
 <template >
     <div>
         <v-row>
-            <v-col cols="2">
+            <v-col cols="6">
                  {{ val }}
             </v-col>
             <v-col cols="auto">

@@ -6,9 +6,6 @@ import { computed } from 'vue'
 
 const store = useClimaStore();
 
-// const forecastIcon = computed(() => {
-//   return store.clima.forecastIcon
-// })
 
 
 const forecastIcon = computed(() => {
@@ -30,65 +27,63 @@ const forecastIcon = computed(() => {
 
 
 //showSnow = Davis forecast icon values associated with snow
-const showSnow = computed(()=> {
+const showSnow = computed(() => {
   const snowSet = new Set([18, 19, 22, 23]);
- return snowSet.has(forecastIcon.value)
+  return snowSet.has(forecastIcon.value)
 })
 
 var iconNameString
 var forecastNameString
 
-const cssProp = computed(() =>{
+const cssProp = computed(() => {
   switch (forecastIcon.value) {
-    case 2: return "--icon-color-string: gray";  
+    case 2: return "--icon-color-string: gray";
     case 3: return "--icon-color-string: linear-gradient(gray 0% 70%, blue 70% 100%)";
-    case 22:    
+    case 22:
     case 6: return "--icon-color-string: conic-gradient(at 43% 47%, orange 0deg 83deg, gray 83deg 205deg, orange 205deg 360deg)";
     case 23:
     case 7: return "--icon-color-string: conic-gradient(at 32% 55%, orange 0deg 29deg, gray 15deg 195deg, orange 195deg 360deg)";
     case 8: return "--icon-color-string: orange";
-    case 18:  return "--icon-color-string: gray";
-    case 19:  return "--icon-color-string: linear-gradient(gray 0% 70%, blue 70% 100%)";
-    default:  return "--icon-color-string: gray";
-}
+    case 18: return "--icon-color-string: gray";
+    case 19: return "--icon-color-string: linear-gradient(gray 0% 70%, blue 70% 100%)";
+    default: return "--icon-color-string: gray";
+  }
 
 
 })
 function forecastIconSelect() {
   switch (forecastIcon.value) {
-    case 2: iconNameString="fa-cloud";
-            forecastNameString="Mostly cloudy"
+    case 2: iconNameString = "fa-cloud";
+      forecastNameString = "Mostly cloudy"
       break;
-    case 3: iconNameString="fa-cloud-rain";
-            forecastNameString="Cloudy, rain"
+    case 3: iconNameString = "fa-cloud-rain";
+      forecastNameString = "Cloudy, rain"
       break;
-    case 6: iconNameString="fa-cloud-sun";
-            forecastNameString="Partly cloudy"
+    case 6: iconNameString = "fa-cloud-sun";
+      forecastNameString = "Partly cloudy"
       break;
-    case 7: iconNameString="fa-cloud-sun-rain";
-            forecastNameString="Partly cloudy, rain"
+    case 7: iconNameString = "fa-cloud-sun-rain";
+      forecastNameString = "Partly cloudy, rain"
       break;
-    case 8: iconNameString="fa-sun";
-            forecastNameString="Mostly clear"
+    case 8: iconNameString = "fa-sun";
+      forecastNameString = "Mostly clear"
       break;
-    case 18:  iconNameString="fa-cloud";
-              forecastNameString="Mostly cloudy, snow"
+    case 18: iconNameString = "fa-cloud";
+      forecastNameString = "Mostly cloudy, snow"
       break;
-    case 19:  iconNameString="fa-cloud-rain";
-              forecastNameString="Mostly cloudy; rain or snow"
+    case 19: iconNameString = "fa-cloud-rain";
+      forecastNameString = "Mostly cloudy; rain or snow"
       break;
-    case 22:  iconNameString="fa-cloud-sun";
-              forecastNameString="Partly cloudy, snow"
+    case 22: iconNameString = "fa-cloud-sun";
+      forecastNameString = "Partly cloudy, snow"
       break;
-    case 23:  iconNameString="fa-cloud-sun-rain";
-              forecastNameString="Partly cloudy; rain or snow"
+    case 23: iconNameString = "fa-cloud-sun-rain";
+      forecastNameString = "Partly cloudy; rain or snow"
       break;
-    default:  iconNameString="fa-xmarks-lines";
-              forecastNameString="Error"            
+    default: iconNameString = "fa-xmarks-lines";
+      forecastNameString = "Error"
   }
 }
-
-
 
 
 var forecastIconIcon = computed(() => {
@@ -101,37 +96,39 @@ var forecastIconIcon = computed(() => {
 
 <template>
   <div class="forecastArea text-center">
-    <div><b>Forecast</b></div> 
-  <div class="forecast-icons">
-    <v-icon class="forecast-icon" :icon="forecastIconIcon" :style="cssProp"/>
-    <div v-if="showSnow"> <v-icon class="extra-forecast" icon="fa-solid fa-snowflake" style="color: rgb(53, 53, 141)"/></div>
-  </div>
-  {{ forecastNameString }}
- 
+    <div><b>Forecast</b></div>
+    <div class="forecast-icons">
+      <v-icon class="forecast-icon" :icon="forecastIconIcon" :style="cssProp" />
+      <div v-if="showSnow"> <v-icon class="extra-forecast" icon="fa-solid fa-snowflake" style="color: rgb(53, 53, 141)" />
+      </div>
+    </div>
+    {{ forecastNameString }}
+
   </div>
 </template>
 
 
 <style>
-
-.forecastArea{
+.forecastArea {
   display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
 }
+
 .forecast-icons {
   display: flex
 }
+
 .forecast-icon {
   display: block;
   width: auto;
-  height:auto;
+  height: auto;
   align-items: right;
 
   text-align: right;
   background: var(--icon-color-string);
-  
+
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
