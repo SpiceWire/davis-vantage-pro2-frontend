@@ -4,12 +4,12 @@ import { useCommStore } from '../store/comm';
 import { computed, onMounted, onUpdated, ref, reactive, toRaw} from 'vue'
 
 const store = useCommStore();
-
+// var commList = new Array();
 const commObj = computed(() =>{
     return store.comm
 })
 var commItem
-const commList = computed(()=>{
+var commList = computed(()=>{
     
     //below returns with  TypeError: undefined is not iterable
     // return Array.from(store.comm.commPortList)
@@ -20,8 +20,10 @@ const commList = computed(()=>{
     // return Array.from( commItem in commObj.commPortList, (x)=>x)
     // const commLength=commObj.commPortList
     
-    return (toRaw(store.comm.commPortList))
+    // return (toRaw(store.comm.commPortList))
+    return store.comm.commPortList
 })
+
 const currentCommPort = computed(() =>{
     return store.comm.systemPortName
 })
@@ -44,6 +46,8 @@ const baudList =[19200, 9600, 4800, 2400, 1200]
 const timeoutList = [0, 10 ,100, 1000, 1500, 2000, 2500, 3000]
 const writeTimeoutList = [0, 10 ,100, 1000, 1500, 2000, 2500, 3000]
 
+
+// const commListCopy = commList.slice()
 // onMounted(()=>{
 //   console.log ("commlst is array? " + Array.isArray(commList))
 //   console.log(commList)
@@ -59,7 +63,18 @@ console.log("commObj =")
 console.log(commObj)
 console.log("commObj value =")
 console.log(commObj.value)
-console.log("comportList length = " + commObj.commPortList)
+console.log("comportList length = " , commObj.commPortList)
+console.log("commList[0] is ", commList[0])
+console.log("rawComList is ", toRaw(commList))
+console.log ("baudlist is array? " , Array.isArray(baudList)) 
+console.log ("commlst is array? " , Array.isArray(commList))
+for (const m in commList){
+    console.log(m, commList[m])
+}
+// const newCommList = [...commList]
+// console.log(JSON.parse(Object.values[(commList)]))
+// console.log("comListCopy is "), commListCopy
+// console.log ("comListCopy is array? " , Array.isArray(commListCopy))
 // function useSettings(){
 //     return ""
 // }
@@ -81,6 +96,9 @@ console.log("comportList length = " + commObj.commPortList)
  var selectBaud = computed(()=>{
     return baudList.indexOf(currentBaud.value)
 })
+
+var selectComm  = 0
+
 
 // var selectComm = commList.indexOf(currentCommPort.value)
 //  var selectComm = computed(()=>{

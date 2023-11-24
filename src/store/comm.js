@@ -5,7 +5,18 @@ import WebService from '../services/WebService'
 
 export const useCommStore = defineStore('comm',  {
     state: () => ({
-        comm : {},
+        comm : {
+            systemPortName: '',
+            commPortList: [],
+            commPortDescription: '',
+            commPortPath: '',
+            baudRate: 0,
+            dataBits: 0,
+            stopBits: 1,
+            parity: 0,
+            writeTimeout: 0,
+            readTimeout: 0,
+        },
     }),
     getters: {
         getComm(state) {
