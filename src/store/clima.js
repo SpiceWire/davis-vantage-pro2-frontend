@@ -10,7 +10,7 @@ export const useClimaStore = defineStore('clima',  {
     }),
     getters: {
         getElClima(state) {
-            console.log("store says getElClima called")
+           
             return state.clima
         },
 

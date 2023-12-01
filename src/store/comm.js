@@ -8,6 +8,7 @@ export const useCommStore = defineStore('comm',  {
         comm : {
             systemPortName: '',
             commPortList: [],
+            commPortIndex: 0,
             commPortDescription: '',
             commPortPath: '',
             baudRate: 0,

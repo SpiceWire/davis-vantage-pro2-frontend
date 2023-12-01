@@ -23,11 +23,11 @@ export default {
     return http.get('/weather/new')
   },
   getSettings(){
-    return http.get('/vp2/settings')
+    return http.get('/vp2/settings/' + uniqueNumber())
   },
   applySettings(settingsObj){
-    console.log("Webservice says: Settings obj is: " + settingsObj)
-    return http.post('/vp2/settings', settingsObj)
+    console.log("Webservice says: Settings obj is: " , settingsObj)
+    return http.post('/vp2/settings/' + uniqueNumber(), settingsObj)
   },
   getOne(id) {
     return http.get(`/topics/${id}`)

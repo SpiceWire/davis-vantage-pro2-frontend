@@ -7,6 +7,7 @@ import CurrentSettings from '@/components/CurrentSettings.vue'
 import { useCommStore } from '../store/comm';
 import NewSettings from '@/components/NewSettings.vue';
 
+
 const store = useCommStore();
 
 onMounted(() => 
@@ -23,6 +24,7 @@ onMounted(() =>
         <CurrentSettings />
      
          <NewSettings />
+     
         </v-row>
       </v-container>  
     </div>
