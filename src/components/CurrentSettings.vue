@@ -18,8 +18,11 @@ const store = useCommStore();
 async function getSettings(){
     console.log("CurrentSettings ran getSettings")
     store.fetchComm()
-        .then()
-    settingsObj.value =store.getComm
+        .then(response => {
+            console.log('Response is ' , response)
+            settingsObj.value = response.data
+        })
+    // settingsObj.value =store.getComm
     console.log("CurrentSettngs.getSettings says settingsObj is ")
     console.log(settingsObj)
 }

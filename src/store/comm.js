@@ -33,6 +33,7 @@ export const useCommStore = defineStore('comm',  {
                 this.comm = newComm.data
                 console.log("fetch commStore called. Comm is:")
                 console.log(this.comm)
+                return state.comm
             }
             catch(error){
                 alert("Comm store fetch error " + error)
