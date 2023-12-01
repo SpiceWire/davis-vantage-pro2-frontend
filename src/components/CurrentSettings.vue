@@ -15,20 +15,50 @@ var settingsObj = ref({})
 // }
 
 const store = useCommStore();
-async function getSettings(){
-    console.log("CurrentSettings ran getSettings")
-    store.fetchComm()
+// async function getSettings(){
+//     console.log("CurrentSettings ran getSettings")
+//     store.fetchComm()
+//         .then(response => {
+//             console.log('Response is ' , response)
+//             settingsObj.value = response.data
+//         })
+//     // settingsObj.value =store.getComm
+//     console.log("CurrentSettngs.getSettings says settingsObj is ")
+//     console.log(settingsObj)
+// }
+
+async function getSettings() {
+    console.log("CurrentSettings is about to run fetchComm")
+    result = await store.fetchComm()
         .then(response => {
-            console.log('Response is ' , response)
-            settingsObj.value = response.data
+            console.log('Response is ', response)
+            settingsObj.value = response
         })
+
+    // settingsObj.value = result.data
+
+    // .then(response => {
+    //         console.log('Response is ' , response)
+    //         settingsObj.value = response.data
+    //     })
+    // store.fetchComm()
+    //     .then(response => {
+    //         console.log('Response is ' , response)
+    //         settingsObj.value = response.data
+    //     })
     // settingsObj.value =store.getComm
     console.log("CurrentSettngs.getSettings says settingsObj is ")
-    console.log(settingsObj)
+    console.log(settingsObj.value)
 }
 
 
-onMounted(()=>getSettings())
+function runMessage() {
+    console.log("currentSettings.vue is being mounted")
+}
+
+onMounted(() =>
+    runMessage(),
+    getSettings())
 // onMounted(()=>settingsObj.value = store.getComm)
 </script>
 
@@ -59,9 +89,11 @@ onMounted(()=>getSettings())
 
             </div>
             <v-row></v-row>
-            <ParamValue v-for="(parameter, value) in settingsObj" :key="parameter" :param="parameter" :val="value"></ParamValue>
-                
-            
+            <ParamValue v-for="(parameter, value) in settingsObj" :key="parameter" :param="parameter" :val="value">
+            </ParamValue>
+            <br>
+            {{ settingsObj }}
+
         </v-container>
     </div>
 </template>

@@ -21,6 +21,7 @@ export const useCommStore = defineStore('comm',  {
     }),
     getters: {
         getComm(state) {
+            console.log("Comm store getComm was called")
             return state.comm
         },
 
@@ -33,7 +34,7 @@ export const useCommStore = defineStore('comm',  {
                 this.comm = newComm.data
                 console.log("fetch commStore called. Comm is:")
                 console.log(this.comm)
-                return state.comm
+                return this.comm
             }
             catch(error){
                 alert("Comm store fetch error " + error)

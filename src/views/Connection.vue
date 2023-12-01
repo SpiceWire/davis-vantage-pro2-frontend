@@ -13,7 +13,10 @@ const store = useCommStore();
 // onMounted(() => 
 //   store.fetchComm(),
 //   )
+
+//this runs but does not log to console
   onMounted(() => 
+  console.log("Connection.vue is being mounted, will call commStore getComm"),
   store.getComm,
   )
 
