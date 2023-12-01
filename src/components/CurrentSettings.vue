@@ -3,17 +3,30 @@
 import WebService from '../services/WebService'
 import { computed, reactive, onMounted, ref, onUpdated, nextTick } from 'vue'
 import ParamValue from '@/components/ParamValue.vue';
+import { useCommStore } from '../store/comm';
 
 var result = reactive({})
 var settingsObj = ref({})
 
-async function getSettings() {
-    result = await WebService.getSettings()
-    settingsObj.value = result.data
-    console.log(settingsObj.value)
+// async function getSettings() {
+//     result = await WebService.getSettings()
+//     settingsObj.value = result.data
+//     console.log(settingsObj.value)
+// }
+
+const store = useCommStore();
+async function getSettings(){
+    console.log("CurrentSettings ran getSettings")
+    store.fetchComm()
+        .then()
+    settingsObj.value =store.getComm
+    console.log("CurrentSettngs.getSettings says settingsObj is ")
+    console.log(settingsObj)
 }
 
+
 onMounted(()=>getSettings())
+// onMounted(()=>settingsObj.value = store.getComm)
 </script>
 
 

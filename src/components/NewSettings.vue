@@ -46,7 +46,7 @@ const currentReadTimeout = computed(() =>{
 })
 
 const otherBaudList = ["COM3", "COM4"]
-
+var changeSettingsClicked = ref(false)
 const baudList =[19200, 9600, 4800, 2400, 1200]
 const timeoutList = [0, 10 ,100, 1000, 1500, 2000, 2500, 3000]
 const writeTimeoutList = [0, 10 ,100, 1000, 1500, 2000, 2500, 3000]
@@ -140,28 +140,30 @@ const params = reactive({
     writeTimeout:0,
     commPortList:commList,
 })
-
-function cssSelected(baudVal) {
-    console.log("cssSelected triggered")
-    console.log(baudVal, currentBaud.value)
-    if(baudVal==currentBaud){
-        console.log("css found!")
-        return "chosen"
-    }
-
-    
-}
-const serverResponse = "Waiting for response..."
+var changeSettingsClickedRef= ref(false)
+var changeSettingsClicked = computed(()=>{
+    return changeSettingsClickedRef
+})
+var serverResponse = ref("Waiting for response...")
+const settingsSuccess = reactive({setVal:false})
+var responseText = computed(() =>{
+    return serverResponse
+})
 function submitSettings(){
+    changeSettingsClickedRef=true
     WebService.applySettings(params)
         .then(response =>{
             if(response.status== 200){
                 console.log("Axios said call is successful.")
-                responseIcon = "fa-check"
-                serverResponse="Settings changed. Server response status = ", response.status ,"\n Click Get Comm Settings to confirm"
+                settingsSuccess.setVal= true;
+                serverResponse = "Settings changed. Server response status = \n Click Get Comm Settings to confirm."
+                // serverResponse=(() => {
+                //    "Settings changed. Server response status = ", response.status ,"\n Click Get Comm Settings to confirm" 
+                // })
             }
             else {
                 console.log("Axios said call failed.")
+                settingsSuccess.setVal= false;
                 serverResponse="Settings not changed. Server response status = ", response.status 
             }
         })
@@ -239,11 +241,16 @@ function submitSettings(){
                 <v-chip v-for="mode in timeoutModeList" :value="mode.value">{{ mode.text }}  </v-chip>
             </v-chip-group>
         </div>
-
-  
-        <div class="settings-results">
-            <v-icon icon="fa-solid fa-check" color="green"></v-icon>
-            <v-textarea label="Server Response" variant="outlined"></v-textarea>
+        <br>
+        changeSettingsClicked = {{ changeSettingsClicked }} <br>
+        serverResponse = {{ serverResponse }} <br>
+        settingsSuccess = {{ settingsSuccess }}<br>
+        changeSettingsClickedRef = {{ changeSettingsClickedRef }}
+        <br>
+        <div v-show="changeSettingsClicked" class="settings-results">
+            <div v-if="settingsSuccess.setVal == true" ><v-icon icon="fa-solid fa-check" color="green"></v-icon></div>
+            <div v-else><v-icon icon="fa-solid fa-x" color="red"></v-icon></div>
+            <v-textarea label="Server Response" variant="outlined">{{ responseText }}</v-textarea>
         </div> 
 
      </v-container>   

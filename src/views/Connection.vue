@@ -10,10 +10,12 @@ import NewSettings from '@/components/NewSettings.vue';
 
 const store = useCommStore();
 
-onMounted(() => 
-  store.fetchComm(),
+// onMounted(() => 
+//   store.fetchComm(),
+//   )
+  onMounted(() => 
+  store.getComm,
   )
-
 
 </script>
 

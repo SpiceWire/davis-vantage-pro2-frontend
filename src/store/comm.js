@@ -29,6 +29,7 @@ export const useCommStore = defineStore('comm',  {
           async fetchComm() {
             try {
                 const newComm = await WebService.getSettings()
+                //then?
                 this.comm = newComm.data
                 console.log("fetch commStore called. Comm is:")
                 console.log(this.comm)

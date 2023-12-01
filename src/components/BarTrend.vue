@@ -48,7 +48,6 @@ const props = defineProps(
 // }
 
 var barTrendIcon = computed(() => {
- 
     return "fa-solid " + props.barTrendIconName
 })
 

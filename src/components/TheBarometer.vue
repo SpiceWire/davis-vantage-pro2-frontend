@@ -4,7 +4,7 @@ import { computed } from 'vue'
 import BarTrend from './BarTrend.vue';
 const store = useClimaStore();
 
-var barometer = computed(() => {return store.clima.barometer})
+var barometer = computed(() => { return store.clima.barometer })
 const barTrend = computed(() => {
     return store.clima.barTrend
 })
@@ -47,22 +47,24 @@ function barTrendSelectIcon() {
 <template>
     <div class="barometerArea">
         <b>Barometer</b>
-    <div class="barometerTile">
-        <v-icon  id="barometerIcon" icon="fa-solid fa-weight-hanging"></v-icon>
-        {{ barometer }}  <BarTrend :barTrendIconName="barTrendSelectIcon()"/> <br>
-    </div>
-    <div>{{ barTrendText }}</div>
+        <div class="barometerTile">
+            <v-icon id="barometerIcon" icon="fa-solid fa-weight-hanging"></v-icon>
+            {{ barometer }}
+            <BarTrend :barTrendIconName="barTrendSelectIcon()" /> <br>
+        </div>
+        <div>{{ barTrendText }}</div>
     </div>
 </template>
 
 <style scoped>
-.barometerArea{
+.barometerArea {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px;
- 
+
 }
+
 .barometerTile {
     display: flex;
     color: black;
@@ -72,8 +74,8 @@ function barTrendSelectIcon() {
 div span {
     display: flex;
     align-content: center;
-    color:black;
-    float:none
+    color: black;
+    float: none
 }
 </style>
 
