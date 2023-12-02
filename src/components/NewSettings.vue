@@ -46,7 +46,7 @@ const currentReadTimeout = computed(() =>{
 })
 
 const otherBaudList = ["COM3", "COM4"]
-var changeSettingsClicked = ref(false)
+
 const baudList =[19200, 9600, 4800, 2400, 1200]
 const timeoutList = [0, 10 ,100, 1000, 1500, 2000, 2500, 3000]
 const writeTimeoutList = [0, 10 ,100, 1000, 1500, 2000, 2500, 3000]
@@ -140,6 +140,7 @@ const params = reactive({
     writeTimeout:0,
     commPortList:commList,
 })
+// var changeSettingsClicked = ref(false)
 var changeSettingsClickedRef= ref(false)
 var changeSettingsClicked = computed(()=>{
     return changeSettingsClickedRef
@@ -156,7 +157,7 @@ function submitSettings(){
             if(response.status== 200){
                 console.log("Axios said call is successful.")
                 settingsSuccess.setVal= true;
-                serverResponse = "Settings changed. Server response status = \n Click Get Comm Settings to confirm."
+                serverResponse = "Settings changed. Server response status = " + response.status + "\n Click Get Comm Settings to confirm change"
                 // serverResponse=(() => {
                 //    "Settings changed. Server response status = ", response.status ,"\n Click Get Comm Settings to confirm" 
                 // })
@@ -164,7 +165,7 @@ function submitSettings(){
             else {
                 console.log("Axios said call failed.")
                 settingsSuccess.setVal= false;
-                serverResponse="Settings not changed. Server response status = ", response.status 
+                serverResponse="Settings not changed. Server response status = " +  response.status 
             }
         })
         
@@ -247,10 +248,10 @@ function submitSettings(){
         settingsSuccess = {{ settingsSuccess }}<br>
         changeSettingsClickedRef = {{ changeSettingsClickedRef }}
         <br>
-        <div v-show="changeSettingsClicked" class="settings-results">
+        <div v-show="changeSettingsClickedRef" class="settings-results">
             <div v-if="settingsSuccess.setVal == true" ><v-icon icon="fa-solid fa-check" color="green"></v-icon></div>
             <div v-else><v-icon icon="fa-solid fa-x" color="red"></v-icon></div>
-            <v-textarea label="Server Response" variant="outlined">{{ responseText }}</v-textarea>
+            <v-textarea label="Server Response" variant="outlined" :model-value="serverResponse">{{ responseText.value }}</v-textarea>
         </div> 
 
      </v-container>   

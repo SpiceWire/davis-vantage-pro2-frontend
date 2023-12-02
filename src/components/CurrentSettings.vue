@@ -89,10 +89,11 @@ onMounted(() =>
 
             </div>
             <v-row></v-row>
-            <ParamValue v-for="(parameter, value) in settingsObj" :key="parameter" :param="parameter" :val="value">
+            <ParamValue v-for="(parameter, value, index) in settingsObj" :key="index" :param="parameter" :val="value">
             </ParamValue>
+            
             <br>
-            {{ settingsObj }}
+           
 
         </v-container>
     </div>

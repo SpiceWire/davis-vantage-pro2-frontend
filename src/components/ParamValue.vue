@@ -8,22 +8,19 @@ const props = defineProps(
 
 
 </script>
-<style >
-    
-</style>
+<style ></style>
 
 <template >
     <div>
         <v-row>
             <v-col cols="6">
-                 {{ val }}
+                {{ val }}
             </v-col>
+
             <v-col cols="auto">
-               {{ param }}
+                {{ param }}
             </v-col>
         </v-row>
-     
-      </div>
-        
-    
+
+    </div>
 </template>
