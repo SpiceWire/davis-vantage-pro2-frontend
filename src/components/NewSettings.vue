@@ -146,46 +146,51 @@ var changeSettingsClicked = computed(()=>{
     return changeSettingsClickedRef
 })
 var serverResponse = ref("Waiting for response...")
+
 const settingsSuccess = reactive({ setVal: false })
+
 function submitSettings() {
-    changeSettingsClickedRef = true
+    changeSettingsClickedRef.value = true
     WebService.applySettings(params)
         .then(response => {
             if (response.status == 200) {
                 console.log("Axios said call is successful.")
                 settingsSuccess.setVal = true;
-                serverResponse = "Settings changed. Server response status = " + response.status + "\n Click Get Comm Settings to confirm change"
+                serverResponse.value = "Settings changed. Server response status = " + response.status + "\n Click Get Comm Settings to confirm change"
             }
             else {
                 console.log("Axios said call failed.")
                 settingsSuccess.setVal = false;
-                serverResponse = "Settings not changed. Server response status = " + response.status 
+                serverResponse.value  = "Settings not changed. Server response status = " + response.status 
             }
         })
         .catch(function (error) {
             if (error.response) {
                 // The request was made and the server responded with a status code
                 // that falls out of the range of 2xx
+                console.log("error in response")
                 console.log(error.response.data);
                 console.log(error.response.status);
                 console.log(error.response.headers);
                 console.log(error.toJSON());
+                
                 settingsSuccess.setVal = false;
-                serverResponse = "Settings not changed. Server response status =" + response.status + " Response data: " + response.data
+                serverResponse.value = "Settings not changed. Server response status =" + response.status + " Response data: " + response.data
             } else if (error.request) {
                 // The request was made but no response was received
                 // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
                 // http.ClientRequest in node.js
+                console.log("Error in request")
                 console.log(error.request);
                 settingsSuccess.setVal = false;
-                serverResponse = "Settings not changed. The request was made but no response was received. " +  
-                "\n error.request = " + error.request 
+                serverResponse.value = "Settings not changed. The request was made but no response was received. " +  
+                "\n error.request = " + JSON.stringify(error)
             } else {
                 // Something happened in setting up the request that triggered an Error
                 console.log('Error', error.message);
                 settingsSuccess.setVal = false;
-                serverResponse = "Settings not changed. Something happened in setting up the request that triggered an Error. " +  
-                "\n error.message = " + error.message
+                serverResponse.value = "Settings not changed. Something happened in setting up the request that triggered an Error. " +  
+                "\n error.message = " + JSON.stringify(error)
             }
             console.log(error.config);
         });
@@ -252,11 +257,8 @@ function submitSettings() {
             </div>
             <br>
 
-            serverResponse = {{ serverResponse }} <br>
-            settingsSuccess = {{ settingsSuccess }}<br>
-            changeSettingsClickedRef = {{ changeSettingsClickedRef }} <br>
-            changeSettingsClicked = {{ changeSettingsClicked }}
-            <br>  
+          
+             
             <div v-show="changeSettingsClickedRef" class="settings-results">
                 <div v-if="settingsSuccess.setVal == true"><v-icon icon="fa-solid fa-check" color="green"></v-icon></div>
                 <div v-else><v-icon icon="fa-solid fa-x" color="red"></v-icon></div>
