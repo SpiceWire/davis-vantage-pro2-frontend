@@ -23,4 +23,5 @@ app.mount('#app')
 //add beat to wind icon
 //add "server is online" heartbeat
 //delete getOne from webservice
+//add btn to close server response in Connections.vue
 
