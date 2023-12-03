@@ -40,7 +40,7 @@ onMounted(() => {
 .app-bar {
   display: block;
   position: absolute;
-  height: 150px;
+  height: 50px;
   padding-bottom: 100px;
   margin-bottom: 100px;
   overflow: hidden;
@@ -54,6 +54,7 @@ onMounted(() => {
   z-index: 2000;
   opacity: 1;
   background-color: aliceblue;
+  height: 150px;
 }
 
 .main-area {

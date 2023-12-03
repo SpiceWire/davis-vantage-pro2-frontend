@@ -59,49 +59,9 @@ const timeoutModeList = ref(
     { text: "Write blocking", value: 256 },
     ]
 )
-// const commListCopy = commList.slice()
-// onMounted(()=>{
-//   console.log ("commlst is array? " + Array.isArray(commList))
-//   console.log(commList)
-//   console.log(JSON.parse(commList))
-// console.log ("baudlist is array? " + Array.isArray(baudList))  
-// console.log ("otherBaudList is array? " + Array.isArray(otherBaudList))  
-// })
-// console.log("commlist is")
-// console.log(commList)
-// console.log("commlist.value  is")
-// console.log(commList.value)
-// console.log("commObj =")
-// console.log(commObj)
-// console.log("commObj value =")
-// console.log(commObj.value)
-// console.log("comportList length = " , commObj.commPortList)
-// console.log("commList[0] is ", commList[0])
-// console.log("rawComList is ", toRaw(commList))
-// console.log ("baudlist is array? " , Array.isArray(baudList)) 
-// console.log ("commlst is array? " , Array.isArray(commList))
 
-// const newCommList = [...commList]
-// console.log(JSON.parse(Object.values[(commList)]))
-// console.log("comListCopy is "), commListCopy
-// console.log ("comListCopy is array? " , Array.isArray(commListCopy))
-// function useSettings(){
-//     return ""
-// }
-// async function cssSelected(baudVal){
-//     console.log("cssSelected triggered")
-//     console.log(baudVal, currentBaud.value)
-//     if(currentBaud==baudVal){
-//         console.log("cssSelected chosen")
-//         return "chosen"
-//     }
-// }
 
-// const cssSelected = computed((baudVal)=>{
-//    return baudVal == currentBaud ? "chosen" : ""
-//     })
-// var selectBaud = 3
-// var selectBaud = baudList.findIndex((element) => element==currentBaud);
+
 
 var selectBaud = computed(() => {
     return baudList.indexOf(currentBaud.value)
@@ -114,22 +74,8 @@ var selectRead = computed(() => {
     return timeoutList.indexOf(currentReadTimeout.value)
 })
 
-// var selectComm  = commList[currentCommPortIndex] 
-// var selectComm  = commList[0] 
 var selectComm = ref("")
-// var selectComm  = computed({
-//     get() {
-//         return currentCommPortIndex
-//     },
-//     set() {
 
-//     }   
-// })
-
-// var selectComm = commList.indexOf(currentCommPort.value)
-//  var selectComm = computed(()=>{
-//     return commList.indexOf(currentCommPort)
-//  })
 
 
 const params = reactive({
@@ -156,7 +102,7 @@ function submitSettings() {
             if (response.status == 200) {
                 console.log("Axios said call is successful.")
                 settingsSuccess.setVal = true;
-                serverResponse.value = "Settings changed. Server response status = " + response.status + "\n Click Get Comm Settings to confirm change"
+                serverResponse.value = "Settings changed. Server response status = " + response.status + "\n Refresh Comm Settings to confirm change"
             }
             else {
                 console.log("Axios said call failed.")
@@ -178,8 +124,6 @@ function submitSettings() {
                 serverResponse.value = "Settings not changed. Server response status =" + response.status + " Response data: " + response.data
             } else if (error.request) {
                 // The request was made but no response was received
-                // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                // http.ClientRequest in node.js
                 console.log("Error in request")
                 console.log(error.request);
                 settingsSuccess.setVal = false;

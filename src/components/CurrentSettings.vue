@@ -68,7 +68,7 @@ onMounted(() =>
     <div>
         <v-spacer></v-spacer>
         <v-container>
-            <v-btn @click="getSettings" variant="outlined">Get COMM Settings</v-btn>
+            <v-btn @click="getSettings" variant="outlined">Refresh COMM Settings</v-btn>
             <br>
             <br>
             <v-row>
