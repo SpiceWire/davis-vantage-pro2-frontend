@@ -45,11 +45,9 @@ const currentReadTimeout = computed(() => {
     return store.comm.readTimeout
 })
 
-const otherBaudList = ["COM3", "COM4"]
 
 const baudList = [19200, 9600, 4800, 2400, 1200]
 const timeoutList = [0, 10, 100, 1000, 1500, 2000, 2500, 3000]
-const writeTimeoutList = [0, 10, 100, 1000, 1500, 2000, 2500, 3000]
 
 //timeoutModeList values from fazecast jSerialComm library constant field values  https://fazecast.github.io/jSerialComm/javadoc/index.html
 const timeoutModeList = ref(
@@ -60,24 +58,6 @@ const timeoutModeList = ref(
     ]
 )
 
-
-
-
-var selectBaud = computed(() => {
-    return baudList.indexOf(currentBaud.value)
-})
-
-var selectWrite = computed(() => {
-    return timeoutList.indexOf(currentWriteTimeout.value)
-})
-var selectRead = computed(() => {
-    return timeoutList.indexOf(currentReadTimeout.value)
-})
-
-var selectComm = ref("")
-
-
-
 const params = reactive({
     baud: 19200,
     commPortIndex: 0,
@@ -86,11 +66,9 @@ const params = reactive({
     writeTimeout: 0,
     commPortList: commList,
 })
-var changeSettingsClicked = ref(false)
+
 var changeSettingsClickedRef = ref(false)
-var changeSettingsClicked = computed(()=>{
-    return changeSettingsClickedRef
-})
+
 var serverResponse = ref("Waiting for response...")
 
 const settingsSuccess = reactive({ setVal: false })
