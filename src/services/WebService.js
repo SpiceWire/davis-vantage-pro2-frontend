@@ -1,10 +1,7 @@
 import axios from 'axios';
 import {ref, computed} from 'vue'
 
-// var uniqueNumber =computed(()=> {
-//   return Date.parse(new Date)/1000
-// })
-
+//generates a unique time-based number as a nonce.
 function uniqueNumber() {
   return Date.parse(new Date)/1000
 }
@@ -28,6 +25,9 @@ export default {
   applySettings(settingsObj){
     console.log("Webservice says: Settings obj is: " , settingsObj)
     return http.post('/vp2/settings/' + uniqueNumber(), settingsObj)
+  },
+  postCommand(cmd){
+    return http.post('/command/${cmd}/' + uniqueNumber())
   },
   getOne(id) {
     return http.get(`/topics/${id}`)

@@ -5,23 +5,12 @@ import { computed, onMounted, onUpdated, ref, reactive, toRaw } from 'vue'
 import WebService from '@/services/WebService';
 
 const store = useCommStore();
-// var commList = new Array();
+
 const commObj = computed(() => {
     return store.comm
 })
-var commItem
+
 var commList = computed(() => {
-
-    //below returns with  TypeError: undefined is not iterable
-    // return Array.from(store.comm.commPortList)
-    // return [...store.comm.commPortList]
-    // return Object.values(store.comm.commPortList)
-    //below is not returned as an array
-    // return store.comm.commPortList
-    // return Array.from( commItem in commObj.commPortList, (x)=>x)
-    // const commLength=commObj.commPortList
-
-    // return (toRaw(store.comm.commPortList))
     return store.comm.commPortList
 })
 
@@ -73,6 +62,18 @@ var serverResponse = ref("Waiting for response...")
 
 const settingsSuccess = reactive({ setVal: false })
 
+function styleBaud(baudVal) {
+    return (currentBaud.value == baudVal) ? "outlined": "tonal"
+}
+function styleComm(index){
+    return (currentCommPortIndex.value == index )? "outlined": "tonal"
+}
+function styleWrite(timeout){
+    return currentWriteTimeout.value == timeout ? "outlined": "tonal"
+}
+function styleRead(timeout){
+    return currentReadTimeout.value == timeout ? "outlined": "tonal"
+}
 function submitSettings() {
     changeSettingsClickedRef.value = true
     WebService.applySettings(params)
@@ -139,6 +140,9 @@ function submitSettings() {
             <v-row>
                 <v-col>
                     <h2>Selectable Settings</h2>
+                    Key:<v-chip class="text-primary">Selected</v-chip>
+                    <v-chip>Not Selected</v-chip>
+                    <v-chip variant="outlined">Current</v-chip>
                 </v-col>
             </v-row>
             <br>
@@ -147,27 +151,27 @@ function submitSettings() {
                     Comm port:
                 </strong>
                 <v-chip-group mandatory v-model="params.commPortIndex" selected-class="text-primary">
-                    <v-chip v-for="comm, index in commList" :key="comm" :value="index">{{ comm }} </v-chip>
+                    <v-chip v-for="comm, index in commList" :key="comm" :value="index" :variant="styleComm(index)">{{ comm }} </v-chip>
                 </v-chip-group>
             </div>
             <div>
                 <strong> Baud:</strong>
 
-                <v-chip-group mandatory v-model="params.baud" selected-class="text-primary">
-                    <v-chip v-for="baudVal in baudList" :value="baudVal">{{ baudVal }}</v-chip>
+                <v-chip-group mandatory v-model="params.baud" selected-class="text-primary" >
+                    <v-chip v-for="baudVal in baudList" :value="baudVal" :variant="styleBaud(baudVal)">{{ baudVal }}</v-chip>
                 </v-chip-group>
             </div>
 
             <div>
                 <strong>Write Timeout (ms)</strong>
                 <v-chip-group mandatory v-model="params.writeTimeout" selected-class="text-primary">
-                    <v-chip v-for="timeout in timeoutList" :value="timeout">{{ timeout }}</v-chip>
+                    <v-chip v-for="timeout in timeoutList" :value="timeout" :variant="styleWrite(timeout)">{{ timeout }}</v-chip>
                 </v-chip-group>
             </div>
             <div>
                 <strong>Read Timeout (ms)</strong>
                 <v-chip-group mandatory v-model="params.readTimeout" selected-class="text-primary">
-                    <v-chip v-for="timeout in timeoutList" :value="timeout">{{ timeout }}</v-chip>
+                    <v-chip v-for="timeout in timeoutList" :value="timeout" :variant="styleRead(timeout)">{{ timeout }}</v-chip>
                 </v-chip-group>
             </div>
 

@@ -2,7 +2,6 @@ import { defineStore } from 'pinia'
 
 import WebService from '../services/WebService'
 
-
 export const useCommStore = defineStore('comm',  {
     state: () => ({
         comm : {
