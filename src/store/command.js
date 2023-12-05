@@ -12,7 +12,7 @@ export const useCommandStore = defineStore('command',  {
             testingDescription:'',
             lastCommandSent:'',
             errorMessage: '',
-            
+
         },
     }),
     getters: {
@@ -22,15 +22,25 @@ export const useCommandStore = defineStore('command',  {
 
     },
     actions: {
-          async fetchCommand(commandWord) {
+          async fetchTesting(commandWord) {
             try {
-                const response = await WebService.postCommand(commandWord)
+                const response = await WebService.getTesting(commandWord)
                 this.command = response.data
             }
             catch(error){
                 alert("Store fetch error " + error)
             }
-        }
+        },
+        async fetchData(commandWord) {
+            try {
+                const response = await WebService.getData(commandWord)
+                this.command = response.data
+            }
+            catch(error){
+                alert("Store fetch error " + error)
+            }
+        },
+        
     },
         
    

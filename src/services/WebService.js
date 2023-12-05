@@ -26,8 +26,11 @@ export default {
     console.log("Webservice says: Settings obj is: " , settingsObj)
     return http.post('/vp2/settings/' + uniqueNumber(), settingsObj)
   },
-  postCommand(cmd){
-    return http.post('/command/${cmd}/' + uniqueNumber())
+  getData(cmd){
+    return http.get('/vp2/currentData/${cmd}/' + uniqueNumber())
+  },
+  getTesting(cmd){
+    return http.get('/vp2/testing/${cmd}/' + uniqueNumber())
   },
   getOne(id) {
     return http.get(`/topics/${id}`)
