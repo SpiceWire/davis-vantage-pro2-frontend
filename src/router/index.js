@@ -26,6 +26,16 @@ const routes = [
         name: 'connection',
         component: Connection
       },
+      {
+        path: '/commands',
+        name: 'commands',
+        component: Commands
+      },
+      {
+        path: '/testing',
+        name: 'testing',
+        component: Connection
+      },
     ],
   },
 ]
