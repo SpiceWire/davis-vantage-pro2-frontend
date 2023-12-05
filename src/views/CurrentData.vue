@@ -5,6 +5,7 @@
 </template>
 <script setup>
 import { useCommandStore } from '@/store/command';
+import {ref, computed} from 'vue'
 
 const store = useCommandStore()
 

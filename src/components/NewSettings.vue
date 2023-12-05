@@ -40,7 +40,7 @@ const timeoutList = [0, 10, 100, 1000, 1500, 2000, 2500, 3000]
 
 //timeoutModeList values from fazecast jSerialComm library constant field values  https://fazecast.github.io/jSerialComm/javadoc/index.html
 const timeoutModeList = ref(
-    [{ text: "Nonblocking", value: 0, },
+    [{ text: "Nonblocking", value: 0 },
     { text: "Read blocking", value: 16 },
     { text: "Read semi-blocking", value: 1 },
     { text: "Write blocking", value: 256 },

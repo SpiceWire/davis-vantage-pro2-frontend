@@ -2,6 +2,7 @@
     <div>
         <h2>Console Commands</h2>
     </div>
+    <br>
     <div>
         <v-row>
             <v-btn>Test</v-btn>
@@ -13,26 +14,30 @@
         </v-row>
 
         <br>
-        <v-row > <v-btn v-for="text,value in commandWords" :key="text" :value="value" @click="sendCommand(value)"></v-btn></v-row>
+        <v-row > <v-btn v-for="item in commandWords" :key="item.text" :value="item.value" @click="runTest(item.value)">{{ item.text }}</v-btn></v-row>
+        <br>
+        <br>
+        <br>
+        {{ rawResponse }}
     </div>
 </template>
 <script setup>
-import {useCommandStore} from '..store/command.js'
+import {useCommandStore} from '../store/command';
 import {ref, computed} from 'vue'
 
 const store = useCommandStore()
 
-const commandWords = [
+const commandWords = ref([
     {text:"Test", value: "TEST"},
     {text:"RX Check", value: "RXCHECK"},
     {text:"RX Test", value: "RXTEST"},
     {text:"Version" , value:"VER"},
     {text:"Receivers" , value:"RECEIVERS"},
     {text:"Nver" , value:"NVER"},
-]
+])
 
-function sendCommand(commandWord){
-    store.fetchCommand(commandWord)
+function runTest(commandWord){
+    store.fetchTesting(commandWord)
 }
 
 const rawResponse = computed (()=>{
