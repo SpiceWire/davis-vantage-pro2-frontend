@@ -2,6 +2,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import WeatherView from '../views/WeatherView.vue'
 import Connection from '../views/Connection.vue'
+import Testing from '../views/Testing.vue'
+import CurrentData from '../views/CurrentData.vue'
 
 const routes = [
   {
@@ -27,14 +29,14 @@ const routes = [
         component: Connection
       },
       {
-        path: '/commands',
-        name: 'commands',
-        component: Commands
-      },
-      {
         path: '/testing',
         name: 'testing',
-        component: Connection
+        component: Testing
+      },
+      {
+        path: '/currentData',
+        name: 'currentData',
+        component: CurrentData
       },
     ],
   },

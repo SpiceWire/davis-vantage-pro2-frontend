@@ -10,7 +10,7 @@
       <v-navigation-drawer v-model="drawer"  temporary>
         <v-list-item to="/weather" link title="Weather"></v-list-item>
         <v-list-item to="/connection" link title="Cxn Settings"></v-list-item>
-        
+        <v-list-item to="/connection" link title="Cxn Settings"></v-list-item>
         <v-list-item link title="Graphs"></v-list-item>
       </v-navigation-drawer>
     </v-card>
