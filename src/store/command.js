@@ -17,6 +17,7 @@ export const useCommandStore = defineStore('command',  {
     }),
     getters: {
         getCommand(state) {
+            console.log("getCommand from store called. Command obj is ", commmand)
             return state.command
         },
 
@@ -24,8 +25,11 @@ export const useCommandStore = defineStore('command',  {
     actions: {
           async fetchTesting(commandWord) {
             try {
+                console.log("store.fetchTesting called with " + commandWord)
                 const response = await WebService.getTesting(commandWord)
                 this.command = response.data
+                console.log("store obj is ")
+                console.log(this.command)
             }
             catch(error){
                 alert("Store fetch error " + error)

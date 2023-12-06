@@ -30,7 +30,8 @@ export default {
     return http.get('/vp2/currentData/${cmd}/' + uniqueNumber())
   },
   getTesting(cmd){
-    return http.get('/vp2/testing/${cmd}/' + uniqueNumber())
+    // return http.get(`/vp2/testing/${cmd}/` + uniqueNumber())
+    return http.get(`/vp2/testing/${cmd}/${uniqueNumber()}`)
   },
   getOne(id) {
     return http.get(`/topics/${id}`)

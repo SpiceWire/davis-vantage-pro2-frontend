@@ -14,11 +14,14 @@
         </v-row>
 
         <br>
-        <v-row > <v-btn v-for="item in commandWords" :key="item.text" :value="item.value" @click="runTest(item.value)">{{ item.text }}</v-btn></v-row>
+        <br>
+        <v-row > <v-btn v-for="item in commandWords" :key="item.text"  @click="runTest(item.value)">{{ item.text }}</v-btn></v-row>
         <br>
         <br>
         <br>
-        {{ rawResponse }}
+        Raw resp: {{ rawResponse }} <br>
+        Friendly resp: {{  friendlyResponse }}<br>
+        Last command {{ lastCommandSent }}
     </div>
 </template>
 <script setup>
@@ -37,27 +40,28 @@ const commandWords = ref([
 ])
 
 function runTest(commandWord){
+    console.log("Testing runTest called with ", commandWord )
     store.fetchTesting(commandWord)
 }
 
 const rawResponse = computed (()=>{
-    return store.testingRawText
+    return store.command.testingRawText
 })
 
 const friendlyResponse = computed (()=>{
-    return store.testingFriendlyText
+    return store.command.testingFriendlyText
 })
 
 const lastCommand = computed (()=>{
-    return store.lastCommandSent
+    return store.command.lastCommandSent
 })
 
 const errorMsg = computed (()=>{
-    return store.errorMessage
+    return store.command.errorMessage
 })
 
 const testDescr = computed (()=>{
-    return store.testingDescription
+    return store.command.testingDescription
 })
 
 
