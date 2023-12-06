@@ -1,28 +1,22 @@
 <template >
-    <div>
+    <v-container>
+        <div>
         <h2>Console Commands</h2>
     </div>
     <br>
+    
     <div>
-        <v-row>
-            <v-btn>Test</v-btn>
-            <v-btn>RX Check</v-btn>
-            <v-btn>RX Test</v-btn>
-            <v-btn>Version</v-btn>
-            <v-btn>Receivers</v-btn>
-            <v-btn>Nver</v-btn>
-        </v-row>
-
-        <br>
-        <br>
-        <v-row > <v-btn v-for="item in commandWords" :key="item.text"  @click="runTest(item.value)">{{ item.text }}</v-btn></v-row>
+        <v-row > <v-btn variant="tonal" class="ma-1 pa-1" v-for="item in commandWords" :key="item.text"  @click="runTest(item.value)">{{ item.text }}</v-btn></v-row>
         <br>
         <br>
         <br>
+        <div class="pre-formatted">
         Raw resp: {{ rawResponse }} <br>
         Friendly resp: {{  friendlyResponse }}<br>
         Last command {{ lastCommandSent }}
     </div>
+    </div>
+    </v-container>
 </template>
 <script setup>
 import {useCommandStore} from '../store/command';
@@ -67,5 +61,7 @@ const testDescr = computed (()=>{
 
 </script>
 <style >
-    
+.pre-formatted{
+    white-space:pre;
+}
 </style>
