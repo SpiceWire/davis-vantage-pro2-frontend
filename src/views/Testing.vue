@@ -2,6 +2,8 @@
     <v-container>
         <div>
         <h2>Console Commands</h2>
+            <br>
+        <h3>Click a test button to run a test:</h3>    
     </div>
     <br>
     
@@ -9,11 +11,26 @@
         <v-row > <v-btn variant="tonal" class="ma-1 pa-1" v-for="item in commandWords" :key="item.text"  @click="runTest(item.value)">{{ item.text }}</v-btn></v-row>
         <br>
         <br>
+        <div><strong>Command Sent:</strong></div>
+        {{ commandSent }}
         <br>
-        <div class="pre-formatted">
-        Raw resp: {{ rawResponse }} <br>
-        Friendly resp: {{  friendlyResponse }}<br>
-        Last command {{ lastCommandSent }}
+        <br>
+        <div><strong>Backend responded to command:</strong></div>
+        {{ lastCommand }}
+        <br>
+        <br>
+        <div ><strong>Raw response:</strong>
+         
+        <div>
+            {{ rawResponse }}
+        </div> 
+        <br>
+        <div><strong>Friendly response:</strong>
+         
+         <div class="pre-formatted">{{  friendlyResponse }}</div><br>   
+        </div>
+        
+        
     </div>
     </div>
     </v-container>
@@ -23,6 +40,8 @@ import {useCommandStore} from '../store/command';
 import {ref, computed} from 'vue'
 
 const store = useCommandStore()
+
+var commandSent = ref()
 
 const commandWords = ref([
     {text:"Test", value: "TEST"},
@@ -35,6 +54,7 @@ const commandWords = ref([
 
 function runTest(commandWord){
     console.log("Testing runTest called with ", commandWord )
+    commandSent = commandWord
     store.fetchTesting(commandWord)
 }
 
