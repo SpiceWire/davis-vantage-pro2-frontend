@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 import WebService from '../services/WebService'
 
-
+//This store is defined as a pinia Option Store 
 //elClima is the weather object plus a keyID 
 export const useClimaStore = defineStore('clima',  {
     state: () => ({

@@ -2,6 +2,7 @@ import { defineStore } from 'pinia'
 
 import WebService from '../services/WebService'
 
+//This store is defined as a pinia Option Store 
 export const useCommStore = defineStore('comm',  {
     state: () => ({
         comm : {

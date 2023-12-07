@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 import WebService from '../services/WebService'
-
+//This store is defined as a pinia Option Store 
 export const useCommandStore = defineStore('command',  {
     state: () => ({
         command : {
@@ -10,8 +10,8 @@ export const useCommandStore = defineStore('command',  {
             testingRawText:'',
             testingFriendlyText:'',
             testingDescription:'',
-            lastCommandSent:'',
-            errorMessage: '',
+            lastCommandSent:'None',
+            errorMessage: 'None',
 
         },
     }),

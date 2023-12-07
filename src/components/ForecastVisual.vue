@@ -9,7 +9,7 @@ const store = useClimaStore();
 
 
 const forecastIcon = computed(() => {
-  return 6
+  return store.clima.forecastIcon
 })
 
 //  From Davs documentation page 23:

@@ -20,6 +20,7 @@ var thermometerIconArr = [
 
 var outTemp = computed(() => {
     return store.clima.outsideTemperature
+    
 })
 
 
