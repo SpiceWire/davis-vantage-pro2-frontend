@@ -77,9 +77,9 @@ const testDescr = computed (()=>{
     return store.command.testingDescription
 })
 
-onMounted(()=>{
-    store.$reset
-})
+// onMounted(()=>{
+//     store.$reset
+// })
 
 </script>
 <style >

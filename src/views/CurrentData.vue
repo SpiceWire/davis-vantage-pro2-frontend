@@ -14,19 +14,19 @@
         <br>
         <br>
         <div><strong>Command Sent:</strong></div>
-        {{ commandSent }}
+        {{ dataCommandSent }}
         <br>
         <br>
         <div><strong>Backend responded to command:</strong></div>
-        {{ lastCommand }}
+        {{ lastCommandSent }}
         <br>
         <br>
         <div><strong>Raw Data:</strong></div>
-        {{ currentDataText }}
+        {{ currentDataInfo }}
         <br>
         <br>
         <div><strong>Evaluation:</strong></div>
-        {{ currentDataEvalText }}
+        {{ currentDataEval }}
 
     </div>
  </v-container>
@@ -34,26 +34,26 @@
 </template>
 <script setup>
 import { useCommandStore } from '@/store/command';
-import {ref, computed} from 'vue'
+import {ref, computed, onMounted} from 'vue'
 
 const store = useCommandStore()
 
-var commandSent= ref("")
+var dataCommandSent= ref()
 
-const currentDataText = computed(()=> {
-    return store.currentDataText
+const currentDataInfo = computed(()=> {
+    return store.command.currentDataText
 })
 
-const currentDataEvalText = computed(()=> {
-    return store.currentDataEvalText
+const currentDataEval= computed(()=> {
+    return store.command.currentDataEvalText
 })
 
 const lastCommandSent = computed(()=> {
-    return store.lastCommandSent
+    return store.command.lastCommandSent
 })
 
 const errorMessage = computed(()=> {
-    return store.errorMessage
+    return store.command.errorMessage
 })
 
 const currentDataWords = ref([
@@ -62,14 +62,14 @@ const currentDataWords = ref([
 ])
 
 function getData(dataWord){
-    commandSent = dataWord
+    dataCommandSent = dataWord
     store.fetchData(dataWord)
 }
 
 
-onMounted(()=>{
-    store.$reset
-})
+// onMounted(()=>{
+//     store.$reset
+// })
 </script>
 <style >
     
