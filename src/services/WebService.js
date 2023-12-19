@@ -19,6 +19,9 @@ export default {
   getNewWeather(){
     return http.get('/weather/new')
   },
+  getRecord(recordType){
+    return http.get
+  },
   getSettings(){
     return http.get('/vp2/settings/' + uniqueNumber())
   },

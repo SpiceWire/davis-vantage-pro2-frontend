@@ -19,11 +19,11 @@ function pointArrow() {
 
 function colorWindArrow() {
     
-    if (props.speed <= 1) {
+    if (props.speed <= 10) {
   
         return "lime";
     }
-    else if (props.speed <= 4) {
+    else if (props.speed <= 20) {
       
         return "olive";
     }
