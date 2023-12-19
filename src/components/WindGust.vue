@@ -10,6 +10,14 @@ const store = useClimaStore();
 var tenMinuteWindGust = computed(() => {
     return store.clima.tenMinuteWindGust
 })
+var colorGust = computed(() => {
+    let gust=store.clima.tenMinuteWindGust;
+    let gustColor = "black";
+    if (gust >= 15) {gustColor = "yellow"};
+    if (gust >= 25 ) {gustColor = "red"};
+    return gustColor;
+
+})
 
 
 </script>
@@ -27,7 +35,7 @@ var tenMinuteWindGust = computed(() => {
 
 <style>
 #tenMinuteWindGustIcon {
-    color:black
+    color:v-bind("colorGust")
 }
 
 .tenMinuteWindGustArea{
