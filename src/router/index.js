@@ -4,6 +4,7 @@ import WeatherView from '../views/WeatherView.vue'
 import Connection from '../views/Connection.vue'
 import Testing from '../views/Testing.vue'
 import CurrentData from '../views/CurrentData.vue'
+import PastData from '../views/PastData.vue'
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
         path: '/currentData',
         name: 'currentData',
         component: CurrentData
+      },
+      {
+        path: '/pastData',
+        name: 'pastData',
+        component: PastData
       },
     ],
   },

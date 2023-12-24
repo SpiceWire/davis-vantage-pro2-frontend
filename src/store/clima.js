@@ -26,7 +26,10 @@ export const useClimaStore = defineStore('clima',  {
 
             }
             catch(error){
-                alert("Store fetch error " + error)
+                console.log("Clima store error status:" + error.response.status)
+                console.log("Clima store error data:" + error.response.data)
+                alert("Clima store fetch error: " + error)
+
 
             }
         }

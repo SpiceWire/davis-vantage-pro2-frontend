@@ -15,13 +15,15 @@ export const useRecordStore = defineStore('record',  {
         },
     },
     actions: {
-          async fetchRecord(recordType) {
+          async fetchRecord(recordType, numDays) {
             try {
-                const recordQuery = await WebService.getRecord(recordType)
+                console.log("store.fetchRecord called with ", recordType)
+                const recordQuery = await WebService.getRecord(recordType, numDays)
                 this.record = recordQuery.data
             }
             catch(error){
-                alert("Store fetch error " + error)
+
+                alert("Record store fetch error: " + error)
             }
         }
     },

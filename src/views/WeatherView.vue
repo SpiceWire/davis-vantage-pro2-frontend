@@ -34,6 +34,9 @@ function pollData() {
   polling = setInterval(() => { store.fetchClima() }, 15000)
 }
 
+var WindChillAmt=computed(()=>{
+  return store.clima.windChill
+})
 </script>
 
 <template>
@@ -70,11 +73,11 @@ function pollData() {
               </div>
               <div class="rain-conditions min-width=500px text-center"  >
                 <b>Rain</b>
-                <v-divider></v-divider>
+                <v-divider class="rain-divider border-opacity-100"   ></v-divider>
                 <DailyRain id="daily-rain" />
-                <v-divider></v-divider>
+                <v-divider class="rain-divider border-opacity-100"></v-divider>
                 <RainRate id="rain-rate" />
-                <v-divider></v-divider>
+                <v-divider class="rain-divider border-opacity-100"></v-divider>
                 <LastHourRain id="last-hour-rain"/>
               </div>
               <div class="wind-conditions text-center" >
@@ -90,7 +93,7 @@ function pollData() {
               <ForecastVisual id="forecast-visual" /> 
               <WindChill id="wind-chill" />
               <HeatIndex id="heat-index" />
-               
+              {{ WindChillAmt }}
             </v-row>           
           </v-col>
         </v-row>
@@ -119,9 +122,13 @@ function pollData() {
   background-color: beige;
 }
 .rain-conditions{
-  border: 3px solid blue;
+  border: 3px solid black;
   border-radius:20px;
-  background-color: rgb(135, 185, 250);
+  background-color:#005587;
+  color: #DAEBFE;
+}
+.rain-divider{
+  color: #DAEBFE;
 }
 #WeatherView {
   font-size: 2rem;

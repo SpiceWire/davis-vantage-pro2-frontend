@@ -108,7 +108,7 @@ var forecastIconIcon = computed(() => {
 </template>
 
 
-<style>
+<style scoped>
 .forecastArea {
   display: flex;
   flex-direction: column;

@@ -7,7 +7,7 @@ function uniqueNumber() {
 }
 
 const http = axios.create({
-  baseURL: "http://localhost:8080/"
+  baseURL:`http://${location.hostname}:8080`
 });
 
 
@@ -19,8 +19,8 @@ export default {
   getNewWeather(){
     return http.get('/weather/new')
   },
-  getRecord(recordType){
-    return http.get
+  getRecord(recordType, days){
+    return http.get(`/record/${recordType}/${days}`)
   },
   getSettings(){
     return http.get('/vp2/settings/' + uniqueNumber())

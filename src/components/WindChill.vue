@@ -12,10 +12,12 @@ const windChill = computed(() => {
 
 <template >
     <div v-if="windChill < 25">
-        <v-icon  icon="fa-solid fa-temperature-full" class="windChillIcon" id="windChillIcon"/>
-        <label for="windChillIcon">Wind Chill</label>
+    <div><b>Feels Like</b></div>
+    <div>
+        <v-icon  icon="fa-solid fa-temperature-empty" class="windChillIcon" id="windChillIcon"/>
         {{ windChill }}
-
+    </div>
+    <div>Wind Chill</div>
     </div>
 </template>
 

@@ -28,7 +28,7 @@ var lastHourRain = computed(() => {
 
 <style>
 #lastHourRainIcon {
-    color:black
+    color: #DAEBFE
 }
 
 .lastHourRainArea{
