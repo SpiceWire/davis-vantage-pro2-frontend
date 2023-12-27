@@ -107,13 +107,9 @@ const btnNames = ref([
 
 
 function useButtonData(keyword, offset){
-    console.log("weatherDate1 =" + weatherDate)
-    
-    weatherDate = new Date()
-    console.log("weatherDate2 =" + weatherDate)
-    console.log("getDate= " + weatherDate.getDate())
-    weatherDate.setDate(weatherDate.getDate() -offset)
-    
+    const tokenDate = new Date()
+    tokenDate.setDate(tokenDate.getDate() -offset)
+    weatherDate = formatDate(tokenDate)
     console.log("weatherDate3 =" + weatherDate)
     getPastData(keyword, offset)
 }
