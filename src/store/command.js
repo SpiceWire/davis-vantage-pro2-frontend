@@ -44,7 +44,7 @@ export const useCommandStore = defineStore('command',  {
                 console.log(this.command)
             }
             catch(error){
-                alert("Command store fetch error " + error.response.status)
+                alert("Command store fetch error " + error)
             }
         },
         

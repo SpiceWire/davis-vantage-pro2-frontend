@@ -93,7 +93,7 @@ var WindChillAmt=computed(()=>{
               <ForecastVisual id="forecast-visual" /> 
               <WindChill id="wind-chill" />
               <HeatIndex id="heat-index" />
-              {{ WindChillAmt }}
+              
             </v-row>           
           </v-col>
         </v-row>

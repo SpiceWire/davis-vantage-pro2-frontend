@@ -67,9 +67,6 @@ function getData(dataWord){
 }
 
 
-// onMounted(()=>{
-//     store.$reset
-// })
 </script>
 <style >
     

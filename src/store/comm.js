@@ -37,7 +37,7 @@ export const useCommStore = defineStore('comm',  {
                 return this.comm
             }
             catch(error){
-                alert("Comm store fetch error: " + error.response.status)
+                alert("Comm store fetch error: " + error)
             }
         }
     },
