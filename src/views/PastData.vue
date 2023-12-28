@@ -10,29 +10,36 @@
             }}</v-chip>
             <br>
             <br>
-            <v-row>
-                <v-col cols="12" sm="6" md="4">
+
+            <v-row xs12 sm6 md4>
+                <template>
                     <v-menu 
-                    
-                    :close-on-content-click="false" 
-                    :return-value.sync="weatherDate"
-                    transition="scale-transition" 
-                    offset-y 
-                    min-width="auto"
-                    >
-                        <template v-slot:activator="{ props }" >
+                        v-model="isMenuOpen" 
+                        :close-on-content-click="false">
+                        <template v-slot:activator="{ props }">
                             <v-text-field 
-                                v-bind:="props"
-                                v-model="weatherDate" 
-                                label="Click to select a date"
-                                prepend-icon="fa-regular fa-calendar" 
-                                readonly 
-                                ></v-text-field>
+                            :label="label" 
+                            :model-value="formattedDate"
+                            readonly
+                            v-bind="props" 
+                            variant="solo"
+                            hide-details
+                            ></v-text-field>
                         </template>
-                        
+                        <v-date-picker 
+                        v-model="selectedDate" 
+                        hide-actions 
+                        title="" 
+                        :color="color">
+                            <template 
+                            v-slot:header
+                            ></template>
+                        </v-date-picker>
                     </v-menu>
-                </v-col>
+                </template>
             </v-row>
+               <br>
+               <br> 
             <div>
                 <strong>Weather: {{ weatherDate }} </strong>
             </div>
@@ -44,16 +51,43 @@
     </div>
 </template>
 <script setup>
+
 import { useRecordStore } from '@/store/record';
-import { ref, reactive, computed } from 'vue';
+import { ref, watch, reactive, computed } from 'vue';
 import { useDate } from 'vuetify/lib/framework.mjs';
 
+
 const store = useRecordStore()
-
-var menu1 = ref(true)
-
+var menu = true
+function useMenu() {
+    return menu=!menu
+}
+// var menu1 = ref(true)
+// var menu3 = ref(true)
 var useWeatherDate = useDate();
-var weatherDate = useWeatherDate.format(new Date(), "fullDateWithWeekday")
+var weatherDate 
+const { label, color, modelValue } = defineProps([
+  "label",
+  "color",
+  "modelValue",
+]);
+const emit = defineEmits("update:modelValue");
+
+const isMenuOpen = ref(true);
+const selectedDate = ref(modelValue);
+
+const formattedDate = computed(() => {
+  return selectedDate.value ? selectedDate.value.toLocaleDateString("en") : "";
+});
+
+watch(modelValue, (newDate) => {
+  selectedDate.value = newDate;
+});
+
+watch(selectedDate, (newDate) => {
+  emit("update:modelValue", newDate);
+});
+
 
 function formatDate(focusDate) {
     return useWeatherDate.format(focusDate, "fullDateWithWeekday")
