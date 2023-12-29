@@ -6,6 +6,7 @@ import Testing from '../views/Testing.vue'
 import CurrentData from '../views/CurrentData.vue'
 import PastData from '../views/PastData.vue'
 
+
 const routes = [
   {
     path: '',
@@ -44,6 +45,7 @@ const routes = [
         name: 'pastData',
         component: PastData
       },
+
     ],
   },
 ]

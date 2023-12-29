@@ -12,33 +12,11 @@
             <br>
 
             <v-row xs12 sm6 md4>
-                <template>
-                    <v-container>
-                    <v-menu 
-                        v-model="isMenuOpen" 
-                        :close-on-content-click="false">
-                        <template v-slot:activator="{ props }">
-                            <v-text-field 
-                            :label="label" 
-                            :model-value="formattedDate"
-                            readonly
-                            v-bind="props" 
-                            variant="solo"
-                            
-                            ></v-text-field>
-                        </template>
-                        <v-date-picker 
-                        v-model="selectedDate" 
-                        hide-actions 
-                        title="Date Title" 
-                        color="primary">
-                            <template 
-                            v-slot:header
-                            ></template>
-                        </v-date-picker>
-                    </v-menu>
-                    </v-container>
-                </template>
+                <DatePicker
+                    label="Start Date"
+                    v-model="startDate"
+                    color="primary"
+                ></DatePicker>
             </v-row>
                <br>
                <br> 
@@ -57,7 +35,7 @@
 import { useRecordStore } from '@/store/record';
 import { ref, watch, reactive, computed } from 'vue';
 import { useDate } from 'vuetify/lib/framework.mjs';
-
+import { DatePicker } from '../components/DatePicker.vue'
 
 const store = useRecordStore()
 var menu = true
@@ -82,17 +60,14 @@ const formattedDate = computed(() => {
   return selectedDate.value ? selectedDate.value.toLocaleDateString("en") : "";
 });
 
-// watch(modelValue, (newDate) => {
-//   selectedDate.value = newDate;
-// });
-
-// watch(selectedDate, (newDate) => {
-//   emit("update:modelValue", newDate);
-// });
-
-watch(selectedDate, () => {
-  isMenuOpen.value = false;
+watch(modelValue, (newDate) => {
+  selectedDate.value = newDate;
 });
+
+watch(selectedDate, (newDate) => {
+  emit("update:modelValue", newDate);
+});
+
 
 // function formatDate(focusDate) {
 //     return useWeatherDate.format(focusDate, "fullDateWithWeekday")
