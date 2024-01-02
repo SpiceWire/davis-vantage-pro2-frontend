@@ -1,6 +1,7 @@
 <script setup>
 import { onUnmounted, onMounted, computed } from 'vue'
 import { useClimaStore } from '../store/clima';
+import { useHourlyStore } from '@/store/hourly';
 import TheBarometer from '../components/TheBarometer.vue'
 import OutsideTemperature from '../components/OutsideTemperature.vue'
 import WindRose from '../components/WindRose.vue';
@@ -18,7 +19,13 @@ import WindTwoMinAvg from '../components/WindTwoMinAvg.vue';
 import WindGust from '@/components/WindGust.vue';
 import LastHourRain from '../components/LastHourRain.vue';
 import WindTenMinAvg  from '../components/WindTenMinAvg.vue';
+import { h } from 'vue';
 const store = useClimaStore();
+const hourlyStore = useHourlyStore();
+
+function getHourlyValues(headerName){
+  hourlyStore.fetchHourly(headerName)
+}
 
 var polling
 
@@ -44,6 +51,7 @@ var WindChillAmt=computed(()=>{
     <div id="WeatherView">
       <v-container fluid class="live-weather " >
         <v-row  style="height: 150px;">
+          <MyListener @get-hourly-data="getHourlyValues" />
           <v-col 
             cols="4"
             class="flex-grow-0 flex-shrink-0 ga-5 justify-center"
