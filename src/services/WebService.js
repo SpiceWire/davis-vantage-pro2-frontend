@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {ref, computed} from 'vue'
+import {ref, computed, h} from 'vue'
 
 //generates a unique time-based number as a nonce.
 function uniqueNumber() {
@@ -36,9 +36,10 @@ export default {
   getTesting(cmd){
     return http.get(`/vp2/testing/${cmd}/${uniqueNumber()}`)
   },
-  getOne(id) {
-    return http.get(`/topics/${id}`)
-  }
+  getHourly(headerName){
+    return http.get(`/record/header/${headerName}`)
+  },
+ 
   
 
 }

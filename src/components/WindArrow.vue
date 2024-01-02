@@ -15,7 +15,6 @@ onMounted(() => {
     arrow.style.background = colorWindArrow();
    
     if (props.key > 7) {
-        
         arrow.style.clipPath = ("polygon(30% 0, 70% 70%, 0 30%)")
     }
 })
