@@ -11,7 +11,8 @@ const windChill = computed(() => {
 </script>
 
 <template >
-    <div v-if="windChill < 25">
+<div>
+    <div class="windChillArea" v-if="windChill < 25">
     <div><b>Feels Like</b></div>
     <div>
         <v-icon  icon="fa-solid fa-temperature-empty" class="windChillIcon" id="windChillIcon"/>
@@ -19,9 +20,16 @@ const windChill = computed(() => {
     </div>
     <div>Wind Chill</div>
     </div>
+    </div>
 </template>
 
 <style scoped>
+.windChillArea {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
 .windChillIcon {
     color: rgb(86, 86, 223)
 }
