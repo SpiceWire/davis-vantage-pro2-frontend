@@ -23,7 +23,6 @@ var outTemp = computed(() => {
     
 })
 
-
 var heatIndex = computed(() => {
     return store.clima.heatIndex
 })
@@ -31,6 +30,10 @@ var heatIndex = computed(() => {
 var windChill = computed(() => {
     return store.clima.windChill
 })
+
+
+
+
 
 var  dynThermometerIcon  = computed(() => {
     var temperatureIndex = 1
@@ -43,15 +46,12 @@ var  dynThermometerIcon  = computed(() => {
     }
     //uses the temperature range to select the thermometer icon
     var thermometerIcon =  thermometerIconArr[temperatureIndex-1];
-   
-
-    return "fa-solid " + thermometerIcon
-})
-
-const iconAnimation = computed(() => {
-    return (
-        (windChill.value < 20 || heatIndex.value > 95)
-    )
+    var bounceIcon = ""
+    if  (windChill.value < 20 || heatIndex.value > 95) {
+        console.log("bounce is a go")
+        bounceIcon= " fa-bounce"
+    }
+    return "fa:fas " + thermometerIcon + bounceIcon
 })
 
 const colorThermometer = computed(() => {
@@ -66,7 +66,6 @@ const colorThermometer = computed(() => {
     } else {
         thermometerColor = [0,0,255];
     }
-   
     return "rgb" + "("+ thermometerColor+ ")";
 })
 
@@ -86,7 +85,7 @@ function colorInRange(color1, color2, weight)  {
 <template >
     <div class="outsideTemperatureArea">
     <div>
-        <v-icon :icon="dynThermometerIcon" id="temperIcon" :bounce="iconAnimation" />
+        <v-icon :icon="dynThermometerIcon" id="temperIcon"  />
         {{ outTemp }}
     </div>
     <div>Temperature</div>

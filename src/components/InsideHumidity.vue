@@ -12,20 +12,20 @@ var insideHumidity = computed(() => {
     return store.clima.insideHumidity
 })
 
-
+//<v-btn @click="$emit('getHourlyData', 'insideHumidity')" variant="plain">
 </script>
 
 
 <template >
     <div class="insideHumidityArea">
     <div>
-        <v-btn @click="$emit('getHourlyData', 'insideHumidity')" variant="plain">
+        
         <v-icon 
             icon="fa-solid fa-droplet" 
             class="insideHumidityIcon" 
             id="insideHumidityIcon"
             name="insideHumidity"
-            /></v-btn>
+            />
         {{ insideHumidity }}%
 
     </div>

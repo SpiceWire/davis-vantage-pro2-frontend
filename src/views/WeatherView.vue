@@ -19,7 +19,7 @@ import WindTwoMinAvg from '../components/WindTwoMinAvg.vue';
 import WindGust from '@/components/WindGust.vue';
 import LastHourRain from '../components/LastHourRain.vue';
 import WindTenMinAvg  from '../components/WindTenMinAvg.vue';
-import { h } from 'vue';
+
 const store = useClimaStore();
 const hourlyStore = useHourlyStore();
 
