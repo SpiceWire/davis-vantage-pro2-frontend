@@ -12,20 +12,25 @@
             <br>
 
             <v-row xs12 sm6 md4>
-                
-                    
                         <v-menu v-model="isMenuOpen" :close-on-content-click="true">
                             <template v-slot:activator="{ props }">
-                                <v-text-field label="Click to select a date" :model-value="formattedDate" readonly
-                                    v-bind="props" variant="solo" hide-details></v-text-field>
+                                <v-text-field 
+                                    label="Click to select a date" 
+                                    :model-value="formattedDate" 
+                                    readonly
+                                    v-bind="props" 
+                                    variant="solo" 
+                                    hide-details>
+                                </v-text-field>
                             </template>
-                            <v-date-picker v-model="selectedDate" hide-actions title="Click to select a date"
+                            <v-date-picker 
+                                v-model="selectedDate" 
+                                hide-actions 
+                                title="Click to select a date"
                                 :color="color">
                                 <template v-slot:header></template>
                             </v-date-picker>
                         </v-menu>
-                    
-                
             </v-row>
             <br>
             <br>
@@ -70,10 +75,10 @@ const formattedDate = computed(() => {
 });
 
 function useButtonData(keyword, offset) {
-    const tokenDate = new Date()
-    tokenDate.setDate(tokenDate.getDate() - offset)
-    weatherDate = formattedDate(tokenDate)
-    console.log("weatherDate3 =" + weatherDate)
+    // const tokenDate = new Date()
+    // tokenDate.setDate(tokenDate.getDate() - offset)
+    // weatherDate = formattedDate(tokenDate)
+    // console.log("weatherDate3 =" + weatherDate)
     getPastData(keyword, offset)
 }
 
@@ -87,6 +92,8 @@ function useButtonData(keyword, offset) {
 
 watch(selectedDate, () => {
     isMenuOpen.value = false;
+    const daysOffset = getDaysOffset(selectedDate.value);
+    getPastData("day", daysOffset)
 });
 
 // function formatDate(focusDate) {
