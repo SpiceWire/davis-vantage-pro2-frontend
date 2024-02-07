@@ -12,36 +12,23 @@
             <br>
 
             <v-row xs12 sm6 md4>
-                <template>
-                    <v-container>
-                    <v-menu 
-                        v-model="isMenuOpen" 
-                        :close-on-content-click="false">
-                        <template v-slot:activator="{ props }">
-                            <v-text-field 
-                            :label="label" 
-                            :model-value="formattedDate"
-                            readonly
-                            v-bind="props" 
-                            variant="solo"
-                            
-                            ></v-text-field>
-                        </template>
-                        <v-date-picker 
-                        v-model="selectedDate" 
-                        hide-actions 
-                        title="Date Title" 
-                        color="primary">
-                            <template 
-                            v-slot:header
-                            ></template>
-                        </v-date-picker>
-                    </v-menu>
-                    </v-container>
-                </template>
+                
+                    
+                        <v-menu v-model="isMenuOpen" :close-on-content-click="true">
+                            <template v-slot:activator="{ props }">
+                                <v-text-field label="Click to select a date" :model-value="formattedDate" readonly
+                                    v-bind="props" variant="solo" hide-details></v-text-field>
+                            </template>
+                            <v-date-picker v-model="selectedDate" hide-actions title="Click to select a date"
+                                :color="color">
+                                <template v-slot:header></template>
+                            </v-date-picker>
+                        </v-menu>
+                    
+                
             </v-row>
-               <br>
-               <br> 
+            <br>
+            <br>
             <div>
                 <strong>Weather: {{ weatherDate }} </strong>
             </div>
@@ -62,25 +49,33 @@ import { useDate } from 'vuetify/lib/framework.mjs';
 const store = useRecordStore()
 var menu = true
 function useMenu() {
-    return menu=!menu
+    return menu = !menu
 }
 // var menu1 = ref(true)
 // var menu3 = ref(true)
 var useWeatherDate = useDate();
-var weatherDate 
+var weatherDate
 const { label, color, modelValue } = defineProps([
-  "label",
-  "color",
-  "modelValue",
+    "label",
+    "color",
+    "modelValue",
 ]);
-const emit = defineEmits("update:modelValue");
+// const emit = defineEmits("update:modelValue");
 
-const isMenuOpen = ref(true);
-const selectedDate = ref(modelValue);
+const isMenuOpen = ref(false);
+var selectedDate = ref(modelValue);
 
 const formattedDate = computed(() => {
-  return selectedDate.value ? selectedDate.value.toLocaleDateString("en") : "";
+    return selectedDate.value ? selectedDate.value.toLocaleDateString("en") : "";
 });
+
+function useButtonData(keyword, offset) {
+    const tokenDate = new Date()
+    tokenDate.setDate(tokenDate.getDate() - offset)
+    weatherDate = formattedDate(tokenDate)
+    console.log("weatherDate3 =" + weatherDate)
+    getPastData(keyword, offset)
+}
 
 // watch(modelValue, (newDate) => {
 //   selectedDate.value = newDate;
@@ -91,7 +86,7 @@ const formattedDate = computed(() => {
 // });
 
 watch(selectedDate, () => {
-  isMenuOpen.value = false;
+    isMenuOpen.value = false;
 });
 
 // function formatDate(focusDate) {
@@ -110,13 +105,6 @@ const btnNames = ref([
 ])
 
 
-function useButtonData(keyword, offset) {
-    const tokenDate = new Date()
-    tokenDate.setDate(tokenDate.getDate() - offset)
-    weatherDate = formattedDate(tokenDate)
-    console.log("weatherDate3 =" + weatherDate)
-    getPastData(keyword, offset)
-}
 
 function getDaysOffset(selectedDate) {
     const MILLS_PER_DAY = 1000 * 60 * 60 * 24;
