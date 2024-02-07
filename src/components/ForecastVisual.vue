@@ -1,18 +1,16 @@
 
 <script setup>
-
+// This component selects and colors the forecast icon based on the icon value.
 import { useClimaStore } from '../store/clima';
 import { computed } from 'vue'
 
 const store = useClimaStore();
 
-
-
 const forecastIcon = computed(() => {
   return store.clima.forecastIcon
 })
 
-//  From Davs documentation page 23:
+//  Icon values from Davs documentation page 23:
 //  Icon segments: S=Sun   PS=Partial Sun  C=Cloud  R=Rain   N=Snow
 // Decimal   Segments  Forecast
 //   8         S        Mostly clear

@@ -133,5 +133,6 @@ function getUTCDate(validDate) {
 function getPastData(keyword, offset) {
     store.fetchRecord(keyword, offset)
 }
+
 </script>
 <style ></style>
