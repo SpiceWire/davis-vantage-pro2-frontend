@@ -86,7 +86,6 @@ function forecastIconSelect() {
 
 var forecastIconIcon = computed(() => {
   forecastIconSelect()
-  console.log("iconmamestring= " + iconNameString)
   return "fa-solid " + iconNameString
 })
 </script>

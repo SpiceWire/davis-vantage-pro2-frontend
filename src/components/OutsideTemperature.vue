@@ -48,7 +48,7 @@ var  dynThermometerIcon  = computed(() => {
     var thermometerIcon =  thermometerIconArr[temperatureIndex-1];
     var bounceIcon = ""
     if  (windChill.value < 20 || heatIndex.value > 95) {
-        console.log("bounce is a go")
+        
         bounceIcon= " fa-bounce"
     }
     return "fa:fas " + thermometerIcon + bounceIcon
@@ -75,7 +75,7 @@ function colorInRange(color1, color2, weight)  {
     var rgb = [Math.round(color1[0] * w1 + color2[0] * w2),
         Math.round(color1[1] * w1 + color2[1] * w2),
         Math.round(color1[2] * w1 + color2[2] * w2)];
-        console.log("rgb =" + rgb);
+        
     return rgb;
 }
 

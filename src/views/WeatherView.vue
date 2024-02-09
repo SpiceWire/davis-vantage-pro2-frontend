@@ -5,7 +5,6 @@ import { useHourlyStore } from '@/store/hourly';
 import TheBarometer from '../components/TheBarometer.vue'
 import OutsideTemperature from '../components/OutsideTemperature.vue'
 import WindRose from '../components/WindRose.vue';
-import BarTrend from '../components/BarTrend.vue';
 import ForecastVisual from '../components/ForecastVisual.vue';
 import HeatIndex from '../components/HeatIndex.vue';
 import OutsideHumidity from '../components/OutsideHumidity.vue';
@@ -25,6 +24,14 @@ const hourlyStore = useHourlyStore();
 
 function getHourlyValues(headerName){
   hourlyStore.fetchHourly(headerName)
+}
+
+function getTargetName(e){
+  const origName = e.currentTarget.id
+  const replacedName = origName.replace("-","_")
+  console.log("You clicked something called " + e.currentTarget.id + " which is now called " + replacedName)
+  getHourlyValues(replacedName)
+ 
 }
 
 var polling
@@ -48,10 +55,10 @@ var WindChillAmt=computed(()=>{
 
 <template>
   <main>
-    <div id="WeatherView">
+    <div id="WeatherView" >
       <v-container fluid class="live-weather " >
         <v-row  style="height: 150px;">
-          <MyListener @get-hourly-data="getHourlyValues" />
+          
           <v-col 
             cols="4"
             class="flex-grow-0 flex-shrink-0 ga-5 justify-center"
@@ -68,9 +75,9 @@ var WindChillAmt=computed(()=>{
               <div class="outside-conditions" style="text-align:center">
                 <b>Outside</b>
                 <v-divider></v-divider>
-              <OutsideTemperature id="outside-temperature" />
+              <OutsideTemperature id="outside-temperature" @click="getTargetName"/>
               <v-divider></v-divider>
-              <OutsideHumidity id="outside-humidity" />
+              <OutsideHumidity id="outside-humidity" @click="getTargetName"/>
               </div>
               <div class="inside-conditions text-center" >
                 <b>Inside</b>
