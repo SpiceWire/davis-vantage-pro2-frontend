@@ -79,13 +79,16 @@ function colorInRange(color1, color2, weight)  {
     return rgb;
 }
 
+function getPastTemperature(){
+    
+}
 </script>
 
 
 <template >
     <div class="outsideTemperatureArea">
     <div>
-        <v-icon :icon="dynThermometerIcon" id="temperIcon"  />
+        <v-icon :icon="dynThermometerIcon" id="temperIcon"  @click="getPastTemperature"/>
         {{ outTemp }}
     </div>
     <div>Temperature</div>

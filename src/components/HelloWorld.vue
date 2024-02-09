@@ -17,11 +17,13 @@
             rel="noopener noreferrer"
             target="_blank"
             variant="text"
+           
           >
             <v-icon
-              icon="mdi-view-dashboard"
+              icon="fas fa-cloud"
               size="large"
               start
+              @click="fakeFunction"
             />
 
             Components
@@ -55,6 +57,8 @@
             rel="noopener noreferrer"
             target="_blank"
             variant="text"
+            
+
           >
             <v-icon
               icon="mdi-account-group"
@@ -70,6 +74,8 @@
               icon="fas fa-cloud"
               size="large"
               start
+              @click="fakeFunction"
+
             />
     </v-responsive>
   </v-container>
@@ -77,4 +83,7 @@
 
 <script setup>
   //
+  function fakeFunction(){
+    console.log("cloud clicked")
+  }
 </script>

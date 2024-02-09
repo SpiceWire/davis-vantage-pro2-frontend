@@ -12,7 +12,9 @@
             <br>
 
             <v-row xs12 sm6 md4>
-                        <v-menu v-model="isMenuOpen" :close-on-content-click="true">
+                        <v-menu 
+                            v-model="isMenuOpen" 
+                            :close-on-content-click="false">
                             <template v-slot:activator="{ props }">
                                 <v-text-field 
                                     label="Click to select a date" 
@@ -25,7 +27,7 @@
                             </template>
                             <v-date-picker 
                                 v-model="selectedDate" 
-                                hide-actions 
+                                hide-actions="false" 
                                 title="Click to select a date"
                                 :color="color">
                                 <template v-slot:header></template>

@@ -95,7 +95,7 @@ var WindChillAmt=computed(()=>{
                 <v-divider></v-divider>
                 <WindGust id="wind-gust" />
                 <v-divider></v-divider>
-                <WindTwoMinAvg id="wind-tow-min-avg"/>
+                <WindTwoMinAvg id="wind-two-min-avg"/>
               </div>
               <TheBarometer id="the-barometer" />
               <ForecastVisual id="forecast-visual" /> 
@@ -140,53 +140,7 @@ var WindChillAmt=computed(()=>{
 }
 #WeatherView {
   font-size: 2rem;
-  /* display:grid;
-  gap: 0px 0px;
-  grid-template-rows: 1fr 1fr 1fr 1fr .5fr;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-  
-  grid-template-areas:
-      "wind-rose forecast-visual  . the-time . "
-      "wind-rose outside-temperature outside-humidity the-barometer bar-trend"
-      ". . inside-temperature inside-humidity wind-chill heat-index"
-      ". . daily-rain . . rain-rate"
-      "the-chyron the-chyron the-chyron the-chyron the-chyron the-chyron"; */
+
 }
 
-/* #wind-rose{
-  grid-area: wind-rose
-}
-#forecast-visual{
-  grid-area: forecast-visual
-}
-#the-time{
-  grid-area: the-time
-}
-#outside-temperature{
-  grid-area: outside-temperature
-}
-#the-barometer{
-  grid-area: the-barometer
-}
-#bar-trend{
-  grid-area: bar-trend
-}
-#inside-temperature{
-  grid-area: inside-temperature
-}
-#wind-chill{
-  grid-area: wind-chill
-}
-#heat-index{
-  grid-area: heat-index
-}
-#daily-rain{
-  grid-area: daily-rain
-}
-#rain-rate{
-  grid-area: rain-rate
-}
-#the-chyron{
-  grid-area: the-chyron
-} */
 </style>
