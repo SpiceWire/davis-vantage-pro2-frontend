@@ -34,14 +34,26 @@ var valueArray = []
 const hourlyArrInfo = computed(()=> {
     var hourlyInfo = store.hourly
     var keyDate = useDate()
-    for (key in hourlyInfo){
-        formattedDate = keyDate.format(key, 'fullDateTime24h')
+    for (var key in hourlyInfo){
+        console.log(key)
+        //formattedDate = keyDate.format(key, 'fullDateTime24h')
         valueArray.push({
-            name: formattedDate,
-            value: obj[key]
+            key,
+            value: hourlyInfo[key]
+        // valueArray.push({
+        //     formattedDate,
+        //     hourlyInfo[key]
         })
     }
-    return valueArray
+
+//     var sorted = valueArray.sort(function(a, b) {
+//   return (a.value > b.value) ? 1 : ((b.value > a.value) ? -1 : 0)
+// });
+
+var sorted = valueArray.sort(function(a, b) {
+  return (a.key > b.key) ? 1 : ((b.key > a.key) ? -1 : 0)
+});
+    return sorted
 })
 // onMounted(
 //     store.fetchHourly(weatherParameter)
