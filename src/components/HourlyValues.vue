@@ -1,9 +1,9 @@
 <template >
     <div>
-        {{ hourlyHeader }}
+        {{ hourlyHeader }}<br>
         values here:
-        
-        <v-row v-for="rawTime, dataValue in hourlyArr" :key="rawTime" :value="dataValue">
+        {{ hourlyArr }}
+        <v-row v-for="(rawTime, dataValue) in hourlyArr" :key="rawTime" :value="dataValue">
         <v-col>{{ hourlyArr.rawTime }}</v-col><br><v-col>{{ hourlyArr.dataValue }}</v-col>
         </v-row>
     </div>
@@ -14,7 +14,7 @@ import { computed, onMounted, onUpdated, ref, reactive, toRaw } from 'vue'
 
 const store = useHourlyStore();
 
-const hourlyArr = computed(() => {
+var hourlyArr = computed(() => {
     const tempHourly=store.hourly
     console.log("HourlyValues.vue thinks hourly value is ", tempHourly)
     return store.hourly
