@@ -29,14 +29,19 @@ const store = useHourlyStore();
 const hourlyHeader = computed(() => {
     return store.hourlyHeaderName
 })
+var valueArray = []
 
 const hourlyArrInfo = computed(()=> {
     var hourlyInfo = store.hourly
     var keyDate = useDate()
     for (key in hourlyInfo){
-        formattedDate = keyDate.format(key, 'shortDate')
+        formattedDate = keyDate.format(key, 'fullDateTime24h')
+        valueArray.push({
+            name: formattedDate,
+            value: obj[key]
+        })
     }
-    return store.hourly
+    return valueArray
 })
 // onMounted(
 //     store.fetchHourly(weatherParameter)

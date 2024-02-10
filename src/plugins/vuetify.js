@@ -12,13 +12,11 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import { aliases, fa } from 'vuetify/iconsets/fa'
 import { mdi } from 'vuetify/iconsets/mdi'
-import { VuetifyDateAdapter } from 'vuetify/date/adapters/vuetify'
+
 
 // https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
-  date: {
-    adapter: VuetifyDateAdapter,
-  },
+ 
   theme: {
     themes: {
       light: {
