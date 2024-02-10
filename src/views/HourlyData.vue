@@ -1,6 +1,6 @@
 <template >
     <div>
-        <div>Parameter name : {{ weatherParameter }}</div>
+        <div>Parameter name : {{ hourlyHeader }}</div>
         <br>
         <div><HourlyValues></HourlyValues></div>
     </div>
@@ -9,19 +9,22 @@
 
 <script setup>
 
-import HourlyValues from '@/components/HourlyValues.vue';
+import HourlyValues from '../components/HourlyValues';
 import { computed, onMounted, onUpdated, ref, reactive, toRaw } from 'vue'
-import { useHourlyStore } from '@/store/hourly';
+import { useHourlyStore } from '../store/hourly';
 
 const store = useHourlyStore();
 
-const props = defineProps(
-    ["weatherParameter"]
-)
+// const props = defineProps(
+//     ["weatherParameter"]
+// )
+const hourlyHeader = computed(() => {
+    return store.hourlyHeaderName
+})
 
-onMounted(
-    store.fetchHourly(weatherParameter)
-)
+// onMounted(
+//     store.fetchHourly(weatherParameter)
+// )
 
 </script>
 <style >

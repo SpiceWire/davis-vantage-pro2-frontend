@@ -34,19 +34,6 @@ async function getSettings() {
             console.log('Response is ', response)
             settingsObj.value = response
         })
-
-    // settingsObj.value = result.data
-
-    // .then(response => {
-    //         console.log('Response is ' , response)
-    //         settingsObj.value = response.data
-    //     })
-    // store.fetchComm()
-    //     .then(response => {
-    //         console.log('Response is ' , response)
-    //         settingsObj.value = response.data
-    //     })
-    // settingsObj.value =store.getComm
     console.log("CurrentSettngs.getSettings says settingsObj is ")
     console.log(settingsObj.value)
 }

@@ -30,6 +30,7 @@ function getTargetName(e){
   const origName = e.currentTarget.id
   const replacedName = origName.replace("-","_")
   console.log("You clicked something called " + e.currentTarget.id + " which is now called " + replacedName)
+  
   getHourlyValues(replacedName)
  
 }
