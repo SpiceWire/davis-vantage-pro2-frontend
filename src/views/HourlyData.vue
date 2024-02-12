@@ -36,9 +36,17 @@ const hourlyArrInfo = computed(()=> {
     var keyDate = useDate()
     for (var key in hourlyInfo){
         console.log(key)
-        //formattedDate = keyDate.format(key, 'fullDateTime24h')
+        var theISODate = new Date(key).toISOString
+        var theISOLocale = new Date(key).toLocaleString()
+        console.log("ISODate: " +theISODate )
+        var formattedDate = keyDate.format(theISODate, 'fullDateWithWeekday')
+        var formattedTime = theISODate.toLocaleString()
+        console.log("Formatted: " + formattedDate)
+        console.log("Formatted: " + formattedTime)
+        console.log("Locale Formatted: " + theISOLocale)
         valueArray.push({
             key,
+            //formattedDate,
             value: hourlyInfo[key]
         // valueArray.push({
         //     formattedDate,
