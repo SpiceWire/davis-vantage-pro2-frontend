@@ -14,11 +14,11 @@ const props = defineProps(
     <div>
         <v-row>
             <v-col cols="6">
-                {{ val }}
+                v:{{ val }}
             </v-col>
 
             <v-col cols="auto">
-                {{ param }}
+                P:{{ param }}
             </v-col>
         </v-row>
 
