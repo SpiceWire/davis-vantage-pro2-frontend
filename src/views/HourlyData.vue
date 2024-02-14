@@ -41,15 +41,31 @@ const hourlyArrayInfo = computed(() => {
     var hourlyRaw = store.hourly
     console.log("hourly data thinks hourlyRaw is: " , hourlyRaw)
     var keyDate = useDate()
-    for (var hourlyKey in hourlyRaw){
-        var theISODate = new Date(hourlyKey).toLocaleString()
+
+    for (var initialKey in hourlyRaw){
+        var theISODate = new Date(initialKey).toISOString()
         valueArray.push({
             key:theISODate,
-            value: hourlyRaw[hourlyKey]
+            value: hourlyRaw[initialKey]
         })
     }
+
+    // below works to format the date
+    // for (var hourlyKey in hourlyRaw){
+    //     var theISODate = new Date(hourlyKey).toLocaleString()
+    //     valueArray.push({
+    //         key:theISODate,
+    //         value: hourlyRaw[hourlyKey]
+    //     })
+    // }
+    var sortedDates = valueArray.sort(function (a, b) {
+            return (a.key > b.key) ? 1 : ((b.key > a.key) ? -1 : 0)
+        });
+
+        
     console.log(valueArray)
-    return valueArray
+    console.log(sortedDates)
+    return sortedDates
 })
 
 // const hourlyArrInfo = computed(() => {
