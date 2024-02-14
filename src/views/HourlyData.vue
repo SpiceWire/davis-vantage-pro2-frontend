@@ -50,21 +50,14 @@ const hourlyArrayInfo = computed(() => {
         })
     }
 
-    // below works to format the date
-    // for (var hourlyKey in hourlyRaw){
-    //     var theISODate = new Date(hourlyKey).toLocaleString()
-    //     valueArray.push({
-    //         key:theISODate,
-    //         value: hourlyRaw[hourlyKey]
-    //     })
-    // }
     var sortedDates = valueArray.sort(function (a, b) {
             return (a.key > b.key) ? 1 : ((b.key > a.key) ? -1 : 0)
         });
 
-        
-    console.log(valueArray)
-    console.log(sortedDates)
+    sortedDates.forEach((elem) =>
+        elem.key = new Date(elem.key).toLocaleString()
+    )  
+
     return sortedDates
 })
 
