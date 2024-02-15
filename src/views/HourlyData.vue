@@ -41,15 +41,9 @@ const store = useHourlyStore();
 const hourlyHeader = computed(() => {
     return store.hourlyHeaderName
 })
-var valueArray = []
-var sortedFormattedDates = []
-var arrObj = {
-    length: 0,
-    addElem(elem) {
-        [].push.call(this, elem)
-    },
-}
+
 const hourlyArrayInfo = computed(() => {
+    var valueArray = []
     var hourlyRaw = store.hourly
     console.log("hourly data thinks hourlyRaw is: " , hourlyRaw)
     var keyDate = useDate()
@@ -69,15 +63,9 @@ const hourlyArrayInfo = computed(() => {
     sortedDates.forEach((element) =>
         element.key = new Date(element.key).toLocaleString()
     )  
-    // sortedDates.forEach((element) =>
-    //     arrObj.addElem({sortedDates})
-    // )  
-    for (const entry of Array.prototype.values.call(sortedDates)) {
-        arrObj.addElem({entry})
-        console.log(entry);
-}
+
         console.log("sortedDates:", sortedDates)
-        console.log("arrObj: ", arrObj)
+       
         console.log(sortedDates)
     return sortedDates
 })

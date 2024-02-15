@@ -18,6 +18,7 @@ import WindTwoMinAvg from '../components/WindTwoMinAvg.vue';
 import WindGust from '@/components/WindGust.vue';
 import LastHourRain from '../components/LastHourRain.vue';
 import WindTenMinAvg  from '../components/WindTenMinAvg.vue';
+import router from '@/router';
 
 const store = useClimaStore();
 const hourlyStore = useHourlyStore();
@@ -27,7 +28,8 @@ function getHourlyValues(e){
   const origName = e.currentTarget.id
   const replacedName = origName.replace("-","_")
   console.log("You clicked something called " + e.currentTarget.id + " which is now called " + replacedName)
-  hourlyStore.fetchHourly(headerName)
+  hourlyStore.fetchHourly(replacedName)
+  router.push({path:'/hourlyData'})
 }
 
 var polling
