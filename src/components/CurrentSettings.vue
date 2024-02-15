@@ -8,24 +8,10 @@ import { useCommStore } from '../store/comm';
 var result = reactive({})
 var settingsObj = ref({})
 
-// async function getSettings() {
-//     result = await WebService.getSettings()
-//     settingsObj.value = result.data
-//     console.log(settingsObj.value)
-// }
+
 
 const store = useCommStore();
-// async function getSettings(){
-//     console.log("CurrentSettings ran getSettings")
-//     store.fetchComm()
-//         .then(response => {
-//             console.log('Response is ' , response)
-//             settingsObj.value = response.data
-//         })
-//     // settingsObj.value =store.getComm
-//     console.log("CurrentSettngs.getSettings says settingsObj is ")
-//     console.log(settingsObj)
-// }
+
 
 async function getSettings() {
     console.log("CurrentSettings is about to run fetchComm")
@@ -46,7 +32,7 @@ function runMessage() {
 onMounted(() =>
     runMessage(),
     getSettings())
-// onMounted(()=>settingsObj.value = store.getComm)
+
 </script>
 
 
