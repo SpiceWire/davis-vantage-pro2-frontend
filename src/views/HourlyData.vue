@@ -1,9 +1,9 @@
 <template >
     <div>
         <v-container>
-        <v-spacer></v-spacer>
+            <v-btn prepend-icon="fa-solid fa-arrow-left" variant="flat" href="/weather">Weather</v-btn>
+        <br>
         <h2>Parameter "{{ hourlyHeader }}" over past 24 hours:</h2>
-        
         <br>
         <v-row>
             <v-col cols="6">
@@ -15,10 +15,9 @@
             </v-row>
         
         <ParamValue v-for="(value, key) in hourlyArrayInfo" :key="key" :param="value.value" :val="value.key"></ParamValue>
-
-       
-        
-        
+  
+        <br>
+        <v-btn prepend-icon="fa-solid fa-arrow-left" variant="flat" href="/weather">Weather</v-btn>
         </v-container>
 
     </div>
@@ -26,7 +25,6 @@
 
 
 <script setup>
-
 
 import ParamValue from '@/components/ParamValue.vue';
 import { computed, onMounted, onUpdated, ref, reactive, toRaw } from 'vue'
@@ -63,9 +61,7 @@ const hourlyArrayInfo = computed(() => {
     sortedDates.forEach((element) =>
         element.key = new Date(element.key).toLocaleString()
     )  
-
         console.log("sortedDates:", sortedDates)
-       
         console.log(sortedDates)
     return sortedDates
 })

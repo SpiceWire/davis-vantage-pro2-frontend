@@ -39,6 +39,9 @@ export default {
   getHourly(headerName){
     return http.get(`/record/header/${headerName}`)
   },
+  getForecast(){
+    return axios.get(`https://api.weather.gov/gridpoints/LWX/96,70/forecast`)
+  }
  
   
 

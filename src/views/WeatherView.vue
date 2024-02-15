@@ -23,10 +23,13 @@ import router from '@/router';
 const store = useClimaStore();
 const hourlyStore = useHourlyStore();
 
+function getForecast(){
+  
+}
 
 function getHourlyValues(e){
   const origName = e.currentTarget.id
-  const replacedName = origName.replace("-","_")
+  const replacedName = origName.replace(/-/g,"_")
   console.log("You clicked something called " + e.currentTarget.id + " which is now called " + replacedName)
   hourlyStore.fetchHourly(replacedName)
   router.push({path:'/hourlyData'})
@@ -96,14 +99,14 @@ var WindChillAmt=computed(()=>{
               <div class="wind-conditions text-center" >
                 <b>Wind</b>
                 <v-divider></v-divider>
-                <WindTenMinAvg id="wind-ten-min-avg" @click="getHourlyValues"/>
+                <WindTenMinAvg id="ten-min-avg-wind-speed" @click="getHourlyValues"/>
                 <v-divider></v-divider>
-                <WindGust id="wind-gust" @click="getHourlyValues"/>
+                <WindGust id="ten-min-wind-gust" @click="getHourlyValues"/>
                 <v-divider></v-divider>
-                <WindTwoMinAvg id="wind-two-min-avg" @click="getHourlyValues"/>
+                <WindTwoMinAvg id="two-min-avg-wind-speed" @click="getHourlyValues"/>
               </div>
-              <TheBarometer id="barometer" />
-              <ForecastVisual id="forecast-visual" /> 
+              <TheBarometer id="barometer"  @click="getHourlyValues"/>
+              <ForecastVisual id="forecast-visual" @click="getForecast"/> 
               <WindChill id="wind-chill" @click="getHourlyValues"/>
               <HeatIndex id="heat-index" @click="getHourlyValues"/>
               
