@@ -10,7 +10,7 @@ const forecastIcon = computed(() => {
   return store.clima.forecastIcon
 })
 
-//  Icon values from Davs documentation page 23:
+//  Icon values from Davis documentation page 23:
 //  Icon segments: S=Sun   PS=Partial Sun  C=Cloud  R=Rain   N=Snow
 // Decimal   Segments  Forecast
 //   8         S        Mostly clear

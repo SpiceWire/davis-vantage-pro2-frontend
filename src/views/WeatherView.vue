@@ -22,17 +22,12 @@ import WindTenMinAvg  from '../components/WindTenMinAvg.vue';
 const store = useClimaStore();
 const hourlyStore = useHourlyStore();
 
-function getHourlyValues(headerName){
-  hourlyStore.fetchHourly(headerName)
-}
 
-function getTargetName(e){
+function getHourlyValues(e){
   const origName = e.currentTarget.id
   const replacedName = origName.replace("-","_")
   console.log("You clicked something called " + e.currentTarget.id + " which is now called " + replacedName)
-  
-  getHourlyValues(replacedName)
- 
+  hourlyStore.fetchHourly(headerName)
 }
 
 var polling
@@ -76,39 +71,39 @@ var WindChillAmt=computed(()=>{
               <div class="outside-conditions" style="text-align:center">
                 <b>Outside</b>
                 <v-divider></v-divider>
-              <OutsideTemperature id="outside-temperature" @click="getTargetName"/>
+              <OutsideTemperature id="outside-temperature" @click="getHourlyValues"/>
               <v-divider></v-divider>
-              <OutsideHumidity id="outside-humidity" @click="getTargetName"/>
+              <OutsideHumidity id="outside-humidity" @click="getHourlyValues"/>
               </div>
               <div class="inside-conditions text-center" >
                 <b>Inside</b>
                 <v-divider></v-divider>
-               <InsideTemperature id="inside-temperature" />
+               <InsideTemperature id="inside-temperature" @click="getHourlyValues"/>
               <v-divider></v-divider>
-              <InsideHumidity id="inside-humidity" />
+              <InsideHumidity id="inside-humidity" @click="getHourlyValues"/>
               </div>
               <div class="rain-conditions min-width=500px text-center"  >
                 <b>Rain</b>
                 <v-divider class="rain-divider border-opacity-100"   ></v-divider>
-                <DailyRain id="daily-rain" />
+                <DailyRain id="daily-rain" @click="getHourlyValues"/>
                 <v-divider class="rain-divider border-opacity-100"></v-divider>
-                <RainRate id="rain-rate" />
+                <RainRate id="rain-rate" @click="getHourlyValues"/>
                 <v-divider class="rain-divider border-opacity-100"></v-divider>
-                <LastHourRain id="last-hour-rain"/>
+                <LastHourRain id="last-hour-rain" @click="getHourlyValues"/>
               </div>
               <div class="wind-conditions text-center" >
                 <b>Wind</b>
                 <v-divider></v-divider>
-                <WindTenMinAvg id="wind-ten-min-avg"/>
+                <WindTenMinAvg id="wind-ten-min-avg" @click="getHourlyValues"/>
                 <v-divider></v-divider>
-                <WindGust id="wind-gust" />
+                <WindGust id="wind-gust" @click="getHourlyValues"/>
                 <v-divider></v-divider>
-                <WindTwoMinAvg id="wind-two-min-avg"/>
+                <WindTwoMinAvg id="wind-two-min-avg" @click="getHourlyValues"/>
               </div>
               <TheBarometer id="the-barometer" />
-              <ForecastVisual id="forecast-visual" /> 
-              <WindChill id="wind-chill" />
-              <HeatIndex id="heat-index" />
+              <ForecastVisual id="forecast-visual" @click="getHourlyValues"/> 
+              <WindChill id="wind-chill" @click="getHourlyValues"/>
+              <HeatIndex id="heat-index" @click="getHourlyValues"/>
               
             </v-row>           
           </v-col>
