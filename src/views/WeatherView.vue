@@ -100,8 +100,8 @@ var WindChillAmt=computed(()=>{
                 <v-divider></v-divider>
                 <WindTwoMinAvg id="wind-two-min-avg" @click="getHourlyValues"/>
               </div>
-              <TheBarometer id="the-barometer" />
-              <ForecastVisual id="forecast-visual" @click="getHourlyValues"/> 
+              <TheBarometer id="barometer" />
+              <ForecastVisual id="forecast-visual" /> 
               <WindChill id="wind-chill" @click="getHourlyValues"/>
               <HeatIndex id="heat-index" @click="getHourlyValues"/>
               
