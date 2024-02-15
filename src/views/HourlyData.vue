@@ -1,11 +1,12 @@
 <template >
     <div>
         <div>Parameter name : {{ hourlyHeader }}</div>
-        <br>other method:
+       
         <br>
-        <ParamValue v-for="(value, parameter,  key) in hourlyArrayInfo" :key="key" :param="parameter" :val="value"></ParamValue>
+        <ParamValue v-for="(value, key) in hourlyArrayInfo" :key="key" :param="value.value" :val="value.key"></ParamValue>
+
         <br>
-        <div><HourlyValues></HourlyValues></div>
+        
         <br>
         
 
@@ -15,7 +16,7 @@
 
 <script setup>
 
-import HourlyValues from '../components/HourlyValues';
+
 import ParamValue from '@/components/ParamValue.vue';
 import { computed, onMounted, onUpdated, ref, reactive, toRaw } from 'vue'
 import { useHourlyStore } from '../store/hourly';
@@ -31,7 +32,7 @@ const hourlyHeader = computed(() => {
 })
 var valueArray = []
 var sortedFormattedDates = []
-const arrObj = {
+var arrObj = {
     length: 0,
     addElem(elem) {
         [].push.call(this, elem)
@@ -56,9 +57,17 @@ const hourlyArrayInfo = computed(() => {
 
     sortedDates.forEach((element) =>
         element.key = new Date(element.key).toLocaleString()
-        
     )  
+    // sortedDates.forEach((element) =>
+    //     arrObj.addElem({sortedDates})
+    // )  
+    for (const entry of Array.prototype.values.call(sortedDates)) {
+        arrObj.addElem({entry})
+        console.log(entry);
+}
         console.log("sortedDates:", sortedDates)
+        console.log("arrObj: ", arrObj)
+        console.log(sortedDates)
     return sortedDates
 })
 
