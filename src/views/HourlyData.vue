@@ -1,14 +1,25 @@
 <template >
     <div>
-        <div>Parameter name : {{ hourlyHeader }}</div>
-       
+        <v-container>
+        <v-spacer></v-spacer>
+        <h2>Parameter "{{ hourlyHeader }}" over past 24 hours:</h2>
+        
         <br>
+        <v-row>
+            <v-col cols="6">
+              <h3>Date and time:</h3>  
+            </v-col>
+            <v-col>
+                <h3>Value</h3>
+            </v-col>
+            </v-row>
+        
         <ParamValue v-for="(value, key) in hourlyArrayInfo" :key="key" :param="value.value" :val="value.key"></ParamValue>
 
-        <br>
+       
         
-        <br>
         
+        </v-container>
 
     </div>
 </template>
