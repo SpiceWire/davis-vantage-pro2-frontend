@@ -29,3 +29,4 @@ app.mount('#app')
 //add graph points from LOOP2 data
 //add sunrise and sunset from LOOP1 data
 //add alarms from LOOP1 data
+//add combined wind speed, direction to hourly search

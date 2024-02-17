@@ -11,21 +11,31 @@ export const useForecastStore = defineStore('forecast',  {
     }),
     getters: {
         getForecast(state) {
-            console.log("Forecast store getForecast was called")
+            console.log("Forecast store getForecast was called. Store thinks forecast is: ")
+            console.log("forecast" , state.forecast)
             return state.forecast
         },
-        getForecastHeader(state){
-            console.log("forecast store getForecastHeader was called")
-            return state.forecastHeaderName
+        getProperties(state){
+            console.log("Forecast store getProperties was called. Store thinks properties are: ")
+            var theseProperties = state.forecast.properties
+            console.log(theseProperties)
+            return theseProperties
         },
+        getElevation(state){
+            console.log("Forecast store getElevation was called. Store thinks elevaton is: ")
+            var thisElevaton = state.forecast.properties
+            console.log(thisElevaton)
+            return thisElevaton
+        }
+
     },
     actions: {
           async fetchForecast() {
             try {
-                console.log("store.fetchHForecast called ")
+                
                 const forecastDataQuery = await WebService.getForecast()
                 this.forecast = forecastDataQuery.data
-                
+                console.log("store.fetchForecast called. Forecast is: ", this.forecast )
             }
             catch(error){
 

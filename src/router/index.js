@@ -6,6 +6,7 @@ import Testing from '../views/Testing.vue'
 import CurrentData from '../views/CurrentData.vue'
 import PastData from '../views/PastData.vue'
 import HourlyData from '../views/HourlyData.vue'
+import ForecastVue from '@/views/ForecastVue.vue'
 
 const routes = [
   {
@@ -49,6 +50,11 @@ const routes = [
         path: '/hourlyData',
         name: 'hourlytData',
         component: HourlyData
+      },
+      {
+        path: '/forecast',
+        name: 'forecast',
+        component: ForecastVue
       },
 
     ],

@@ -1,22 +1,4 @@
-<template >
-    <div>
-        <v-container>
-                {{ props }}
-        </v-container>
-    </div>
-</template>
-<script setup>
-import { useDate } from 'vuetify'
-import { onUnmounted, onMounted, computed } from 'vue'
-
-const props = defineProps(['forecastPeriod'])
-console.log("props are: ", props)
-const forecastObj = computed(()=>{
-    new Map(props)
-
-})
-
-var forecastItem = {
+export interface ForecastModel {
     number: Number,
     name: String,
     startTime: String,
@@ -42,9 +24,5 @@ var forecastItem = {
     icon: String,
     shortForecast: String,
     detailedForecast: String
-    }
+}
 
-</script>
-<style >
-    
-</style>
