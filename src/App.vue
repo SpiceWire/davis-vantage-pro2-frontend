@@ -9,11 +9,13 @@
       </v-app-bar>
       <v-navigation-drawer v-model="drawer"  temporary>
         <v-list-item to="/weather" link title="Weather"></v-list-item>
+        <v-list-item to="/pastData" link title="Daily Record"></v-list-item>
+        <v-list-item to="/hourlyData" link title="Hourly Record"></v-list-item>
+        <v-list-item to="/forecast" link title="Forecast"></v-list-item>        
         <v-list-item to="/connection" link title="Cxn Settings"></v-list-item>
-        <v-list-item to="/currentData" link title="Current Data"></v-list-item>
+        <v-list-item to="/currentData" link title="Raw Data"></v-list-item>
         <v-list-item to="/testing" link title="Testing"></v-list-item>
-        <v-list-item to="/pastData" link title="Record"></v-list-item>
-        <v-list-item to="/hourlyData" link title="Hourly"></v-list-item>
+
       </v-navigation-drawer>
     </v-card>
 
