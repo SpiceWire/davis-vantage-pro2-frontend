@@ -69,10 +69,6 @@ watch(selectedDate, (newDate) => {
 });
 
 
-// function formatDate(focusDate) {
-//     return useWeatherDate.format(focusDate, "fullDateWithWeekday")
-// }
-
 var dayWeather = computed(() => {
     return store.getRecord
 })

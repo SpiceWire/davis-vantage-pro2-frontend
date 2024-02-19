@@ -1,10 +1,12 @@
 <template>
     <div>
-      
+      NWSForecast
       <NWSForecast v-for="(period, index) in newPropertiesUpdated?.periods" :key="index" :forecastPeriod="period"></NWSForecast>
        
         <br>
-
+        NWSForecast end 
+        <br>
+        <br>
         PropertiesUpdated here:
         {{ newPropertiesUpdated?.periods }}
         <br>

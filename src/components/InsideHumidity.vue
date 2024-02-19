@@ -12,7 +12,7 @@ var insideHumidity = computed(() => {
     return store.clima.insideHumidity
 })
 
-//<v-btn @click="$emit('getHourlyData', 'insideHumidity')" variant="plain">
+
 </script>
 
 
