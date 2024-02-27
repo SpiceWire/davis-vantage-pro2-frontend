@@ -7,64 +7,46 @@
       </v-expansion-panel-title>
       <v-expansion-panel-text
         title="click to expand">
-        Enter US street address for weather:
-        
+        <strong>Enter US street address for weather:</strong> 
           <div>
-                     <v-row>
-          <v-col cols="7">
-            <v-text-field label="Enter an address for local forecast: " append-inner-icon="fas fa-magnifying-glass" clearable
-              :rules="[zipRules]" @click:append-inner="findZip">
-            </v-text-field>
-          </v-col>
-        </v-row>
+            <form @submit.prevent="submit">
+              <v-row>
+                <v-col cols="7">
+                  <v-text-field 
+                    id="addressField"  
+                    v-model="streetAddress" 
+                    label="Street Address " clearable
+                    :rules="[nonBlank]"></v-text-field>
+                  <v-text-field 
+                    id="cityField"
+                    v-model="cityName" 
+                    label="City: " 
+                    clearable 
+                    :rules="[nonBlank]"></v-text-field>
+                  <v-text-field 
+                    id="stateField" 
+                    v-model="stateAbbrev" 
+                    label="State: " 
+                    :rules="[nonBlank, usState]" 
+                    clearable
+                    @input="stateAbbrev = stateAbbrev.toUpperCase()">
+                  </v-text-field>
+                  <v-text-field 
+                    id="zipField"
+                    v-model="zipCode" 
+                    label="ZIP code: " 
+                    clearable 
+                    :rules="[zipRules]" 
+                    >
+                  </v-text-field>
+                  <v-btn type="submit">Submit</v-btn>
+                </v-col>
+              </v-row>
+            </form>
           </div>
-       
-          
-       
-         
-        
-    
       </v-expansion-panel-text>
     </v-expansion-panel>
     </v-expansion-panels>
-   
-        
- 
-        <form @submit.prevents="submit">
-          <v-row>
-            <v-col cols="7">
-              <v-text-field 
-                id="addressField"  
-                v-model="streetAddress" 
-                label="Street Address " clearable
-                :rules="[nonBlank]"></v-text-field>
-              <v-text-field 
-                id="cityField"
-                v-model="cityName" 
-                label="City: " 
-                clearable 
-                :rules="[nonBlank]"></v-text-field>
-              <v-text-field 
-                id="stateField" 
-                v-model="stateAbbrev" 
-                label="State: " 
-                :rules="[nonBlank, usState]" 
-                clearable
-                @input="stateAbbrev = stateAbbrev.toUpperCase()">
-              </v-text-field>
-              <v-text-field 
-                id="zipField"
-                v-model="zipCode" 
-                label="ZIP code: " 
-                clearable 
-                :rules="[zipRules]" 
-                @click:append-inner="findZip">
-              </v-text-field>
-              <v-btn type="submit">Submit</v-btn>
-            </v-col>
-          </v-row>
-        </form>
-  
     <NWSForecast v-for="(period, index) in newPropertiesUpdated?.periods" :key="index" :forecastPeriod="period">
     </NWSForecast>
 
@@ -82,40 +64,22 @@
     {{ forecast }}
   </div>
 </template>
+
+
 <script setup>
 import { useForecastStore } from '@/store/forecast';
 import { onUnmounted, onMounted, computed, ref } from 'vue'
 import NWSForecast from '../components/NWSForecast.vue'
-
-
-
-function uppercase(el) {
-  {
-    const sourceValue = document.getElementById("stateField").value
-    const newValue = sourceValue.toUpperCase()
-
-    if (sourceValue !== newValue) {
-      document.getElementById("stateField").value = newValue
-      var el = el.getElementById("stateField")
-      el.dispatchEvent(new Event("stateField", { bubbles: true }))
-    }
-  }
-}
-
-var capState = computed(() => {
-  var stateValue = document.getElementById("stateField")
-  if (stateValue?.value) {
-    return stateValue?.value?.toUppercase()
-  }
-
-})
+import axios, { formToJSON } from 'axios';
+import WebService from '@/services/WebService';
 
 const store = useForecastStore();
 var latLon = ref({ "lat": Number, "lon": Number })
-var stateAbbrev = ref()
 var streetAddress = ref()
-var zipCode = ref()
 var cityName = ref()
+var stateAbbrev = ref()
+var zipCode = ref()
+
 
 var completeAddress = computed(()=>{
 return (streetAddress.value + " " + cityName.value + " " + stateAbbrev.value + " " + zipCode.value )
@@ -130,6 +94,27 @@ function nonBlank(value) {
   return 'Field must not be blank'
 }
 
+async function submit() {
+  console.log("submitted")
+  const form = new FormData();
+  form.append('street', 'streetAddress');
+  form.append('city', 'cityName');
+  form.append('state', 'stateAbbrev');
+  form.append('zip', 'zipCode');
+  form.append('format', 'json');
+  console.log("form: ", form)
+  await WebService.getArea(prepare(streetAddress.value) , prepare(cityName.value), stateAbbrev.value, zipCode.value)
+  .then(({data})=> console.log(data))
+  // const response = await axios.postForm('https://geocoding.geo.census.gov/geocoder/locations/address?', form,
+  // { headers: { 'Access-Control-Allow-Origin': '*'}}); 
+  console.log("response = ", response)
+  
+}
+
+function prepare(stringName){
+  const tempName = stringName.trim()
+  return tempName.replaceAll(" ", "+")
+}
 function usState(value) {
   const usStates = ["AL", "AK", "AZ", "AR", "AS", "CA", "CO", "CT", "DE", "DC",
     "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
@@ -140,11 +125,6 @@ function usState(value) {
   return usStates.indexOf(value) > -1 || "Valid State name needed"
 }
 
-
-function findZip(value) {
-  //http://dev.virtualearth.net/REST/v1/Locations?countryRegion={countryRegion}&adminDistrict={adminDistrict}&locality={locality}&postalCode={postalCode}&addressLine={addressLine}&userLocation={userLocation}&userIp={userIp}&usermapView={usermapView}&includeNeighborhood={includeNeighborhood}&maxResults={maxResults}&key={BingMapsKey}
-  //http://dev.virtualearth.net/REST/v1/Locations/US&postalCode={value}&maxResults=2&key={BingMapsKey}  
-}
 onMounted(() => {
   store.fetchForecast()
 
