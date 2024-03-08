@@ -7,6 +7,7 @@ import WebService from '../services/WebService'
 export const useForecastStore = defineStore('forecast',  {
     state: () => ({
         forecast : {},
+        address: {},
         
     }),
     getters: {
@@ -14,6 +15,11 @@ export const useForecastStore = defineStore('forecast',  {
             console.log("Forecast store getForecast was called. Store thinks forecast is: ")
             console.log("forecast" , state.forecast)
             return state.forecast
+        },
+        getAddress(state) {
+            console.log("Forecast store getForecast was called. Store thinks forecast is: ")
+            console.log("forecast" , state.address)
+            return state.address
         },
         getProperties(state){
             console.log("Forecast store getProperties was called. Store thinks properties are: ")
@@ -26,13 +32,12 @@ export const useForecastStore = defineStore('forecast',  {
             var thisElevaton = state.forecast.properties
             console.log(thisElevaton)
             return thisElevaton
-        }
+        },
 
     },
     actions: {
           async fetchForecast() {
             try {
-                
                 const forecastDataQuery = await WebService.getForecast()
                 this.forecast = forecastDataQuery.data
                 console.log("store.fetchForecast called. Forecast is: ", this.forecast )
@@ -45,8 +50,20 @@ export const useForecastStore = defineStore('forecast',  {
                 console.log("Store says forecast is ", this.forecast)
             }
         },
-      
-    },
-        
+        async giveAddress() {
+            try {
+                const addressDataQuery = await WebService.getAddress()
+                this.address = addressDataQuery.data
+                console.log("store.getAddress called. Address is: ", this.address )
+            }
+            catch(error){
+
+                alert("ForecastStore address fetch error: " + error)
+            }
+            finally{
+                console.log("Store says address is ", this.address)
+            }
+        },
+    }
    
 })

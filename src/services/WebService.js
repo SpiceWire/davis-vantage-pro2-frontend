@@ -42,17 +42,21 @@ export default {
   getForecast(){
     return axios.get(`https://api.weather.gov/gridpoints/LWX/96,70/forecast`)
   },
+  getAddress(){
+    return http.get(`/forecast/`+ uniqueNumber())
+  },
   getArea(street, city, state, zip){
-    return axios.get(`https://geocoding.geo.census.gov/geocoder/locations/address?street=${street}&city=${city}&state=${state}&zip=${zip}&benchmark=2020&format=json`, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'text/plain',
-        'X-Requested-With': 'XMLHttpRequest',
-        'Access-Control-Allow-Headers': 'Content-Type, x-requested-with',
-      }
-  })}
- 
+    return http.get(`/forecast/address/${street}&${city}&${state}&${zip}/` + uniqueNumber())
+    // return http.get(`/forecast/address/${street}&${city}&${state}&${zip}/` + uniqueNumber())
+    // axios.get(`https://geocoding.geo.census.gov/geocoder/locations/address?street=${street}&city=${city}&state=${state}&zip=${zip}&benchmark=2020&format=json`), {
+    //   headers: {
+
+    //     'Access-Control-Allow-Origin': '*',
+    //   }
+  },
+ getWeatherByLatLon(latitude, longitude){
+  return axios.get(`https://api.weather.gov/points/${latitude},${longitude}`)
+ },
   
 
 }

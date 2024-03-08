@@ -1,11 +1,11 @@
 <template >
     <div>
         <v-container>
-            <h2>Past Weather</h2>
+            <h2>Daily Weather</h2>
             <br>
-            <h3>Click a button to get past data</h3>
+            <h3>Click a button to get a day's data</h3>
             <br>
-            <v-chip v-for="name in btnNames" :value="name.value" @click="useButtonData(name.keyword, name.value)">{{
+            <v-chip v-for="name in btnNames" :value="name.value" @click="useButtonData(name.keyword, name.value)"> {{
                 name.text
             }}</v-chip>
             <br>

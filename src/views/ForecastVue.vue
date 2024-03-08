@@ -1,9 +1,12 @@
 <template>
   <div>
+    <v-btn id="testAddress" ></v-btn>
+    TestAddress: {{ testAddress }}
     <v-expansion-panels>
       <v-expansion-panel>
       <v-expansion-panel-title>
         this is the overall exp panel title {{ completeAddress }}
+       <v-btn  @click="useMyLocation">Use my location</v-btn>
       </v-expansion-panel-title>
       <v-expansion-panel-text
         title="click to expand">
@@ -26,7 +29,7 @@
                   <v-text-field 
                     id="stateField" 
                     v-model="stateAbbrev" 
-                    label="State: " 
+                    label="Location: " 
                     :rules="[nonBlank, usState]" 
                     clearable
                     @input="stateAbbrev = stateAbbrev.toUpperCase()">
@@ -79,7 +82,9 @@ var streetAddress = ref()
 var cityName = ref()
 var stateAbbrev = ref()
 var zipCode = ref()
-
+var testAddress = computed(()=>{
+  return store.address
+})
 
 var completeAddress = computed(()=>{
 return (streetAddress.value + " " + cityName.value + " " + stateAbbrev.value + " " + zipCode.value )
@@ -99,18 +104,28 @@ async function submit() {
   const form = new FormData();
   form.append('street', 'streetAddress');
   form.append('city', 'cityName');
-  form.append('state', 'stateAbbrev');
+  form.append('state', 'stateField');
   form.append('zip', 'zipCode');
   form.append('format', 'json');
   console.log("form: ", form)
-  await WebService.getArea(prepare(streetAddress.value) , prepare(cityName.value), stateAbbrev.value, zipCode.value)
-  .then(({data})=> console.log(data))
+  await result= WebService.getArea(prepare(streetAddress.value) , prepare(cityName.value), stateField.value, zipCode.value)
+  console.log(result)
+  // .then(({data})=> console.log(data))
   // const response = await axios.postForm('https://geocoding.geo.census.gov/geocoder/locations/address?', form,
   // { headers: { 'Access-Control-Allow-Origin': '*'}}); 
   console.log("response = ", response)
   
 }
 
+function useMyLocation(){
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition((position) => {
+  doSomething(position.coords.latitude, position.coords.longitude);
+});
+} else {
+  /* geolocation IS NOT available */
+}
+}
 function prepare(stringName){
   const tempName = stringName.trim()
   return tempName.replaceAll(" ", "+")
@@ -127,7 +142,7 @@ function usState(value) {
 
 onMounted(() => {
   store.fetchForecast()
-
+  store.giveAddress()
 })
 
 var forecast = computed(() => {
