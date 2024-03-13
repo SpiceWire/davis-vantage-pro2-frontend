@@ -9,7 +9,7 @@
        <v-btn  @click="useMyLocation">Use my location</v-btn>
       </v-expansion-panel-title>
       <v-expansion-panel-text
-        title="click to expand">
+        >
         <strong>Enter US street address for weather:</strong> 
           <div>
             <form @submit.prevent="submit">
@@ -30,7 +30,7 @@
                     id="stateField" 
                     v-model="stateAbbrev" 
                     label="Location: " 
-                    :rules="[nonBlank, usState]" 
+                    :rules="[nonBlank]" 
                     clearable
                     @input="stateAbbrev = stateAbbrev.toUpperCase()">
                   </v-text-field>
@@ -43,6 +43,9 @@
                     >
                   </v-text-field>
                   <v-btn type="submit">Submit</v-btn>
+                  <v-spacer></v-spacer>
+                  <br>
+                  <br>
                 </v-col>
               </v-row>
             </form>
@@ -82,6 +85,7 @@ var streetAddress = ref()
 var cityName = ref()
 var stateAbbrev = ref()
 var zipCode = ref()
+var resultsOfSubmit = ref()
 var testAddress = computed(()=>{
   return store.address
 })
@@ -108,19 +112,29 @@ async function submit() {
   form.append('zip', 'zipCode');
   form.append('format', 'json');
   console.log("form: ", form)
-  await result= WebService.getArea(prepare(streetAddress.value) , prepare(cityName.value), stateField.value, zipCode.value)
-  console.log(result)
-  // .then(({data})=> console.log(data))
+  WebService.getArea(streetAddress.value , cityName.value, stateField.value, zipCode.value)
+    .then(response => {
+      if (response.status == 200) {
+                console.log("You submitted address form data. Axios said it was successful.")
+            }
+      else {
+        console.log("server response code: " , response.status)
+        console.log("server response text: " , response.statusText)
+        console.log("server response headers: ", response.headers)
+        console.log("server response data: ", response.data)
+      }      
+    })
   // const response = await axios.postForm('https://geocoding.geo.census.gov/geocoder/locations/address?', form,
   // { headers: { 'Access-Control-Allow-Origin': '*'}}); 
-  console.log("response = ", response)
+  // console.log("response = ", response)
   
 }
 
 function useMyLocation(){
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
-  doSomething(position.coords.latitude, position.coords.longitude);
+      store.getMyForecastByLatLon(position.coords.latitude, position.coords.longitude);
+      console.log("ForecastVue is requesting forecast by lat/lon")
 });
 } else {
   /* geolocation IS NOT available */

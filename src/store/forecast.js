@@ -17,7 +17,7 @@ export const useForecastStore = defineStore('forecast',  {
             return state.forecast
         },
         getAddress(state) {
-            console.log("Forecast store getForecast was called. Store thinks forecast is: ")
+            console.log("Forecast store getAddress was called. Store thinks address is: ")
             console.log("forecast" , state.address)
             return state.address
         },
@@ -61,9 +61,19 @@ export const useForecastStore = defineStore('forecast',  {
                 alert("ForecastStore address fetch error: " + error)
             }
             finally{
-                console.log("Store says address is ", this.address)
+                console.log("Forecast store says address is ", this.address)
+                console.log("Forecast store says forecast is ", this.forecast)
             }
         },
+        async getMyForecastByLatLon(latitude, longitude){
+            try {const latLonQuery = await WebService.getForecastByLatLon(latitude, longitude)
+                this.forecast = latLonQuery.data
+                console.log("store.getMyForecastByLatLon called. forecast is: ", this.forecast )
+                
+            } catch (error) {
+                alert("ForecastStore getMyForecastByLatLon fetch error: " + error)
+            }
+        }
     }
    
 })
