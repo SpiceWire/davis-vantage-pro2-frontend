@@ -67,7 +67,10 @@ export default {
 },
  getForecastByLatLon(latitude, longitude){
   // return axios.get(`https://api.weather.gov/points/${latitude},${longitude}`)
-  return http.post(`/forecast/latLon/`,(latitude,longitude));
+  console.log("getForecastByLatLon called in WebService. Lat and Long are " + latitude + " " + longitude)
+  const latLon = latitude + "," + longitude
+  // return http.post(`/forecast/latLon/${latLon}`)
+  return http.post("/forecast/latLon", {latLon:latLon})
  },
   
 

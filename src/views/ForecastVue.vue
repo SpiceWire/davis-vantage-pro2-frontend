@@ -133,8 +133,9 @@ async function submit() {
 function useMyLocation(){
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
-      store.getMyForecastByLatLon(position.coords.latitude, position.coords.longitude);
       console.log("ForecastVue is requesting forecast by lat/lon")
+      store.getMyForecastByLatLon(position.coords.latitude, position.coords.longitude);
+      
 });
 } else {
   /* geolocation IS NOT available */
