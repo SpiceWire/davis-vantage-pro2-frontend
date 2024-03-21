@@ -8,6 +8,7 @@ export const useForecastStore = defineStore('forecast',  {
     state: () => ({
         forecast : {},
         address: {},
+        addressAndForecast:{},
         
     }),
     getters: {
@@ -68,7 +69,7 @@ export const useForecastStore = defineStore('forecast',  {
         async getMyForecastByLatLon(latitude, longitude){
             console.log("store.getMyForecastByLatLon called. latLon is: ", latitude + " " + longitude )
             try {const latLonQuery = await WebService.getForecastByLatLon(latitude, longitude)
-                this.forecast = latLonQuery.data
+                this.addressAndForecast = latLonQuery.data
                 console.log("store.getMyForecastByLatLon called. forecast is: ", this.forecast )
                 
             } catch (error) {

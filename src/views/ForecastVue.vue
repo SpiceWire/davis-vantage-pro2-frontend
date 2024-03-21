@@ -2,6 +2,9 @@
   <div>
     <v-btn id="testAddress" ></v-btn>
     TestAddress: {{ testAddress }}
+    <br>
+    <br>
+    AddressAndForecast: {{ addressForecastObj }}
     <v-expansion-panels>
       <v-expansion-panel>
       <v-expansion-panel-title>
@@ -89,6 +92,9 @@ var resultsOfSubmit = ref()
 var testAddress = computed(()=>{
   return store.address
 })
+var addressForecastObj = computed(()=>{
+  return store.addressAndForecast
+})
 
 var completeAddress = computed(()=>{
 return (streetAddress.value + " " + cityName.value + " " + stateAbbrev.value + " " + zipCode.value )
@@ -135,7 +141,6 @@ function useMyLocation(){
     navigator.geolocation.getCurrentPosition((position) => {
       console.log("ForecastVue is requesting forecast by lat/lon")
       store.getMyForecastByLatLon(position.coords.latitude, position.coords.longitude);
-      
 });
 } else {
   /* geolocation IS NOT available */
