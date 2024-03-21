@@ -70,6 +70,8 @@ export const useForecastStore = defineStore('forecast',  {
             console.log("store.getMyForecastByLatLon called. latLon is: ", latitude + " " + longitude )
             try {const latLonQuery = await WebService.getForecastByLatLon(latitude, longitude)
                 this.addressAndForecast = latLonQuery.data
+                this.address=latLonQuery.data.address
+                this.forecast=latLonQuery.data.forecast
                 console.log("store.getMyForecastByLatLon called. forecast is: ", this.forecast )
                 
             } catch (error) {
