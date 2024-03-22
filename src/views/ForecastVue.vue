@@ -56,11 +56,27 @@
       </v-expansion-panel-text>
     </v-expansion-panel>
     </v-expansion-panels>
-    <NWSForecast v-for="(period, index) in newPropertiesUpdated?.periods" :key="index" :forecastPeriod="period">
-    </NWSForecast>
 
+    
     <br>
     NWSForecast end
+    <br>
+    <br>
+    Begin ForecastPeriod
+    <br>
+    <br>
+    <br>
+    <br>
+    End ForecastPeriod
+    <br>
+    <br>
+    Begin ItemTest
+    <br>
+    <br>
+    <ItemTest v-for="item in forecast" :forecastItem="item"></ItemTest>
+    <NWSForecast>
+      
+    </NWSForecast>
     <br>
     <br>
     PropertiesUpdated here:
@@ -71,6 +87,12 @@
     <br>
     <br>
     {{ forecast }}
+    <br>
+    <br>
+    HourlyForecast here:
+  
+    <br>
+    <br>
   </div>
 </template>
 
@@ -79,6 +101,8 @@
 import { useForecastStore } from '@/store/forecast';
 import { onUnmounted, onMounted, computed, ref } from 'vue'
 import NWSForecast from '../components/NWSForecast.vue'
+import ForecastPeriod from '../components/ForecastPeriod.vue'
+import ItemTest from '../components/ItemTest.vue'
 import axios, { formToJSON } from 'axios';
 import WebService from '@/services/WebService';
 
@@ -89,13 +113,28 @@ var cityName = ref()
 var stateAbbrev = ref()
 var zipCode = ref()
 var resultsOfSubmit = ref()
+
 var testAddress = computed(()=>{
   return store.address
 })
 var addressForecastObj = computed(()=>{
   return store.addressAndForecast
 })
+var forecast = computed(() => {
+  const thingie = store.forecast
+  console.log("thingie is array?" + Array.isArray(thingie))
+  console.log("thingie constructor? " + thingie.constructor.name)
+  //on first load, thingie is not array, is object
+  //after using getcoordinates, is string
+  return store.forecast
+})
 
+// var hourlyForecastObj = computed(()=>{
+//   const thingie = store.hourlyForecast
+//   console.log("thingie is array?" + Array.isArray(thingie))
+//   console.log("thingie constructor? " + thingie.constructor.name)
+//   return store.hourlyForecast
+// })
 var completeAddress = computed(()=>{
 return (streetAddress.value + " " + cityName.value + " " + stateAbbrev.value + " " + zipCode.value )
 }) 
@@ -136,6 +175,8 @@ async function submit() {
   
 }
 
+
+
 function useMyLocation(){
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -165,9 +206,7 @@ onMounted(() => {
   store.giveAddress()
 })
 
-var forecast = computed(() => {
-  return store.forecast
-})
+
 // var newProperties = computed(()=>{
 //    return store.forecast.properties
 // })

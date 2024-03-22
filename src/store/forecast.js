@@ -6,7 +6,8 @@ import WebService from '../services/WebService'
 
 export const useForecastStore = defineStore('forecast',  {
     state: () => ({
-        forecast : {},
+        forecast : [{}],
+      
         address: {},
         addressAndForecast:{},
         
@@ -71,8 +72,10 @@ export const useForecastStore = defineStore('forecast',  {
             try {const latLonQuery = await WebService.getForecastByLatLon(latitude, longitude)
                 this.addressAndForecast = latLonQuery.data
                 this.address=latLonQuery.data.address
-                this.forecast=latLonQuery.data.forecast
+                this.forecast=JSON.parse(latLonQuery.data.forecast)
+                // this.hourlyForecast=latLonQuery.data.hourlyForecast
                 console.log("store.getMyForecastByLatLon called. forecast is: ", this.forecast )
+                // console.log("store.getMyForecastByLatLon called. Hourlyforecast is: ", this.hourlyForecast )
                 
             } catch (error) {
                 alert("ForecastStore getMyForecastByLatLon fetch error: " + error)
