@@ -73,8 +73,8 @@
     Begin ItemTest
     <br>
     <br>
-    <ItemTest v-for="item in forecast" :forecastItem="item"></ItemTest>
-    <NWSForecast>
+    
+    <NWSForecast v-for="item in forecast" :key="index" :forecastPeriod="item">
       
     </NWSForecast>
     <br>
@@ -102,7 +102,7 @@ import { useForecastStore } from '@/store/forecast';
 import { onUnmounted, onMounted, computed, ref } from 'vue'
 import NWSForecast from '../components/NWSForecast.vue'
 import ForecastPeriod from '../components/ForecastPeriod.vue'
-import ItemTest from '../components/ItemTest.vue'
+
 import axios, { formToJSON } from 'axios';
 import WebService from '@/services/WebService';
 
