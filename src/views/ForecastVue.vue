@@ -8,8 +8,21 @@
     <v-expansion-panels>
       <v-expansion-panel>
       <v-expansion-panel-title>
-        this is the overall exp panel title {{ completeAddress }}
-       <v-btn  @click="useMyLocation">Use my location</v-btn>
+        <v-row>
+          <v-col cols="3">
+            <strong> 
+              Use My Address 
+            </strong>
+          </v-col>
+          <v-col cols="3">
+             <v-btn  @click="useMyLocation">Use my location</v-btn>
+          
+          </v-col>
+        </v-row>
+
+
+  
+      
       </v-expansion-panel-title>
       <v-expansion-panel-text
         >
@@ -56,7 +69,15 @@
       </v-expansion-panel-text>
     </v-expansion-panel>
     </v-expansion-panels>
+    <v-container>
+      <strong>Forecast for: {{ addressFromStore?.city }}, {{ addressFromStore?.state }}</strong>
+    </v-container>
 
+   <v-row>
+    <v-col cols="7">
+      
+    </v-col>
+   </v-row> 
     <NWSForecast v-for="item in forecast" :key="index" :forecastPeriod="item">
     </NWSForecast>
     <br>
@@ -100,6 +121,10 @@ var testAddress = computed(()=>{
   return store.address
 })
 
+var addressFromStore = computed(()=>{
+  return store.address.address
+})
+
 var addressForecastObj = computed(()=>{
   return store.addressAndForecast
 })
@@ -136,18 +161,19 @@ async function submit() {
   form.append('zip', 'zipCode');
   form.append('format', 'json');
   console.log("form: ", form)
-  WebService.getArea(streetAddress.value , cityName.value, stateField.value, zipCode.value)
-    .then(response => {
-      if (response.status == 200) {
-                console.log("You submitted address form data. Axios said it was successful.")
-            }
-      else {
-        console.log("server response code: " , response.status)
-        console.log("server response text: " , response.statusText)
-        console.log("server response headers: ", response.headers)
-        console.log("server response data: ", response.data)
-      }      
-    })
+  store.getMyForecastByAddress(streetAddress.value , cityName.value, stateField.value, zipCode.value)
+  // WebService.getArea(streetAddress.value , cityName.value, stateField.value, zipCode.value)
+  //   .then(response => {
+  //     if (response.status == 200) {
+  //               console.log("You submitted address form data. Axios said it was successful.")
+  //           }
+  //     else {
+  //       console.log("server response code: " , response.status)
+  //       console.log("server response text: " , response.statusText)
+  //       console.log("server response headers: ", response.headers)
+  //       console.log("server response data: ", response.data)
+  //     }      
+  //   })
 }
 
 
