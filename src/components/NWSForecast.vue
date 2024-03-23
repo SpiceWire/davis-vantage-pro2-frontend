@@ -31,10 +31,7 @@ import { onUnmounted, onMounted, computed, ref } from 'vue'
 const aDate = useDate()
 const props = defineProps(['forecastPeriod'])
 console.log("props are: ", props)
-// const forecastObj = computed(()=>{
-//     new Map(props)
 
-// });
 
 var forecastName =computed(()=>
     props?.forecastPeriod?.name

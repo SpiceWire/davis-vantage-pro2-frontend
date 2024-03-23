@@ -38,10 +38,12 @@ export const useForecastStore = defineStore('forecast',  {
 
     },
     actions: {
-          async fetchForecast() {
+          async defaultForecast() {
             try {
                 const forecastDataQuery = await WebService.getForecast()
-                this.forecast = forecastDataQuery.data
+                this.addressAndForecast = forecastDataQuery.data
+                this.address=forecastDataQuery.data.address
+                this.forecast=JSON.parse(forecastDataQuery.data.forecast)
                 console.log("store.fetchForecast called. Forecast is: ", this.forecast )
             }
             catch(error){
@@ -73,7 +75,6 @@ export const useForecastStore = defineStore('forecast',  {
                 this.addressAndForecast = latLonQuery.data
                 this.address=latLonQuery.data.address
                 this.forecast=JSON.parse(latLonQuery.data.forecast)
-                // this.hourlyForecast=latLonQuery.data.hourlyForecast
                 console.log("store.getMyForecastByLatLon called. forecast is: ", this.forecast )
                 // console.log("store.getMyForecastByLatLon called. Hourlyforecast is: ", this.hourlyForecast )
                 

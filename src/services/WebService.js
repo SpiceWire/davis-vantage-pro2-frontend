@@ -40,7 +40,8 @@ export default {
     return http.get(`/record/header/${headerName}`)
   },
   getForecast(){
-    return axios.get(`https://api.weather.gov/gridpoints/LWX/96,70/forecast`)
+    // return axios.get(`https://api.weather.gov/gridpoints/LWX/96,70/forecast`)
+    return http.get(`/forecast/${uniqueNumber()}`)
   },
   getAddress(){
     return http.get(`/forecast/`+ uniqueNumber())

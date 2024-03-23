@@ -57,25 +57,7 @@
     </v-expansion-panel>
     </v-expansion-panels>
 
-    
-    <br>
-    NWSForecast end
-    <br>
-    <br>
-    Begin ForecastPeriod
-    <br>
-    <br>
-    <br>
-    <br>
-    End ForecastPeriod
-    <br>
-    <br>
-    Begin ItemTest
-    <br>
-    <br>
-    
     <NWSForecast v-for="item in forecast" :key="index" :forecastPeriod="item">
-      
     </NWSForecast>
     <br>
     <br>
@@ -117,9 +99,11 @@ var resultsOfSubmit = ref()
 var testAddress = computed(()=>{
   return store.address
 })
+
 var addressForecastObj = computed(()=>{
   return store.addressAndForecast
 })
+
 var forecast = computed(() => {
   const thingie = store.forecast
   console.log("thingie is array?" + Array.isArray(thingie))
@@ -129,12 +113,7 @@ var forecast = computed(() => {
   return store.forecast
 })
 
-// var hourlyForecastObj = computed(()=>{
-//   const thingie = store.hourlyForecast
-//   console.log("thingie is array?" + Array.isArray(thingie))
-//   console.log("thingie constructor? " + thingie.constructor.name)
-//   return store.hourlyForecast
-// })
+
 var completeAddress = computed(()=>{
 return (streetAddress.value + " " + cityName.value + " " + stateAbbrev.value + " " + zipCode.value )
 }) 
@@ -169,10 +148,6 @@ async function submit() {
         console.log("server response data: ", response.data)
       }      
     })
-  // const response = await axios.postForm('https://geocoding.geo.census.gov/geocoder/locations/address?', form,
-  // { headers: { 'Access-Control-Allow-Origin': '*'}}); 
-  // console.log("response = ", response)
-  
 }
 
 
@@ -202,7 +177,7 @@ function usState(value) {
 }
 
 onMounted(() => {
-  store.fetchForecast()
+  store.defaultForecast()
   store.giveAddress()
 })
 
