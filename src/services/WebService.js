@@ -43,18 +43,14 @@ export default {
     // return axios.get(`https://api.weather.gov/gridpoints/LWX/96,70/forecast`)
     return http.get(`/forecast/${uniqueNumber()}`)
   },
-  getAddress(){
-    return http.get(`/forecast/`+ uniqueNumber())
-  },
-  getArea(street, city, state, zip){
+  getForecastByAddress(street, city, state, zip){
     const address ={
       ['streetAddress']: street,
       ['city']: city,
       ['state']: state,
       ['zip']: zip
     }
-    return http.post(`/forecast/address`, address
-    )
+    return http.post(`/forecast/address`, address)
 
     // return http.post(`/forecast/address/`, address)
     

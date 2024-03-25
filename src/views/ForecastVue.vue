@@ -26,7 +26,7 @@
       </v-expansion-panel-title>
       <v-expansion-panel-text
         >
-        <strong>Enter US street address for weather:</strong> 
+        <strong>Enter US street address for forecast:</strong> 
           <div>
             <form @submit.prevent="submit">
               <v-row>
@@ -78,7 +78,7 @@
       
     </v-col>
    </v-row> 
-    <NWSForecast v-for="item in forecast" :key="index" :forecastPeriod="item">
+    <NWSForecast v-for="item in forecast" :key="item.number" :forecastPeriod="item">
     </NWSForecast>
     <br>
     <br>
@@ -122,7 +122,7 @@ var testAddress = computed(()=>{
 })
 
 var addressFromStore = computed(()=>{
-  return store.address.address
+  return store.address
 })
 
 var addressForecastObj = computed(()=>{
@@ -204,7 +204,6 @@ function usState(value) {
 
 onMounted(() => {
   store.defaultForecast()
-  store.giveAddress()
 })
 
 

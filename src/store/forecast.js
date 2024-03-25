@@ -53,21 +53,7 @@ export const useForecastStore = defineStore('forecast',  {
                 console.log("Store says forecast is ", this.forecast)
             }
         },
-        async giveAddress() {
-            try {
-                const addressDataQuery = await WebService.getAddress()
-                this.address = addressDataQuery.data
-                console.log("store.getAddress called. Address is: ", this.address )
-            }
-            catch(error){
-
-                alert("ForecastStore address fetch error: " + error)
-            }
-            finally{
-                console.log("Forecast store says address is ", this.address)
-                console.log("Forecast store says forecast is ", this.forecast)
-            }
-        },
+        
         async getMyForecastByLatLon(latitude, longitude){
             console.log("store.getMyForecastByLatLon called. latLon is: ", latitude + " " + longitude )
             try {const latLonQuery = await WebService.getForecastByLatLon(latitude, longitude)
@@ -82,7 +68,7 @@ export const useForecastStore = defineStore('forecast',  {
             }
         },
         async getMyForecastByAddress(myStreetAddress, myCity, myState, myZip){
-            console.log("store.getMyForecastByLatLon called. latLon is: ", latitude + " " + longitude )
+            console.log("store.getMyForecastByAddress called. Address is: ", myStreetAddress + myCity +  myState +  myZip)
             try {const addressQuery = await WebService.getForecastByAddress(myStreetAddress, myCity, myState, myZip)
                 this.addressAndForecast = addressQuery.data
                 this.address=addressQuery.data.address
