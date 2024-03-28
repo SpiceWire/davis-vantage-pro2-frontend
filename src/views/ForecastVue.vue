@@ -1,31 +1,24 @@
 <template>
   <div>
-    <v-btn id="testAddress" ></v-btn>
-    TestAddress: {{ testAddress }}
-    <br>
-    <br>
-    AddressAndForecast: {{ addressForecastObj }}
     <v-expansion-panels>
       <v-expansion-panel>
       <v-expansion-panel-title>
         <v-row>
           <v-col cols="3">
             <strong> 
-              Use My Address 
+              Click to change location
             </strong>
           </v-col>
           <v-col cols="3">
-             <v-btn  @click="useMyLocation">Use my location</v-btn>
+             
           
           </v-col>
         </v-row>
-
-
-  
-      
       </v-expansion-panel-title>
       <v-expansion-panel-text
-        >
+        ><v-btn  @click="useMyLocation">Use my coordinates</v-btn>  OR
+        <br>
+        <br>
         <strong>Enter US street address for forecast:</strong> 
           <div>
             <form @submit.prevent="submit">
@@ -70,7 +63,7 @@
     </v-expansion-panel>
     </v-expansion-panels>
     <v-container>
-      <strong>Forecast for: {{ addressFromStore?.city }}, {{ addressFromStore?.state }}</strong>
+      <strong>Forecast for: {{ addressFromStore?.city }}, {{ addressFromStore?.state }} </strong>
     </v-container>
 
    <v-row>
@@ -82,14 +75,10 @@
     </NWSForecast>
     <br>
     <br>
-    PropertiesUpdated here:
-    {{ newPropertiesUpdated?.periods }}
+
     <br>
     <br>
-    Forecast here:
-    <br>
-    <br>
-    {{ forecast }}
+  
     <br>
     <br>
     HourlyForecast here:
