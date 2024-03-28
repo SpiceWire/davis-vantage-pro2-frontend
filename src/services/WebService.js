@@ -51,24 +51,26 @@ export default {
       ['zip']: zip
     }
     return http.post(`/forecast/address`, address)
-
-    // return http.post(`/forecast/address/`, address)
-    
-    // return http.get(`/forecast/address/streetAddress=${street}&zip=${zip}&city=${city}&state=${state}/`)
-  //   axios.get(`https://geocoding.geo.census.gov/geocoder/locations/address?street=${street}&city=${city}&state=${state}&zip=${zip}&benchmark=2020&format=json`), {
-  //     headers: {
-
-  //       'Access-Control-Allow-Origin': '*',
-  //     }
-  // }
 },
  getForecastByLatLon(latitude, longitude){
-  // return axios.get(`https://api.weather.gov/points/${latitude},${longitude}`)
   console.log("getForecastByLatLon called in WebService. Lat and Long are " + latitude + " " + longitude)
   const latLon = latitude + "," + longitude
-  // return http.post(`/forecast/latLon/${latLon}`)
   return http.post("/forecast/latLon", {latLon:latLon})
  },
+ setDefaultLocationByAddress(street, city, state, zip){
+  const address ={
+    ['streetAddress']: street,
+    ['city']: city,
+    ['state']: state,
+    ['zip']: zip
+  }
+  return http.post(`/forecast/default/address`, address)
+ },
+ setDefaultLocationByCoordinates(latitude, longitude){
+  console.log("setDefaultLocationByCoordinates called in WebService. Lat and Long are " + latitude + " " + longitude)
+  const latLon = latitude + "," + longitude
+  return http.post("/forecast/default/latLon", {latLon:latLon})
+ }
   
 
 }

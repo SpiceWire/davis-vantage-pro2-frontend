@@ -79,7 +79,31 @@ export const useForecastStore = defineStore('forecast',  {
             } catch (error) {
                 alert("ForecastStore getMyForecastByAddress fetch error: " + error)
             }
-        }
+        },
+        async makeDefaultAddress(myStreetAddress, myCity, myState, myZip){
+            console.log("store.getMyForecastByAddress called. Address is: ", myStreetAddress + myCity +  myState +  myZip)
+            try {const addressQuery = await WebService.setDefaultLocationByAddress(myStreetAddress, myCity, myState, myZip)
+                this.addressAndForecast = addressQuery.data
+                this.address=addressQuery.data.address
+                this.forecast=JSON.parse(addressQuery.data.forecast)
+                console.log("store.getMyForecastByAddress called. forecast is: ", this.forecast )
+                // console.log("store.getMyForecastByLatLon called. Hourlyforecast is: ", this.hourlyForecast )
+                
+            } catch (error) {
+                alert("ForecastStore getMyForecastByAddress fetch error: " + error)
+            }
+        },
+        async makeDefaultCoordinates(latitude, longitude){
+            console.log("store.makeDefaultCoordinates called. latLon is: ", latitude + " " + longitude )
+            try {const latLonQuery = await WebService.setDefaultLocationByCoordinates(latitude, longitude)
+                this.addressAndForecast = latLonQuery.data
+                this.address=latLonQuery.data.address
+                this.forecast=JSON.parse(latLonQuery.data.forecast)
+                console.log("store.getMyForecastByLatLon called. forecast is: ", this.forecast )
+            } catch (error) {
+                alert("ForecastStore setDefaultLocationByCoordinates fetch error: " + error)
+            }
+        },
     }
    
 })

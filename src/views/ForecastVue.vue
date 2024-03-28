@@ -9,14 +9,11 @@
               Click to change location
             </strong>
           </v-col>
-          <v-col cols="3">
-             
-          
-          </v-col>
         </v-row>
       </v-expansion-panel-title>
-      <v-expansion-panel-text
-        ><v-btn  @click="useMyLocation">Use my coordinates</v-btn>  OR
+      <v-expansion-panel-text>
+        <v-checkbox v-model="isDefaultLocation" label="Make this the default"></v-checkbox>
+        <v-btn  @click="useMyLocation">Use my coordinates</v-btn>  OR
         <br>
         <br>
         <strong>Enter US street address for forecast:</strong> 
@@ -104,6 +101,7 @@ var streetAddress = ref()
 var cityName = ref()
 var stateAbbrev = ref()
 var zipCode = ref()
+var isDefaultLocation = ref()
 var resultsOfSubmit = ref()
 
 var testAddress = computed(()=>{
@@ -150,7 +148,13 @@ async function submit() {
   form.append('zip', 'zipCode');
   form.append('format', 'json');
   console.log("form: ", form)
-  store.getMyForecastByAddress(streetAddress.value , cityName.value, stateField.value, zipCode.value)
+  if(isDefaultLocation){
+    store.makeDefaultAddress(streetAddress.value , cityName.value, stateField.value, zipCode.value)
+  }
+  else{
+    store.getMyForecastByAddress(streetAddress.value , cityName.value, stateField.value, zipCode.value)
+  }
+  
   // WebService.getArea(streetAddress.value , cityName.value, stateField.value, zipCode.value)
   //   .then(response => {
   //     if (response.status == 200) {
