@@ -72,31 +72,16 @@
     </NWSForecast>
     <br>
     <br>
-
-    <br>
-    <br>
-  
-    <br>
-    <br>
-    HourlyForecast here:
-  
-    <br>
-    <br>
   </div>
 </template>
 
 
 <script setup>
 import { useForecastStore } from '@/store/forecast';
-import { onUnmounted, onMounted, computed, ref, reactive} from 'vue'
+import {onMounted, computed, ref, } from 'vue'
 import NWSForecast from '../components/NWSForecast.vue'
-import ForecastPeriod from '../components/ForecastPeriod.vue'
-
-import axios, { formToJSON } from 'axios';
-import WebService from '@/services/WebService';
 
 const store = useForecastStore();
-var latLon = ref({ "lat": Number, "lon": Number })
 var streetAddress = ref()
 var cityName = ref()
 var stateAbbrev = ref()
@@ -104,32 +89,13 @@ var zipCode = ref()
 var isDefaultLocation = ref("false")
 var expPanel =ref([])
 
-// var expPanel = reactive({})
-// var expPanel = computed((inputValue)=>{
-//   return inputValue
-// })
-var resultsOfSubmit = ref()
-
-var testAddress = computed(()=>{
-  return store.address
-})
-
 var addressFromStore = computed(()=>{
   return store.address
-})
-
-var addressForecastObj = computed(()=>{
-  return store.addressAndForecast
 })
 
 var forecast = computed(() => {
   return store.forecast
 })
-
-
-var completeAddress = computed(()=>{
-return (streetAddress.value + " " + cityName.value + " " + stateAbbrev.value + " " + zipCode.value )
-}) 
 
 function zipRules(value) {
   return (/(^\d{5}$)|(^\d{5}-\d{4}$)/).test(value) || 'Valid ZIP required'
@@ -141,25 +107,19 @@ function nonBlank(value) {
 }
 
 async function submit() {
-  console.log("submitted")
   const form = new FormData();
   form.append('street', 'streetAddress');
   form.append('city', 'cityName');
   form.append('state', 'stateField');
   form.append('zip', 'zipCode');
   form.append('format', 'json');
-  console.log("form: ", form)
   expPanel.value=[]
   if(isDefaultLocation.value==true){
-    console.log("Default location= true")
-    console.log("defaultLocation.value.value = true")
-    console.log()
     store.makeDefaultAddress(streetAddress.value , cityName.value, stateField.value, zipCode.value)
   }
   else{
     store.getMyForecastByAddress(streetAddress.value , cityName.value, stateField.value, zipCode.value)
   }
-  
 }
 
 function useMyLocation(){
@@ -176,25 +136,19 @@ function useMyLocation(){
   alert("Geolocation is not available.")
 }
 }
-function prepare(stringName){
-  const tempName = stringName.trim()
-  return tempName.replaceAll(" ", "+")
-}
+
 function usState(value) {
   const usStates = ["AL", "AK", "AZ", "AR", "AS", "CA", "CO", "CT", "DE", "DC",
     "FL", "GA", "GU", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD",
     "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NH", "NM", "NY", "NC",
     "ND", "MP", "OH", "OK", "OR", "PA", "PR", "RI", "SC", "SD", "TN", "TX", "TT",
     "UT", "VT", "VA", "VI", "WA", "WV", "WI", "WY"]
-
   return usStates.indexOf(value) > -1 || "Valid State name needed"
 }
 
 onMounted(() => {
   store.defaultForecast()
 })
-
-
 
 </script>
 <style scoped>
