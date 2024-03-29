@@ -81,7 +81,7 @@ export const useForecastStore = defineStore('forecast',  {
             }
         },
         async makeDefaultAddress(myStreetAddress, myCity, myState, myZip){
-            console.log("store.getMyForecastByAddress called. Address is: ", myStreetAddress + myCity +  myState +  myZip)
+            console.log("store.makeDefaultAddress called. Address is: ", myStreetAddress + myCity +  myState +  myZip)
             try {const addressQuery = await WebService.setDefaultLocationByAddress(myStreetAddress, myCity, myState, myZip)
                 this.addressAndForecast = addressQuery.data
                 this.address=addressQuery.data.address

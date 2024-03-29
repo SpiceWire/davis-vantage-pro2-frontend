@@ -1,8 +1,10 @@
 <template>
   <div>
-    <v-expansion-panels>
-      <v-expansion-panel>
-      <v-expansion-panel-title>
+
+    exp : {{ expPanel }}
+    <v-expansion-panels v-model="expPanel" >
+      <v-expansion-panel value="addressPanel">
+      <v-expansion-panel-title >
         <v-row>
           <v-col cols="3">
             <strong> 
@@ -13,7 +15,7 @@
       </v-expansion-panel-title>
       <v-expansion-panel-text>
         <v-checkbox v-model="isDefaultLocation" label="Make this the default"></v-checkbox>
-        <v-btn  @click="useMyLocation">Use my coordinates</v-btn>  OR
+        <v-btn  @click="useMyLocation" >Use my coordinates</v-btn>  OR
         <br>
         <br>
         <strong>Enter US street address for forecast:</strong> 
@@ -35,7 +37,7 @@
                   <v-text-field 
                     id="stateField" 
                     v-model="stateAbbrev" 
-                    label="Location: " 
+                    label="State: " 
                     :rules="[nonBlank]" 
                     clearable
                     @input="stateAbbrev = stateAbbrev.toUpperCase()">
@@ -88,7 +90,7 @@
 
 <script setup>
 import { useForecastStore } from '@/store/forecast';
-import { onUnmounted, onMounted, computed, ref } from 'vue'
+import { onUnmounted, onMounted, computed, ref, reactive} from 'vue'
 import NWSForecast from '../components/NWSForecast.vue'
 import ForecastPeriod from '../components/ForecastPeriod.vue'
 
@@ -101,7 +103,13 @@ var streetAddress = ref()
 var cityName = ref()
 var stateAbbrev = ref()
 var zipCode = ref()
-var isDefaultLocation = ref()
+var isDefaultLocation = ref("false")
+var expPanel =ref([])
+
+// var expPanel = reactive({})
+// var expPanel = computed((inputValue)=>{
+//   return inputValue
+// })
 var resultsOfSubmit = ref()
 
 var testAddress = computed(()=>{
@@ -117,11 +125,6 @@ var addressForecastObj = computed(()=>{
 })
 
 var forecast = computed(() => {
-  const thingie = store.forecast
-  console.log("thingie is array?" + Array.isArray(thingie))
-  console.log("thingie constructor? " + thingie.constructor.name)
-  //on first load, thingie is not array, is object
-  //after using getcoordinates, is string
   return store.forecast
 })
 
@@ -148,37 +151,33 @@ async function submit() {
   form.append('zip', 'zipCode');
   form.append('format', 'json');
   console.log("form: ", form)
-  if(isDefaultLocation){
+  expPanel.value=[]
+  if(isDefaultLocation.value==true){
+    console.log("Default location= true")
+    console.log("defaultLocation.value.value = true")
+    console.log()
     store.makeDefaultAddress(streetAddress.value , cityName.value, stateField.value, zipCode.value)
   }
   else{
+   
     store.getMyForecastByAddress(streetAddress.value , cityName.value, stateField.value, zipCode.value)
   }
   
-  // WebService.getArea(streetAddress.value , cityName.value, stateField.value, zipCode.value)
-  //   .then(response => {
-  //     if (response.status == 200) {
-  //               console.log("You submitted address form data. Axios said it was successful.")
-  //           }
-  //     else {
-  //       console.log("server response code: " , response.status)
-  //       console.log("server response text: " , response.statusText)
-  //       console.log("server response headers: ", response.headers)
-  //       console.log("server response data: ", response.data)
-  //     }      
-  //   })
 }
-
-
 
 function useMyLocation(){
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
       console.log("ForecastVue is requesting forecast by lat/lon")
-      store.getMyForecastByLatLon(position.coords.latitude, position.coords.longitude);
+      if(isDefaultLocation.value==true){
+       store.makeDefaultCoordinates(position.coords.latitude, position.coords.longitude);
+      } else {
+        store.getMyForecastByLatLon(position.coords.latitude, position.coords.longitude)
+      }
+      expPanel.value=[]
 });
 } else {
-  /* geolocation IS NOT available */
+  alert("Geolocation is not available.")
 }
 }
 function prepare(stringName){
