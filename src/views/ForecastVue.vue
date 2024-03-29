@@ -1,7 +1,5 @@
 <template>
   <div>
-
-    exp : {{ expPanel }}
     <v-expansion-panels v-model="expPanel" >
       <v-expansion-panel value="addressPanel">
       <v-expansion-panel-title >
@@ -38,7 +36,7 @@
                     id="stateField" 
                     v-model="stateAbbrev" 
                     label="State: " 
-                    :rules="[nonBlank]" 
+                    :rules="[nonBlank, usState]" 
                     clearable
                     @input="stateAbbrev = stateAbbrev.toUpperCase()">
                   </v-text-field>
@@ -159,7 +157,6 @@ async function submit() {
     store.makeDefaultAddress(streetAddress.value , cityName.value, stateField.value, zipCode.value)
   }
   else{
-   
     store.getMyForecastByAddress(streetAddress.value , cityName.value, stateField.value, zipCode.value)
   }
   
@@ -168,7 +165,6 @@ async function submit() {
 function useMyLocation(){
   if ("geolocation" in navigator) {
     navigator.geolocation.getCurrentPosition((position) => {
-      console.log("ForecastVue is requesting forecast by lat/lon")
       if(isDefaultLocation.value==true){
        store.makeDefaultCoordinates(position.coords.latitude, position.coords.longitude);
       } else {
@@ -196,19 +192,6 @@ function usState(value) {
 
 onMounted(() => {
   store.defaultForecast()
-})
-
-
-// var newProperties = computed(()=>{
-//    return store.forecast.properties
-// })
-var otherProperties = []
-var newPropertiesUpdated = computed(() => {
-  var initialProperties = store.getProperties;
-  var otherProperties = store.getElevation;
-
-  console.log("otherProperties are:", otherProperties)
-  return initialProperties
 })
 
 
