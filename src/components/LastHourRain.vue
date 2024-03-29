@@ -4,14 +4,11 @@
 import { computed } from 'vue'
 import { useClimaStore } from '../store/clima';
 
-
 const store = useClimaStore();
-
 
 var lastHourRain = computed(() => {
     return store.clima.lastHourRain
 })
-
 
 </script>
 

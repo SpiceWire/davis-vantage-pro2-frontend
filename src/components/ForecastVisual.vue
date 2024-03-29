@@ -122,10 +122,8 @@ var forecastIconIcon = computed(() => {
   width: auto;
   height: auto;
   align-items: right;
-
   text-align: right;
   background: var(--icon-color-string);
-
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

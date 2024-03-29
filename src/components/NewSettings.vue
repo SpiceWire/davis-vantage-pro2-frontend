@@ -6,16 +6,10 @@ import WebService from '@/services/WebService';
 
 const store = useCommStore();
 
-const commObj = computed(() => {
-    return store.comm
-})
+
 
 var commList = computed(() => {
     return store.comm.commPortList
-})
-
-const currentCommPort = computed(() => {
-    return store.comm.systemPortName
 })
 
 const currentCommPortIndex = computed(() => {
@@ -34,11 +28,10 @@ const currentReadTimeout = computed(() => {
     return store.comm.readTimeout
 })
 
-
 const baudList = [19200, 9600, 4800, 2400, 1200]
 const timeoutList = [0, 10, 100, 1000, 1500, 2000, 2500, 3000]
 
-//timeoutModeList values from fazecast jSerialComm library constant field values  https://fazecast.github.io/jSerialComm/javadoc/index.html
+//timeoutModeList values from fazecast jSerialComm library constant field values https://fazecast.github.io/jSerialComm/javadoc/index.html
 const timeoutModeList = ref(
     [{ text: "Nonblocking", value: 0 },
     { text: "Read blocking", value: 16 },
@@ -79,12 +72,10 @@ function submitSettings() {
     WebService.applySettings(params)
         .then(response => {
             if (response.status == 200) {
-                console.log("Axios said call is successful.")
                 settingsSuccess.setVal = true;
-                serverResponse.value = "Settings changed. Server response status = " + response.status + "\n Refresh Comm Settings to confirm change"
             }
             else {
-                console.log("Axios said call failed.")
+
                 settingsSuccess.setVal = false;
                 serverResponse.value  = "Settings not changed. Server response status = " + response.status 
             }
@@ -98,12 +89,11 @@ function submitSettings() {
                 console.log(error.response.status);
                 console.log(error.response.headers);
                 console.log(error.toJSON());
-                
                 settingsSuccess.setVal = false;
                 serverResponse.value = "Settings not changed. Server response status =" + response.status + " Response data: " + response.data
             } else if (error.request) {
                 // The request was made but no response was received
-                console.log("Error in request")
+                console.log("Error in settings request")
                 console.log(error.request);
                 settingsSuccess.setVal = false;
                 serverResponse.value = "Settings not changed. The request was made but no response was received. " +  

@@ -6,7 +6,6 @@ import { useClimaStore } from '../store/clima';
 
 const store = useClimaStore();
 
-
 var insideTemperature = computed(() => {
     return store.clima.insideTemperature
 })
@@ -17,7 +16,6 @@ var insideTemperature = computed(() => {
 
 <template >
     <div class="insideTemperatureArea">
-        
         <div>
         <v-icon icon="fas fa-temperature-three-quarters" class="insideTemperatureIcon" id="insideTemperatureIcon" />
        {{ insideTemperature }}

@@ -7,7 +7,6 @@ defineEmits(['onClick'])
 
 const store = useClimaStore();
 
-
 var insideHumidity = computed(() => {
     return store.clima.insideHumidity
 })
@@ -19,7 +18,6 @@ var insideHumidity = computed(() => {
 <template >
     <div class="insideHumidityArea">
     <div>
-        
         <v-icon 
             icon="fa-solid fa-droplet" 
             class="insideHumidityIcon" 
