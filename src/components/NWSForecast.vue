@@ -24,14 +24,9 @@
 </template>
 <script setup>
 import { useDate } from 'vuetify'
-import { onUnmounted, onMounted, computed, ref } from 'vue'
+import {  computed } from 'vue'
 
-
-
-const aDate = useDate()
 const props = defineProps(['forecastPeriod'])
-console.log("props are: ", props)
-
 
 var forecastName =computed(()=>
     props?.forecastPeriod?.name
@@ -51,7 +46,6 @@ var forecastStarttime =computed(()=>{
 var forecastEndtime =computed(()=>{
     var dateString = props?.forecastPeriod?.endTime
     return new Date(dateString).toLocaleDateString('en-us', { weekday:"long", month:"short", day:"numeric"}) 
-    
 })
 
 var forecastTemperature =computed(()=>
@@ -69,51 +63,10 @@ var forecastPrecipChance =computed(()=>{
 var forecastShortForecast =computed(()=>
     props?.forecastPeriod?.shortForecast
 )
+
 var forecastDetailedForecast =computed(()=>
     props?.forecastPeriod?.detailedForecast
 )
-// var forecastItem = {
-//     number: Number,
-//     name: String,
-//     startTime: String,
-//     endTime: String,
-//     isDaytime: Boolean,
-//     temperature: Number,
-//     temperatureUnit: String,
-//     temperatureTrend: String,
-//     probabilityOfPrecipitation: {
-//         unitCode: String,
-//         value: Number
-//         },
-//     dewpoint: {
-//         unitCode: String,
-//         value: Number
-//         },
-//     relativeHumidity: {
-//         unitCode: String,
-//         value: Number
-//         },
-//     windSpeed: String,
-//     windDirection: String,
-//     icon: String,
-//     shortForecast: String,
-//     detailedForecast: String
-//     }
-
-//recursve obj below
-//     var forecastItem = computed(()=> {
-//    Object.values(props)
-//     })
-
-// var forecastItem = computed(() => {
-//     props.forecastPeriod?.["startTime"];
-// })
-    
-//     console.log("keys: ", Object.keys(props.forecastPeriod))
-//     console.log("values: ", Object.values(props.forecastPeriod))
-// const formattedDate = computed(() => {
-//   return props?.forecastPeriod?.startTime?.value ? selectedDate?.value?.toLocaleDateString("en") : "";
-// });
 
 </script>
 <style >
