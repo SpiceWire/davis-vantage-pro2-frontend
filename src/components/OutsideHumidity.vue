@@ -1,7 +1,7 @@
 <script setup>
 
 import { useClimaStore } from '../store/clima';
-import { computed, onMounted } from 'vue'
+import { computed } from 'vue'
 
 const store = useClimaStore();
 
