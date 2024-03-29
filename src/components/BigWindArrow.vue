@@ -20,11 +20,9 @@ function pointArrow() {
 function colorWindArrow() {
     
     if (props.speed <= 10) {
-  
         return "lime";
     }
     else if (props.speed <= 20) {
-      
         return "olive";
     }
     else {
@@ -36,7 +34,6 @@ function colorWindArrow() {
 
 <template>
     <div class="bigArrow" :style="{ backgroundColor: colorWindArrow(), transform: pointArrow() }">
-
     </div>
 </template>
 

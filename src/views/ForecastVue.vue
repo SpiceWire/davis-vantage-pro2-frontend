@@ -38,7 +38,8 @@
                     label="State: " 
                     :rules="[nonBlank, usState]" 
                     clearable
-                    @input="stateAbbrev = stateAbbrev.toUpperCase()">
+                    @input="stateAbbrev = stateAbbrev.toUpperCase()"
+                    >
                   </v-text-field>
                   <v-text-field 
                     id="zipField"
@@ -62,13 +63,8 @@
     <v-container>
       <strong>Forecast for: {{ addressFromStore?.city }}, {{ addressFromStore?.state }} </strong>
     </v-container>
-
-   <v-row>
-    <v-col cols="7">
-      
-    </v-col>
-   </v-row> 
-    <NWSForecast v-for="item in forecast" :key="item.number" :forecastPeriod="item">
+    <NWSForecast 
+      v-for="item in forecast" :key="item.number" :forecastPeriod="item">
     </NWSForecast>
     <br>
     <br>

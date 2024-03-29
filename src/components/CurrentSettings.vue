@@ -1,7 +1,6 @@
 
 <script setup>
-import WebService from '../services/WebService'
-import { computed, reactive, onMounted, ref, onUpdated, nextTick } from 'vue'
+import { reactive, onMounted, ref } from 'vue'
 import ParamValue from '@/components/ParamValue.vue';
 import { useCommStore } from '../store/comm';
 
@@ -12,25 +11,15 @@ var settingsObj = ref({})
 
 const store = useCommStore();
 
-
+//todo 
 async function getSettings() {
-    console.log("CurrentSettings is about to run fetchComm")
     result = await store.fetchComm()
         .then(response => {
-            console.log('Response is ', response)
             settingsObj.value = response
         })
-    console.log("CurrentSettngs.getSettings says settingsObj is ")
-    console.log(settingsObj.value)
-}
-
-
-function runMessage() {
-    console.log("currentSettings.vue is being mounted")
 }
 
 onMounted(() =>
-    runMessage(),
     getSettings())
 
 </script>
