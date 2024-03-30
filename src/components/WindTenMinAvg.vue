@@ -3,9 +3,7 @@
 import { useClimaStore } from '../store/clima';
 import { computed } from 'vue'
 
-
 const store = useClimaStore();
-
 
 const tenMinAvgWindSpeed = computed(() => {
     return store.clima.tenMinAvgWindSpeed

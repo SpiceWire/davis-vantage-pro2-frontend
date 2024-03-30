@@ -4,8 +4,6 @@ import { onMounted } from 'vue'
 const props = defineProps(
     ["speed", "direction", 'key']
 )
-
-
 var arrow
 
 onMounted(() => {
@@ -13,7 +11,6 @@ onMounted(() => {
     arrow.classList.add('arrow');
     arrow.style.transform = ('rotate(' + props.direction + 'deg)')
     arrow.style.background = colorWindArrow();
-   
     if (props.key > 7) {
         arrow.style.clipPath = ("polygon(30% 0, 70% 70%, 0 30%)")
     }
@@ -26,15 +23,12 @@ function pointArrow() {
 function colorWindArrow() {
    
     if (props.speed <= 10) {
-       
         return "green";
     }
     else if (props.speed <= 20) {
-       
         return "yellow";
     }
     else {
-        
         return "red";
     }
 }

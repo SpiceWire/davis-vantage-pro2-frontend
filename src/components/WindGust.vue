@@ -3,9 +3,7 @@
 import { computed } from 'vue'
 import { useClimaStore } from '../store/clima';
 
-
 const store = useClimaStore();
-
 
 var tenMinuteWindGust = computed(() => {
     return store.clima.tenMinuteWindGust
@@ -18,7 +16,6 @@ var colorGust = computed(() => {
     return gustColor;
 
 })
-
 
 </script>
 

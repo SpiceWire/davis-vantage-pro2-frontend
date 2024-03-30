@@ -6,18 +6,12 @@ import BigWindArrow from './BigWindArrow.vue'
 import { useClimaStore } from '../store/clima';
 import { computed } from 'vue'
 
-
-
 const store = useClimaStore();
-
-
-
-
 
 const speed = computed(() => {
   return store.clima.windSpeed
 })
-
+//offset of 35 degrees is the result of rendering.
 const direction = computed(() => {
   return store.clima.windDirection + 35
 })
@@ -26,10 +20,8 @@ const windID = computed(() => {
   return store.clima.keyID
 })
 
-
 var windDetail =
   reactive({ speed, direction, windID });
-
 
 var windDirections = [];
 var newWindDetail
@@ -38,9 +30,7 @@ onUpdated(() => {
   newWindDetail = Object.assign({}, windDetail)
 
   if (windDirections.length < 6) {
-
     windDirections.push(newWindDetail);
-
   } else {
     windDirections.shift();
     windDirections.push((newWindDetail));
