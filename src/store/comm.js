@@ -21,7 +21,6 @@ export const useCommStore = defineStore('comm',  {
     }),
     getters: {
         getComm(state) {
-
             return state.comm
         },
 
