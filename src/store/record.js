@@ -10,14 +10,12 @@ export const useRecordStore = defineStore('record',  {
     }),
     getters: {
         getRecord(state) {
-            console.log("Record store getRecord was called")
             return state.record
         },
     },
     actions: {
           async fetchRecord(recordType, numDays) {
             try {
-                console.log("store.fetchRecord called with ", recordType)
                 const recordQuery = await WebService.getRecord(recordType, numDays)
                 this.record = recordQuery.data
             }

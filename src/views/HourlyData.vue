@@ -27,15 +27,12 @@
 <script setup>
 
 import ParamValue from '@/components/ParamValue.vue';
-import { computed, onMounted, onUpdated, ref, reactive, toRaw } from 'vue'
+import { computed } from 'vue'
 import { useHourlyStore } from '../store/hourly';
-import { useDate } from 'vuetify'
+
 
 const store = useHourlyStore();
 
-// const props = defineProps(
-//     ["weatherParameter"]
-// )
 const hourlyHeader = computed(() => {
     return store.hourlyHeaderName
 })
@@ -43,8 +40,6 @@ const hourlyHeader = computed(() => {
 const hourlyArrayInfo = computed(() => {
     var valueArray = []
     var hourlyRaw = store.hourly
-    console.log("hourly data thinks hourlyRaw is: " , hourlyRaw)
-    var keyDate = useDate()
 
     for (var initialKey in hourlyRaw){
         var theISODate = new Date(initialKey).toISOString()
@@ -61,8 +56,7 @@ const hourlyArrayInfo = computed(() => {
     sortedDates.forEach((element) =>
         element.key = new Date(element.key).toLocaleString()
     )  
-        console.log("sortedDates:", sortedDates)
-        console.log(sortedDates)
+
     return sortedDates
 })
 

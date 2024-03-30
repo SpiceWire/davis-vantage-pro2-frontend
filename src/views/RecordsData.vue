@@ -77,7 +77,6 @@ function useButtonData(keyword, offset) {
     const tokenDate = new Date()
     tokenDate.setDate(tokenDate.getDate() - offset)
     weatherDate = formattedDate(tokenDate)
-    console.log("weatherDate3 =" + weatherDate)
     getPastData(keyword, offset)
 }
 

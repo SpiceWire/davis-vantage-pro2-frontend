@@ -51,8 +51,6 @@
 import { useRecordStore } from '@/store/record';
 import { ref, watch, computed } from 'vue';
 
-
-
 const store = useRecordStore()
 
 var weatherDate
