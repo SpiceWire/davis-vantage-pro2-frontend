@@ -22,7 +22,6 @@ app.mount('#app')
 
 //add beat to wind icon
 //add "server is online" heartbeat
-//delete getOne from webservice
 //add btn to close server response in Connections.vue
 //add help page. mention that fazecast does not have a "get timeout mode" function
 //delete unused components: ChyronMessage, HelloWorld, TheMoon, AnyWarnings, TheChyron
@@ -30,3 +29,11 @@ app.mount('#app')
 //add sunrise and sunset from LOOP1 data
 //add alarms from LOOP1 data
 //add combined wind speed, direction to hourly search
+//add weather alerts
+//offer hourly forecast option
+//delete pinia app store?
+//add moon and ephemera
+//add openhab compatability
+//add menu of available vars for 24 hour summary
+//Add a console page with battery level, type of console, receivers, etc.
+
