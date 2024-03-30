@@ -37,7 +37,7 @@
 </template>
 <script setup>
 import {useCommandStore} from '../store/command';
-import {ref, computed, onMounted} from 'vue'
+import {ref, computed} from 'vue'
 
 const store = useCommandStore()
 
@@ -77,9 +77,7 @@ const testDescr = computed (()=>{
     return store.command.testingDescription
 })
 
-// onMounted(()=>{
-//     store.$reset
-// })
+
 
 </script>
 <style >

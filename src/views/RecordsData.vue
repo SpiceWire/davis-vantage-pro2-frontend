@@ -33,18 +33,11 @@
 <script setup>
 
 import { useRecordStore } from '@/store/record';
-import { ref, watch, reactive, computed } from 'vue';
-import { useDate } from 'vuetify/lib/framework.mjs';
+import { ref, watch, computed } from 'vue';
 import { DatePicker } from '../components/DatePicker.vue'
 
 const store = useRecordStore()
-var menu = true
-function useMenu() {
-    return menu=!menu
-}
-// var menu1 = ref(true)
-// var menu3 = ref(true)
-var useWeatherDate = useDate();
+
 var weatherDate 
 const { label, color, modelValue } = defineProps([
   "label",
@@ -53,7 +46,6 @@ const { label, color, modelValue } = defineProps([
 ]);
 const emit = defineEmits("update:modelValue");
 
-const isMenuOpen = ref(true);
 const selectedDate = ref(modelValue);
 
 const formattedDate = computed(() => {
