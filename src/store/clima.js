@@ -17,19 +17,12 @@ export const useClimaStore = defineStore('clima',  {
     actions: {
           async fetchClima() {
             try {
-              
                 const datum = await WebService.getWeather()
- 
                 datum.data.keyID = Date.parse(new Date)/1000
-
                 this.clima = datum.data
-
             }
             catch(error){
-             
                 alert("Clima store fetch error: " + error)
-
-
             }
         }
     },

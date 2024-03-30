@@ -21,7 +21,7 @@ export const useCommStore = defineStore('comm',  {
     }),
     getters: {
         getComm(state) {
-            console.log("Comm store getComm was called")
+
             return state.comm
         },
 
@@ -30,10 +30,7 @@ export const useCommStore = defineStore('comm',  {
           async fetchComm() {
             try {
                 const newComm = await WebService.getSettings()
-                //then?
                 this.comm = newComm.data
-                console.log("fetch commStore called. Comm is:")
-                console.log(this.comm)
                 return this.comm
             }
             catch(error){
