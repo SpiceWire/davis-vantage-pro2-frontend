@@ -30,7 +30,6 @@ function getForecast(){
 function getHourlyValues(e){
   const origName = e.currentTarget.id
   const replacedName = origName.replace(/-/g,"_")
-  console.log("You clicked something called " + e.currentTarget.id + " which is now called " + replacedName)
   hourlyStore.fetchHourly(replacedName)
   router.push({path:'/hourlyData'})
 }
@@ -44,14 +43,11 @@ onMounted(() =>
 
 onUnmounted(() => clearInterval(polling));
 
-
 function pollData() {
   polling = setInterval(() => { store.fetchClima() }, 15000)
 }
 
-var WindChillAmt=computed(()=>{
-  return store.clima.windChill
-})
+
 </script>
 
 <template>
