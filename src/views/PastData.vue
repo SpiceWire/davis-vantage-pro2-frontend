@@ -49,25 +49,19 @@
 <script setup>
 
 import { useRecordStore } from '@/store/record';
-import { ref, watch, reactive, computed } from 'vue';
-import { useDate } from 'vuetify/lib/framework.mjs';
+import { ref, watch, computed } from 'vue';
+
 
 
 const store = useRecordStore()
-var menu = true
-function useMenu() {
-    return menu = !menu
-}
-// var menu1 = ref(true)
-// var menu3 = ref(true)
-var useWeatherDate = useDate();
+
 var weatherDate
 const { label, color, modelValue } = defineProps([
     "label",
     "color",
     "modelValue",
 ]);
-// const emit = defineEmits("update:modelValue");
+
 
 const isMenuOpen = ref(false);
 var selectedDate = ref(modelValue);
@@ -77,20 +71,8 @@ const formattedDate = computed(() => {
 });
 
 function useButtonData(keyword, offset) {
-    // const tokenDate = new Date()
-    // tokenDate.setDate(tokenDate.getDate() - offset)
-    // weatherDate = formattedDate(tokenDate)
-    // console.log("weatherDate3 =" + weatherDate)
     getPastData(keyword, offset)
 }
-
-// watch(modelValue, (newDate) => {
-//   selectedDate.value = newDate;
-// });
-
-// watch(selectedDate, (newDate) => {
-//   emit("update:modelValue", newDate);
-// });
 
 watch(selectedDate, () => {
     isMenuOpen.value = false;
@@ -98,9 +80,6 @@ watch(selectedDate, () => {
     getPastData("day", daysOffset)
 });
 
-// function formatDate(focusDate) {
-//     return useWeatherDate.format(focusDate, "fullDateWithWeekday")
-// }
 
 var dayWeather = computed(() => {
     return store.getRecord
@@ -113,8 +92,6 @@ const btnNames = ref([
     { text: "Three days ago", keyword: "day", value: 3 },
 ])
 
-
-
 function getDaysOffset(selectedDate) {
     const MILLS_PER_DAY = 1000 * 60 * 60 * 24;
     const today = getUTCDate(new Date(Date.now()));
@@ -125,7 +102,6 @@ function getDaysOffset(selectedDate) {
 function getUTCDate(validDate) {
     return Date.UTC(validDate.getFullYear(), validDate.getMonth(), validDate.getDate())
 }
-
 
 function getPastData(keyword, offset) {
     store.fetchRecord(keyword, offset)
