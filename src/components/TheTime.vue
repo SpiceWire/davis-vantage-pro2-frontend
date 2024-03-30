@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, onBeforeMount, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 
 const theTime = ref(new Date());
 const theDate = ref(new Date());
@@ -13,8 +13,6 @@ const theUpdatedTime = () => {
     weekday: 'short',
     day: 'numeric',
     month: 'short',
-    
-    
 });
 }
 

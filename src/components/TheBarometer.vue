@@ -40,8 +40,6 @@ function barTrendSelectIcon() {
             return "fa-xmarks-lines";
     }
 }
-
-
 </script>
 
 <template>
