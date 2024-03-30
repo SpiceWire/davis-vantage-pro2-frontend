@@ -10,39 +10,44 @@ const http = axios.create({
   baseURL:`http://${location.hostname}:8080`
 });
 
-
 export default {
 
   getWeather() {
     return http.get('/weather/' + uniqueNumber());
   },
+  
   getNewWeather(){
     return http.get('/weather/new')
   },
+
   getRecord(recordType, days){
     return http.get(`/record/${recordType}/${days}`)
   },
+  
   getSettings(){
     return http.get('/vp2/settings/' + uniqueNumber())
   },
+
   applySettings(settingsObj){
-    console.log("Webservice says: Settings obj is: " , settingsObj)
     return http.post('/vp2/settings/' + uniqueNumber(), settingsObj)
   },
+
   getData(cmd){
-    // return http.get('/vp2/currentData/${cmd}/' + uniqueNumber())
     return http.get(`/vp2/currentData/${cmd}/${uniqueNumber()}`)
   },
+
   getTesting(cmd){
     return http.get(`/vp2/testing/${cmd}/${uniqueNumber()}`)
   },
+
   getHourly(headerName){
     return http.get(`/record/header/${headerName}`)
   },
+
   getForecast(){
-    // return axios.get(`https://api.weather.gov/gridpoints/LWX/96,70/forecast`)
     return http.get(`/forecast/${uniqueNumber()}`)
   },
+
   getForecastByAddress(street, city, state, zip){
     const address ={
       ['streetAddress']: street,
@@ -52,11 +57,12 @@ export default {
     }
     return http.post(`/forecast/address`, address)
 },
+
  getForecastByLatLon(latitude, longitude){
-  console.log("getForecastByLatLon called in WebService. Lat and Long are " + latitude + " " + longitude)
   const latLon = latitude + "," + longitude
   return http.post("/forecast/latLon", {latLon:latLon})
  },
+
  setDefaultLocationByAddress(street, city, state, zip){
   const address ={
     ['streetAddress']: street,
@@ -66,6 +72,7 @@ export default {
   }
   return http.post(`/forecast/default/address`, address)
  },
+
  setDefaultLocationByCoordinates(latitude, longitude){
   console.log("setDefaultLocationByCoordinates called in WebService. Lat and Long are " + latitude + " " + longitude)
   const latLon = latitude + "," + longitude
