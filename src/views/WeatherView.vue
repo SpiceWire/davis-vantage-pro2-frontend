@@ -24,7 +24,7 @@ const store = useClimaStore();
 const hourlyStore = useHourlyStore();
 
 function getForecast(){
-  
+  router.push({path:'/forecast'})
 }
 
 function getHourlyValues(e){
