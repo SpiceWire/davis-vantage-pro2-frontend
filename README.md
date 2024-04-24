@@ -22,10 +22,12 @@ Features or uses:
   
   # Past Weather
   Displays highs, lows and summaries based on a date.
+  
   ![PastWeather](/images/PastWeather.png)
   
   # Forecast
   United States Weather Service (USA only) forecast based on geolocation or address.
+  
   ![Forecast](/images/Forecast.png)
   
   # Vantage Pro 2 Settings
@@ -36,10 +38,12 @@ Features or uses:
 
   # Vantage Pro 2 Testing
   Buttons for TEST, RECEIVERS, RXTEST, RXCHECK, VER and NVER
+  
   ![Testing](/images/Testing.png)
   
   # Raw Data
   Binary data from the Vantage Pro 2 LOOP and LPS commands.
+  
   ![CurrentData](/images/CurrentData.png)
   
 
