@@ -17,7 +17,7 @@ Features or uses:
 
   # Current Weather
   Clicking any icon gives a 24-hour table of that variable.
-  [CurrentWeather](../images/CurrentWeather.png)
+  ![CurrentWeather](../images/CurrentWeather.png)
   
   Aggreggate Weather
   Displays highs, lows and summaries based on a date.
