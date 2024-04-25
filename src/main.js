@@ -21,7 +21,7 @@ app.mount('#app')
 
 
 //add "last updated" to weather page
-//add "date displayed" to past weather
+
 //add "server is online" heartbeat
 //add btn to close server response in Connections.vue
 //add help page. mention that fazecast does not have a "get timeout mode" function
