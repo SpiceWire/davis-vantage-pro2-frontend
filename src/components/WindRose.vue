@@ -63,9 +63,7 @@ onUpdated(() => {
 
 .windRoseTile {
   display: grid;
-  /* margin-left: 52px; */
   position: relative;
-  /* justify-content:center; */
   align-content: center;
   justify-items: center;
   font-family: sans-serif;

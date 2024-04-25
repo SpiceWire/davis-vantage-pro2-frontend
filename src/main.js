@@ -20,7 +20,8 @@ app.config.globalProperties.axios = axios
 app.mount('#app')
 
 
-//add beat to wind icon
+//add "last updated" to weather page
+//add "date displayed" to past weather
 //add "server is online" heartbeat
 //add btn to close server response in Connections.vue
 //add help page. mention that fazecast does not have a "get timeout mode" function
@@ -36,4 +37,5 @@ app.mount('#app')
 //add openhab compatability
 //add menu of available vars for 24 hour summary
 //Add a console page with battery level, type of console, receivers, etc.
+//Re-evaluate if wind gust icons should dynamically color based on wind speed
 

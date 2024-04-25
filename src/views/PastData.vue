@@ -1,9 +1,9 @@
 <template >
     <div>
         <v-container>
-            <h2>Past Weather</h2>
+            <h2>Daily Record</h2>
             <br>
-            <h3>Click a button to get past data</h3>
+            <h3>Displays weather summary of a date </h3>
             <br>
             <v-chip v-for="name in btnNames" :value="name.value" @click="useButtonData(name.keyword, name.value)">{{
                 name.text
@@ -37,7 +37,7 @@
             <br>
             <br>
             <div>
-                <strong>Weather: {{ weatherDate }} </strong>
+                <strong>Weather: {{ buttonDate }} </strong>
             </div>
             <v-row v-for="param, val in dayWeather" :key="val">
                 <v-col cols="6"> {{ val }}</v-col> <v-col cols="4">{{ param }}</v-col>
@@ -53,16 +53,15 @@ import { ref, watch, computed } from 'vue';
 
 const store = useRecordStore()
 
-var weatherDate
 const { label, color, modelValue } = defineProps([
     "label",
     "color",
     "modelValue",
 ]);
 
-
 const isMenuOpen = ref(false);
 var selectedDate = ref(modelValue);
+var buttonDate
 
 const formattedDate = computed(() => {
     return selectedDate.value ? selectedDate.value.toLocaleDateString("en") : "";
@@ -77,7 +76,6 @@ watch(selectedDate, () => {
     const daysOffset = getDaysOffset(selectedDate.value);
     getPastData("day", daysOffset)
 });
-
 
 var dayWeather = computed(() => {
     return store.getRecord
@@ -101,7 +99,13 @@ function getUTCDate(validDate) {
     return Date.UTC(validDate.getFullYear(), validDate.getMonth(), validDate.getDate())
 }
 
+function subtractDays(offset) {
+    return new Date(new Date().setDate(new Date().getDate()-offset)).toLocaleDateString("en",
+   {weekday:"short", year:"numeric", month:"short", day:"numeric"})
+}
+
 function getPastData(keyword, offset) {
+    buttonDate=subtractDays(offset)
     store.fetchRecord(keyword, offset)
 }
 

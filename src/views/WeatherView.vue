@@ -62,7 +62,7 @@ function pollData() {
             style="min-width: 400px">
             <TheTime id="the-time" />
             <br>
-            <WindRose id="wind-rose" />
+            <WindRose id="wind-speed" @click="getHourlyValues"/>
           </v-col>
           <v-col  
               
