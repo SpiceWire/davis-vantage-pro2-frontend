@@ -21,7 +21,8 @@ Features or uses:
 
   # Hourly Data
   Displays a parameter's data for each hour of the past 24 hours.
-
+  
+  ![HourlyData](/images/ParameterHourly.png)
   
   # Past Weather
   Displays highs, lows and summaries based on a date.
