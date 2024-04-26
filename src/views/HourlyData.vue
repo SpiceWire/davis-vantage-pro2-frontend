@@ -54,7 +54,7 @@ const hourlyArrayInfo = computed(() => {
         });
 
     sortedDates.forEach((element) =>
-        element.key = new Date(element.key).toLocaleString()
+        element.key = new Date(element.key).toLocaleString("en", {dateStyle:"short", timeStyle:"short"})
     )  
 
     return sortedDates
