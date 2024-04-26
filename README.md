@@ -19,11 +19,15 @@ Features or uses:
   Clicking any icon gives a 24-hour table of that variable.
   ![CurrentWeather](/images/CurrentWeather.png)
 
+  # Hourly Data
+  Displays a parameter's data for each hour of the past 24 hours.
+
   
   # Past Weather
   Displays highs, lows and summaries based on a date.
   
-  ![PastWeather](/images/PastWeather.png)
+  ![PastWeather](/images/DailyRecord1.png)
+   ![PastWeather](/images/DailyRecord2.png)
   
   # Forecast
   United States Weather Service (USA only) forecast based on geolocation or address.
