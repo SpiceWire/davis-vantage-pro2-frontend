@@ -16,7 +16,7 @@ Features or uses:
   Fully implements all endpoints of [DavisBackend]().
 
   # Current Weather
-  Clicking any icon gives a 24-hour table of that variable. Icons' color changes based on values. For example, wind arrows are colored green, yellow or red based on wind speed. Temperature icons use a gradient from blue (cold) to red (hot). The forecast icon links to the US Weather forecast for the geolocation. Wind arrows show the last 5 wind readings. 
+  Clicking any icon gives a 24-hour table of that variable. Icons' color changes based on values. For example, wind arrows are colored green, yellow or red based on wind speed. Temperature icons use a gradient from blue (cold) to red (hot). The forecast icon links to the US Weather forecast for the geolocation. Wind arrows show the last 5 wind readings. Polls backend at intervals for updated weather data.
   ![CurrentWeather](/images/CurrentWeather.png)
 
   # Hourly Data
