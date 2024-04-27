@@ -1,6 +1,6 @@
-# Davis Vantage Pro 2 Frontend
+# Davis Vantage Pro2 Frontend
 
-Displays data and manages settings of Davis Vantage Pro 2 weather station. Also shows geolocation-based forecast from
+Displays data and manages settings of Davis Vantage Pro2 weather station. Also shows geolocation-based forecast from
 United States Weather Service. 
 
 Features or uses:
